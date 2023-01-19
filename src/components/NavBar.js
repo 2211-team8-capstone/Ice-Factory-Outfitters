@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "../style/NavBar.css";
 
 const NavBar = () => {
@@ -7,19 +8,30 @@ const NavBar = () => {
   return (
     <>
       <div className="nav-bar-products-container">
-        <div>
-          <button className="nav-bar-products" onClick={routeTo}>
-            Sticks
-          </button>
-        </div>
-        <h2 className="nav-bar-products">Sticks</h2>
-        <h2 className="nav-bar-products">Pucks</h2>
-        <h2 className="nav-bar-products">Skates</h2>
-        <h2 className="nav-bar-products">Helmets</h2>
-        <h2 className="nav-bar-products">Protective Gear</h2>
-        <h2 className="nav-bar-products">Goalie Gear</h2>
-        <h2 className="nav-bar-products">Accessories</h2>
-        <h2 className="nav-bar-products">Team Apparel</h2>
+        <h2 className="nav-bar-products">
+          <Link to="/sticks">Sticks</Link>
+        </h2>
+        <h2 className="nav-bar-products">
+          <Link to="/pucks">Pucks</Link>
+        </h2>
+        <h2 className="nav-bar-products">
+          <Link to="/skates">Skates</Link>
+        </h2>
+        <h2 className="nav-bar-products">
+          <Link to="/helmets">Helmets</Link>
+        </h2>
+        <h2 className="nav-bar-products">
+          <Link to="/protectiveGear">Pretective Gear</Link>
+        </h2>
+        <h2 className="nav-bar-products">
+          <Link to="/goalieGear">Goalie Gear</Link>
+        </h2>
+        <h2 className="nav-bar-products">
+          <Link to="/accessories">Accessories</Link>
+        </h2>
+        <h2 className="nav-bar-products">
+          <Link to="/teamApparel">Team Apparel</Link>
+        </h2>
       </div>
       <div className="search-bar">
         <form>
