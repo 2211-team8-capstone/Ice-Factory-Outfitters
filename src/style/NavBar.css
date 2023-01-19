@@ -1,0 +1,14 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+ }
+
+.nav-bar-products-container{
+    display: flex;
+}
+
+.nav-bar-products{
+    border: black solid 5px;
+}
