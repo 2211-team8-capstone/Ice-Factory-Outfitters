@@ -27,3 +27,48 @@ export async function getAPIHealth() {
     return { healthy: false };
   }
 }
+
+export const registerUser = async (email, password) => {
+  try {
+    const response = await fetch('http://localhost:3000/api/users/register', {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      })
+    })
+
+    const data = await response.json()
+    console.log("this is the registerUser data", data)
+    
+    return data
+  } catch (error) {
+    console.error(error)
+  }
+};
+
+export const loginUser = async (email, password) => {
+  try {
+    const response = await fetch('http://localhost:3000/api/users/login', {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      })
+    })
+    const { 
+      token
+    } = await response.json();
+    console.log("this is the loginUser data", token)
+
+    return token
+  } catch (error) {
+    console.error(error)
+  }
+};

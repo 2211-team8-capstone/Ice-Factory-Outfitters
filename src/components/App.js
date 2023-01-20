@@ -13,6 +13,19 @@ import "../style/App.css";
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState("");
+  const [token, setToken] = useState(localStorage.getItem("token") );
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    // console.log("This is the token", token)
+    const getMe = async () => {
+      const data = await fetchMe(token);
+      setUser(data);
+    };
+    if (token) {
+      getMe();
+    }
+  }, [token]);
 
   useEffect(() => {
     const getAPIStatus = async () => {
@@ -38,7 +51,7 @@ const App = () => {
           <Route path="/goalieGear" element={<Product />}></Route>
           <Route path="/accessories" element={<Product />}></Route>
           <Route path="/teamApparel" element={<Product />}></Route>
-          <Route path="/LoginRegister" element={<LoginRegister />}></Route>
+          <Route path="/LoginRegister" element={<LoginRegister setToken={setToken}/>}></Route>
         </Routes>
       </div>
     </>

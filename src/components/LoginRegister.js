@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { loginUser, registerUser } from "../api";
 
 
 // import "../style/Header.css";
 const LoginRegister = () => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [emailTwo, setEmailTwo] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordTwo, setPasswordTwo] = useState("");
   const [stateError, setStateError] = useState("");
+  const [token, setToken] = useState("");
   const navigate = useNavigate()
 
   return (
@@ -16,16 +20,16 @@ const LoginRegister = () => {
           <h3>Existing Customers Login</h3>
           <form className="login-form"
             onSubmit={async (e) => {
-              if (!username || !password) {
+              if (!email || !password) {
                 e.preventDefault()
-                const errorMessage = "Please enter a valid Username and Password"
+                const errorMessage = "Please enter a valid Email and Password"
                 setStateError(errorMessage);
               } else {
               try {
                 e.preventDefault();
-                //console.log(password, username);
-                localStorage.setItem("username", username);
-                const token = await loginUser(username, password);
+                //console.log(password, email);
+                localStorage.setItem("email", email);
+                const token = await loginUser(email, password);
                 setToken(token);
                 localStorage.setItem("token", token);
                 navigate('/')
@@ -35,13 +39,13 @@ const LoginRegister = () => {
               }}
             }}
           >
-            <label htmlFor="username">Existing User Email</label>
+            <label htmlFor="email">Existing User Email</label>
             <input
-              value={username}
+              value={email}
               type="text"
               placeholder="Email Address"
               minLength={3}
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
             ></input>
             <label htmlFor="password">Password</label>
             <input
@@ -60,16 +64,16 @@ const LoginRegister = () => {
           <h3>New Customers Login</h3>
           <form className="register-form"
             onSubmit={async (e) => {
-              if (!username || !password) {
+              if (!emailTwo || !passwordTwo) {
                 e.preventDefault()
-                const errorMessage = "Please enter a valid Username and Password"
+                const errorMessage = "Please enter a valid Email and Password"
                 setStateError(errorMessage);
               } else {
               try {
                 e.preventDefault();
-                //console.log(password, username);
-                localStorage.setItem("username", username);
-                const token = await registerUser(username, password);
+                //console.log(password, email);
+                localStorage.setItem("email", emailTwo);
+                const token = await registerUser(emailTwo, passwordTwo);
                 setToken(token);
                 localStorage.setItem("token", token);
                 navigate('/')
@@ -79,21 +83,21 @@ const LoginRegister = () => {
               }}
             }}
           >
-            <label htmlFor="username">New User Email</label>
+            <label htmlFor="emailTwo">New User Email</label>
             <input
-              value={username}
+              value={emailTwo}
               type="text"
               placeholder="Email Address"
               minLength={3}
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) => setEmailTwo(e.target.value)}
             ></input>
-            <label htmlFor="password">Password</label>
+            <label htmlFor="passwordTwo">Password</label>
             <input
-              value={password}
+              value={passwordTwo}
               type="password"
               placeholder="Password"
               minLength={3}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => setPasswordTwo(e.target.value)}
             ></input>
             <button type="Submit">Register</button>
             {stateError ? <h3>{stateError}</h3> : ""}
