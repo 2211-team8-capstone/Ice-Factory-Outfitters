@@ -4,10 +4,12 @@ import { Route, Routes } from "react-router-dom";
 // you can think of that directory as a collection of api adapters
 // where each adapter fetches specific info from our express server's /api route
 import { getAPIHealth } from "../api";
-import "../style/App.css";
+import LoginRegister from "./LoginRegister";
 import Home from "./Home";
 import Header from "./Header";
 import NavBar from "./NavBar";
+import Product from "./Product";
+import "../style/App.css";
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState("");
@@ -28,6 +30,15 @@ const App = () => {
       <div>
         <Routes>
           <Route exact path="/" element={<Home />}></Route>
+          <Route path="/sticks" element={<Product />}></Route>
+          <Route path="/pucks" element={<Product />}></Route>
+          <Route path="/skates" element={<Product />}></Route>
+          <Route path="/helmets" element={<Product />}></Route>
+          <Route path="/protectiveGear" element={<Product />}></Route>
+          <Route path="/goalieGear" element={<Product />}></Route>
+          <Route path="/accessories" element={<Product />}></Route>
+          <Route path="/teamApparel" element={<Product />}></Route>
+          <Route path="/LoginRegister" element={<LoginRegister />}></Route>
         </Routes>
       </div>
     </>
