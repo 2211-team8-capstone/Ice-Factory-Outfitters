@@ -17,17 +17,6 @@ const App = () => {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    // console.log("This is the token", token)
-    const getMe = async () => {
-      const data = await fetchMe(token);
-      setUser(data);
-    };
-    if (token) {
-      getMe();
-    }
-  }, [token]);
-
-  useEffect(() => {
     const getAPIStatus = async () => {
       const { healthy } = await getAPIHealth();
       setAPIHealth(healthy ? "api is up! :D" : "api is down :/");
