@@ -1,6 +1,6 @@
 
 const client = require("./client");
-const { getAllUsers, createUser } = require("./models/user");
+const { getAllUsers, createUser } = require("./models/users");
 
 
 async function dropTables() {
@@ -43,8 +43,6 @@ async function createInitialUsers() {
   const dylan = await createUser({email: 'dylan@email.com', password: 'password1234'});
 
 }
-
-
 
 async function rebuildDB() {
   try {

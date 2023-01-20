@@ -1,51 +1,74 @@
+require('dotenv').config();
+
 // This is the Web Server
+const PORT = 3000;
 const express = require("express");
 const server = express();
 
+const morgan = require('morgan');
+server.use(morgan('dev'));
+
+
+server.use(express.json())
+
+// create route and router for our main API 
+const apiRouter = require('./api');
+server.use('/api', apiRouter);
+
+// connect to the db 
+const { client } = require('./db');
+client.connect();
+
+// start up the server 
+server.listen(PORT, () => {
+  console.log('The server is up on port ', PORT)
+})
+
+server.use((req, res, next) => {
+  console.log("<____Body Logger START____>");
+  console.log(req.body);
+  console.log("<_____Body Logger END_____>");
+
+  next();
+});
+
 // enable cross-origin resource sharing to proxy api requests
 // from localhost:3000 to localhost:4000 in local dev env
-const cors = require("cors");
-server.use(cors());
+// const cors = require("cors");
+// server.use(cors());
 
-// create logs for everything
-const morgan = require("morgan");
-server.use(morgan("dev"));
-
-// handle application/json requests
-server.use(express.json());
-
-// here's our static files
-const path = require("path");
-server.use(express.static(path.join(__dirname, "build")));
-
-// here's our API
-server.use("/api", require("./api"));
 
 // by default serve up the react app if we don't recognize the route
-server.use((req, res, next) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
-});
+// server.use((req, res, next) => {
+//   res.sendFile(path.join(__dirname, "build", "index.html"));
+// });
 
 // bring in the DB connection
-const { client } = require("./db");
+// const { client } = require("./db");
 
-// connect to the server
-const PORT = process.env.PORT || 8080;
+// 
 
 // define a server handle to close open tcp connection after unit tests have run
-const handle = server.listen(PORT, async () => {
-  console.log(`Server is running on ${PORT}!`);
+// const handle = server.listen(PORT, async () => {
+//   console.log(`Server is running on ${PORT}!`);
 
-  try {
-    await client.connect();
-    console.log("Database is open for business!");
-  } catch (error) {
-    console.error("Database is closed for repairs!\n", error);
-  }
-});
+//   try {
+//     await client.connect();
+//     console.log("Database is open for business!");
+//   } catch (error) {
+//     console.error("Database is closed for repairs!\n", error);
+//   }
+// });
 
 // export server and handle for routes/*.test.js
-module.exports = { server, handle };
+// module.exports = { server, handle };
 
-//TESTING CHANGE
-//TESTING CHANGE 2
+
+// removing this from above for now, not sure what it is for 
+
+// here's our static files
+// const path = require("path");
+// server.use(express.static(path.join(__dirname, "build")));
+
+// connect to the server
+// const PORT = process.env.PORT || 8080;
