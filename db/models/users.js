@@ -1,31 +1,35 @@
 // grab our db client connection to use with our adapters
-const client = require('../client');
-const bcrypt = require('bcrypt');
+const client = require("../client");
+const bcrypt = require("bcrypt");
+const SALT_COUNT = 10;
 
-
-async function createUser ({email, password}) {
-  const SALT_COUNT = 10;
-
-  const hashedPassword = await bcrypt.hash(password, SALT_COUNT)
+async function createUser({ email, password }) {
+  const hashedPassword = await bcrypt.hash(password, SALT_COUNT);
 
   try {
-    const {rows: [user]} = await client.query(`
+    const {
+      rows: [user],
+    } = await client.query(
+      `
     INSERT INTO users(email, password)
     VALUES ($1, $2)
     ON CONFLICT (email) DO NOTHING
     RETURNING *;
-    `, [email, hashedPassword]);
+    `,
+      [email, hashedPassword]
+    );
 
     delete user.password;
 
     return user;
   } catch (error) {
-    console.error(error);
+    console.error("Error creating user!");
+    throw error;
   }
 }
 
 async function getAllUsers() {
-  const {rows} = await client.query(`
+  const { rows } = await client.query(`
     SELECT email, password
     FROM users;
   `);
@@ -35,29 +39,39 @@ async function getAllUsers() {
 
 async function getUserById(userId) {
   try {
-    const { rows: [user] } = await client.query(`
+    const {
+      rows: [user],
+    } = await client.query(
+      `
         SELECT *
         FROM users
         WHERE id=$1;
-    `, [userId]);
+    `,
+      [userId]
+    );
 
     // dont return password with user data
     delete user.password;
 
     return user;
   } catch (error) {
-    console.error(error);  
+    console.error(error);
     throw error;
   }
 }
 
 async function getUserByEmail(email) {
   try {
-    const {rows: [user]} = await client.query(`
+    const {
+      rows: [user],
+    } = await client.query(
+      `
       SELECT * 
       FROM users
       WHERE email=$1;
-    `, [email]);
+    `,
+      [email]
+    );
 
     return user;
   } catch (error) {
@@ -65,12 +79,10 @@ async function getUserByEmail(email) {
   }
 }
 
-  // add your database adapter fns here
+// add your database adapter fns here
 module.exports = {
   getAllUsers,
-  createUser, 
+  createUser,
   getUserById,
-  getUserByEmail
+  getUserByEmail,
 };
-
-

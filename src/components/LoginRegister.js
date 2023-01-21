@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { loginUser, registerUser } from "../api";
 
-
 // import "../style/Header.css";
 const LoginRegister = () => {
   const [email, setEmail] = useState("");
@@ -11,32 +10,33 @@ const LoginRegister = () => {
   const [passwordTwo, setPasswordTwo] = useState("");
   const [stateError, setStateError] = useState("");
   const [token, setToken] = useState("");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
+  console.log("TTTTTTTTTTTTTTTTTTT", emailTwo, passwordTwo, token);
   return (
     <>
       <div className="login-register">
         <div className="login">
           <h3>Existing Customers Login</h3>
-          <form className="login-form"
+          <form
+            className="login-form"
             onSubmit={async (e) => {
               if (!email || !password) {
-                e.preventDefault()
-                const errorMessage = "Please enter a valid Email and Password"
+                e.preventDefault();
+                const errorMessage = "Please enter a valid Email and Password";
                 setStateError(errorMessage);
               } else {
-              try {
-                e.preventDefault();
-                //console.log(password, email);
-                localStorage.setItem("email", email);
-                const token = await loginUser(email, password);
-                setToken(token);
-                localStorage.setItem("token", token);
-                navigate('/')
-
-              } catch (error) {
-                console.error(error)
-              }}
+                try {
+                  e.preventDefault();
+                  localStorage.setItem("email", email);
+                  const token = await loginUser(email, password);
+                  setToken(token);
+                  localStorage.setItem("token", token);
+                  // navigate("/");
+                } catch (error) {
+                  console.error(error);
+                }
+              }
             }}
           >
             <label htmlFor="email">Existing User Email</label>
@@ -62,25 +62,27 @@ const LoginRegister = () => {
 
         <div className="register">
           <h3>New Customers Login</h3>
-          <form className="register-form"
+          <form
+            className="register-form"
             onSubmit={async (e) => {
               if (!emailTwo || !passwordTwo) {
-                e.preventDefault()
-                const errorMessage = "Please enter a valid Email and Password"
+                e.preventDefault();
+                const errorMessage = "Please enter a valid Email and Password";
                 setStateError(errorMessage);
               } else {
-              try {
-                e.preventDefault();
-                //console.log(password, email);
-                localStorage.setItem("email", emailTwo);
-                const token = await registerUser(emailTwo, passwordTwo);
-                setToken(token);
-                localStorage.setItem("token", token);
-                navigate('/')
-
-              } catch (error) {
-                console.error(error)
-              }}
+                try {
+                  e.preventDefault();
+                  //console.log(password, email);
+                  localStorage.setItem("email", emailTwo);
+                  const token = await registerUser(emailTwo, passwordTwo);
+                  // console.log("YYYYYYYYYYYY", token);
+                  setToken(token.token);
+                  localStorage.setItem("token", token);
+                  // navigate("/");
+                } catch (error) {
+                  console.error(error);
+                }
+              }
             }}
           >
             <label htmlFor="emailTwo">New User Email</label>

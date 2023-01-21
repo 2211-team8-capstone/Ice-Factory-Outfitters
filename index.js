@@ -1,28 +1,18 @@
-require('dotenv').config();
-
 // This is the Web Server
-const PORT = 3000;
+const PORT = 4001;
 const express = require("express");
 const server = express();
+const cors = require("cors");
+const { client } = require("./db");
+const morgan = require("morgan");
+require("dotenv").config();
 
-const morgan = require('morgan');
-server.use(morgan('dev'));
-
-
-server.use(express.json())
-
-// create route and router for our main API 
-const apiRouter = require('./api');
-server.use('/api', apiRouter);
-
-// connect to the db 
-const { client } = require('./db');
 client.connect();
 
-// start up the server 
-server.listen(PORT, () => {
-  console.log('The server is up on port ', PORT)
-})
+server.use(cors());
+server.use(morgan("dev"));
+
+server.use(express.json());
 
 server.use((req, res, next) => {
   console.log("<____Body Logger START____>");
@@ -31,22 +21,26 @@ server.use((req, res, next) => {
 
   next();
 });
+// create route and router for our main API
+const apiRouter = require("./api");
+server.use("/api", apiRouter);
+
+// connect to the db
+
+// start up the server
+server.listen(PORT, () => {
+  console.log("The server is up on port: ", PORT);
+});
 
 // enable cross-origin resource sharing to proxy api requests
 // from localhost:3000 to localhost:4000 in local dev env
-// const cors = require("cors");
-// server.use(cors());
-
 
 // by default serve up the react app if we don't recognize the route
 // server.use((req, res, next) => {
 //   res.sendFile(path.join(__dirname, "build", "index.html"));
 // });
 
-// bring in the DB connection
-// const { client } = require("./db");
-
-// 
+//
 
 // define a server handle to close open tcp connection after unit tests have run
 // const handle = server.listen(PORT, async () => {
@@ -63,8 +57,7 @@ server.use((req, res, next) => {
 // export server and handle for routes/*.test.js
 // module.exports = { server, handle };
 
-
-// removing this from above for now, not sure what it is for 
+// removing this from above for now, not sure what it is for
 
 // here's our static files
 // const path = require("path");
