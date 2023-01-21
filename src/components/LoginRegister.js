@@ -61,7 +61,7 @@ const LoginRegister = () => {
         </div>
 
         <div className="register">
-          <h3>New Customers Login</h3>
+          <h3>New Customer Register</h3>
           <form
             className="register-form"
             onSubmit={async (e) => {

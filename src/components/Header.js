@@ -2,19 +2,39 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../style/Header.css";
 
-const Header = () => {
+const Header = (props) => {
+  const handleLogout = () => {
+    localStorage.clear();
+    props.setToken("");
+  };
+
   return (
     <>
       <div className="header">
         <div className="logo">
-          <Link to={"/"}>LOGO</Link>
+          <Link to={"/"} className="head-links">
+            LOGO
+          </Link>
         </div>
+        <h2 className="delete-later">Ice Factory Outfitters</h2>
         <div className="login-cart"></div>
-        <div className="register-login">
-          <Link to={"/LoginRegister"}>Login/Register</Link>
-        </div>
+        {!props.token ? (
+          <div className="register-login">
+            <Link to={"/LoginRegister"} className="head-links">
+              Login/Register
+            </Link>
+          </div>
+        ) : (
+          <div className="logout" onClick={handleLogout}>
+            <Link to={"/"} className="head-links">
+              Logout
+            </Link>
+          </div>
+        )}
         <div className="cart">
-          <Link to={"/cart"}>Cart</Link>
+          <Link to={"/cart"} className="head-links">
+            Cart
+          </Link>
         </div>
       </div>
     </>
