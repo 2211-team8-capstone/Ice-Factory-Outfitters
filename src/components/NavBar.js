@@ -23,7 +23,7 @@ const NavBar = () => {
           Helmets
         </Link>
         <Link to="/protectiveGear" className="nav-bar-products">
-          Pretective Gear
+          Protective Gear
         </Link>
         <Link to="/goalieGear" className="nav-bar-products">
           Goalie Gear
