@@ -13,7 +13,7 @@ import "../style/App.css";
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState("");
-  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [token, setToken] = useState("");
   const [user, setUser] = useState({});
 
   console.log("APP.js token", token);

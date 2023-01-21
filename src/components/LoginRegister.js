@@ -3,16 +3,16 @@ import { Link, useNavigate } from "react-router-dom";
 import { loginUser, registerUser } from "../api";
 
 // import "../style/Header.css";
-const LoginRegister = () => {
+const LoginRegister = (props) => {
   const [email, setEmail] = useState("");
   const [emailTwo, setEmailTwo] = useState("");
   const [password, setPassword] = useState("");
   const [passwordTwo, setPasswordTwo] = useState("");
   const [stateError, setStateError] = useState("");
-  const [token, setToken] = useState("");
+  // const [token, setToken] = useState("");
   const navigate = useNavigate();
 
-  console.log("TTTTTTTTTTTTTTTTTTT", emailTwo, passwordTwo, token);
+  console.log("TTTTTTTTTTTTTTTTTTT", emailTwo, props);
   return (
     <>
       <div className="login-register">
@@ -30,8 +30,10 @@ const LoginRegister = () => {
                   e.preventDefault();
                   localStorage.setItem("email", email);
                   const token = await loginUser(email, password);
-                  setToken(token);
                   localStorage.setItem("token", token);
+                  props.setToken(token);
+
+                  // localStorage.setItem("token", token);
                   // navigate("/");
                 } catch (error) {
                   console.error(error);
@@ -76,7 +78,7 @@ const LoginRegister = () => {
                   localStorage.setItem("email", emailTwo);
                   const token = await registerUser(emailTwo, passwordTwo);
                   // console.log("YYYYYYYYYYYY", token);
-                  setToken(token.token);
+                  props.setToken(token.token);
                   localStorage.setItem("token", token);
                   // navigate("/");
                 } catch (error) {
