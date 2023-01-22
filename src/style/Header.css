@@ -6,7 +6,7 @@
  }
 
  .header {
-    /* background-color: #023047; */
+    background-color: #023047;
     border-bottom: 1px black solid;
     display: flex;
     justify-content: space-around;
@@ -15,4 +15,18 @@
     padding-top: 10px;
     padding-bottom: 10px;
     
+}
+
+.delete-later {
+    color: #fb8500;
+}
+
+.head-links{
+    margin: 10px;
+    color: white;
+}
+
+.head-links:hover {
+    color: #fb8500; 
+    text-decoration: none;
 }

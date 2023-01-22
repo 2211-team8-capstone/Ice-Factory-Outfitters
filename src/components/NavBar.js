@@ -8,30 +8,32 @@ const NavBar = () => {
   return (
     <>
       <div className="nav-bar-products-container">
-        <h2 className="nav-bar-products">
-          <Link to="/sticks">Sticks</Link>
-        </h2>
-        <h2 className="nav-bar-products">
-          <Link to="/pucks">Pucks</Link>
-        </h2>
-        <h2 className="nav-bar-products">
-          <Link to="/skates">Skates</Link>
-        </h2>
-        <h2 className="nav-bar-products">
-          <Link to="/helmets">Helmets</Link>
-        </h2>
-        <h2 className="nav-bar-products">
-          <Link to="/protectiveGear">Pretective Gear</Link>
-        </h2>
-        <h2 className="nav-bar-products">
-          <Link to="/goalieGear">Goalie Gear</Link>
-        </h2>
-        <h2 className="nav-bar-products">
-          <Link to="/accessories">Accessories</Link>
-        </h2>
-        <h2 className="nav-bar-products">
-          <Link to="/teamApparel">Team Apparel</Link>
-        </h2>
+        <Link to="/sticks" className="nav-bar-products">
+          Sticks
+        </Link>
+
+        <Link to="/pucks" className="nav-bar-products">
+          Pucks
+        </Link>
+
+        <Link to="/skates" className="nav-bar-products">
+          Skates
+        </Link>
+        <Link to="/helmets" className="nav-bar-products">
+          Helmets
+        </Link>
+        <Link to="/protectiveGear" className="nav-bar-products">
+          Protective Gear
+        </Link>
+        <Link to="/goalieGear" className="nav-bar-products">
+          Goalie Gear
+        </Link>
+        <Link to="/accessories" className="nav-bar-products">
+          Accessories
+        </Link>
+        <Link to="/teamApparel" className="nav-bar-products">
+          Team Apparel
+        </Link>
       </div>
       <div className="search-bar">
         <form>

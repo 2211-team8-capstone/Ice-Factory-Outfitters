@@ -13,8 +13,10 @@ import "../style/App.css";
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState("");
-  const [token, setToken] = useState(localStorage.getItem("token") );
+  const [token, setToken] = useState("");
   const [user, setUser] = useState({});
+
+  console.log("APP.js token", token);
 
   useEffect(() => {
     const getAPIStatus = async () => {
@@ -27,7 +29,7 @@ const App = () => {
 
   return (
     <>
-      <Header />
+      <Header setToken={setToken} token={token} />
       <NavBar />
       <div>
         <Routes>
@@ -40,7 +42,10 @@ const App = () => {
           <Route path="/goalieGear" element={<Product />}></Route>
           <Route path="/accessories" element={<Product />}></Route>
           <Route path="/teamApparel" element={<Product />}></Route>
-          <Route path="/LoginRegister" element={<LoginRegister setToken={setToken}/>}></Route>
+          <Route
+            path="/LoginRegister"
+            element={<LoginRegister setToken={setToken} />}
+          ></Route>
         </Routes>
       </div>
     </>

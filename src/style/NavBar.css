@@ -7,8 +7,24 @@
 
 .nav-bar-products-container{
     display: flex;
+    justify-content: center;
+    margin: 10px;
 }
 
 .nav-bar-products{
-    border: black solid 5px;
+    border: black solid 2px;
+    color: whitesmoke;
+    padding: 10px;
+    margin: 5px;
+    font-weight: bold;
+    
+    
+    /* text-decoration: none; */
+}
+
+.search-bar{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+
 }

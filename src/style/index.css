@@ -2,6 +2,13 @@
 
 * {
   box-sizing: border-box;
+  margin: 0;
+    padding: 0;
+
+}
+
+body {
+  background-color: #219ebc;
 }
 
 :root {
@@ -21,3 +28,4 @@ body {
   height: 100vh;
   width: 100vw;
 }
+

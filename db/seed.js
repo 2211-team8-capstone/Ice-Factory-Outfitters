@@ -1,26 +1,24 @@
-
 const client = require("./client");
 const { getAllUsers, createUser } = require("./models/users");
 
-
 async function dropTables() {
   try {
-  console.log('starting to drop tables....')
+    console.log("starting to drop tables....");
 
     await client.query(`
     DROP TABLE users;
-    `)
+    `);
 
-    console.log('completed dropping tables!')
+    console.log("completed dropping tables!");
   } catch (error) {
-    console.error(error)
+    console.error("Error dropping tables!");
+    throw error;
   }
 }
 
 async function createTables() {
   try {
-    console.log('starting to create tables....')
-
+    console.log("starting to create tables....");
 
     await client.query(`
     CREATE TABLE users (
@@ -29,19 +27,40 @@ async function createTables() {
       password VARCHAR(255) NOT NULL
     );
     `);
-    
-    console.log('finished creating tables!');
+
+    console.log("finished creating tables!");
   } catch (error) {
-    console.error(error)
+    console.error("Error building tables!");
+    throw error;
   }
 }
 
 async function createInitialUsers() {
-  const kevin = await createUser({email: 'kevin@email.com', password: 'password1'});
-  const jae = await createUser({email: 'jae@email.com', password: 'password12'});
-  const thomas = await createUser({email: 'thomas@email.com', password: 'password123'});
-  const dylan = await createUser({email: 'dylan@email.com', password: 'password1234'});
+  try {
+    console.log("Starting to create users...");
 
+    const kevin = await createUser({
+      email: "kevin@email.com",
+      password: "password1",
+    });
+    const jae = await createUser({
+      email: "jae@email.com",
+      password: "password12",
+    });
+    const thomas = await createUser({
+      email: "thomas@email.com",
+      password: "password123",
+    });
+    const dylan = await createUser({
+      email: "dylan@email.com",
+      password: "password1234",
+    });
+
+    console.log("Finished creating users!");
+  } catch (error) {
+    console.error("Error creating users!");
+    throw error;
+  }
 }
 
 async function rebuildDB() {
@@ -51,22 +70,22 @@ async function rebuildDB() {
     await dropTables();
     await createTables();
     await createInitialUsers();
-
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
 }
 
 async function testDB() {
   try {
-    console.log('starting to test the database....')
-   
-   const users = await getAllUsers();
-   console.log('this is getAllUsers-------->', users);
-   
-   console.log('finsihed testing the database!')
+    console.log("starting to test the database....");
+
+    const users = await getAllUsers();
+    console.log("this is getAllUsers-------->", users);
+
+    console.log("finsihed testing the database!");
   } catch (error) {
-    console.error(error);
+    console.error("Error testing database!");
+    throw error;
   }
 }
 
@@ -74,6 +93,3 @@ rebuildDB()
   .then(testDB)
   .catch(console.error)
   .finally(() => client.end());
-
-
-

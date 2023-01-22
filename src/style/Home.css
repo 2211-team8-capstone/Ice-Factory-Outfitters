@@ -7,7 +7,9 @@
 
  .welcome{
 
-    color: red;
+    color: whitesmoke;
+    display: flex;
+    justify-content: center;
  }
 
  .all-products-container{
@@ -18,7 +20,12 @@
  }
 
  .home-products{
+   display: flex;
     border: black 5px solid;
-    padding: 50px;
+    margin: 10px;
+    padding: 30px;
     border-radius: 50px;
+    width: 295px;
+    justify-content: center;
+
  }
