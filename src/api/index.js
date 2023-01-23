@@ -42,10 +42,14 @@ export const registerUser = async (email, password) => {
       }),
     });
 
-    const data = await response.json();
-    console.log("this is the registerUser data", data);
+    const { token } = await response.json();
+    console.log("this is the registerUser token", token);
 
-    return data;
+    return token;
+
+    // const data = await response.json();
+    // console.log("this is the registerUser data.token", data.token);
+    // return data;
   } catch (error) {
     console.error("Error registering user", error);
   }
