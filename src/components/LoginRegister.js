@@ -78,7 +78,7 @@ const LoginRegister = (props) => {
                   localStorage.setItem("email", emailTwo);
                   const token = await registerUser(emailTwo, passwordTwo);
                   // console.log("YYYYYYYYYYYY", token);
-                  props.setToken(token.token);
+                  props.setToken(token);
                   localStorage.setItem("token", token);
                   // navigate("/");
                 } catch (error) {
