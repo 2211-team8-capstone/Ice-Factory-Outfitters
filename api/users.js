@@ -91,7 +91,7 @@ usersRouter.post("/login", async (req, res, next) => {
     if (user && passwordsMatch) {
       // create token & return to user
       const token = jwt.sign({ id: user.id, email }, JWT_SECRET, {
-        expiresIn: "1h",
+        expiresIn: "1w",
       });
       res.send({ message: "you're logged in!", token, user });
     } else {

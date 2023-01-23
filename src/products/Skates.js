@@ -2,7 +2,7 @@ import React from "react";
 import "../style/Products.css";
 import { getAllProducts } from "../api";
 
-const Sticks = () => {
+const Skates = () => {
 
     //const products = getAllProducts();
     const products = [
@@ -31,7 +31,7 @@ const Sticks = () => {
         { id: 16, name: 'old team shirt', category: 'team apparel', description: 'old one', price: 15 },
     ]
 
-    const filteredProducts = products.filter(_product => _product.category.includes("stick"))
+    const filteredProducts = products.filter(_product => _product.category.includes("ice skates"))
     console.log(filteredProducts)
 
     return (
@@ -49,4 +49,4 @@ const Sticks = () => {
     )
 }
 
-export default Sticks;
+export default Skates;

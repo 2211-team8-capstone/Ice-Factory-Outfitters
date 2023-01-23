@@ -10,6 +10,14 @@ import Header from "./Header";
 import NavBar from "./NavBar";
 import Product from "./Product";
 import "../style/App.css";
+import Sticks from "../products/Sticks";
+import Skates from "../products/Skates";
+import Helmets from "../products/Helmets";
+import Pucks from "../products/Pucks";
+import ProtectiveGear from "../products/ProtectiveGear";
+import GoalieGear from "../products/GoalieGear";
+import Accessories from "../products/Accessories";
+import TeamApparel from "../products/TeamApparel";
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState("");
@@ -34,14 +42,14 @@ const App = () => {
       <div>
         <Routes>
           <Route exact path="/" element={<Home />}></Route>
-          <Route path="/sticks" element={<Product />}></Route>
-          <Route path="/pucks" element={<Product />}></Route>
-          <Route path="/skates" element={<Product />}></Route>
-          <Route path="/helmets" element={<Product />}></Route>
-          <Route path="/protectiveGear" element={<Product />}></Route>
-          <Route path="/goalieGear" element={<Product />}></Route>
-          <Route path="/accessories" element={<Product />}></Route>
-          <Route path="/teamApparel" element={<Product />}></Route>
+          <Route path="/sticks" element={<Sticks />}></Route>
+          <Route path="/pucks" element={<Pucks />}></Route>
+          <Route path="/skates" element={<Skates />}></Route>
+          <Route path="/helmets" element={<Helmets />}></Route>
+          <Route path="/protectiveGear" element={<ProtectiveGear />}></Route>
+          <Route path="/goalieGear" element={<GoalieGear />}></Route>
+          <Route path="/accessories" element={<Accessories />}></Route>
+          <Route path="/teamApparel" element={<TeamApparel />}></Route>
           <Route
             path="/LoginRegister"
             element={<LoginRegister setToken={setToken} />}

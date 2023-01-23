@@ -2,7 +2,7 @@ import React from "react";
 import "../style/Products.css";
 import { getAllProducts } from "../api";
 
-const Sticks = () => {
+const ProtectiveGear = () => {
 
     //const products = getAllProducts();
     const products = [
@@ -21,7 +21,7 @@ const Sticks = () => {
         { id: 9, name: 'protective gear', category: 'protective gear', description: 'new one', price: 25 },
         { id: 10, name: 'old protective gear', category: 'protective gear', description: 'old one', price: 15 },
 
-        { id: 11, name: 'goal gear', category: 'goalie gear', description: 'new one', price: 25 },
+        { id: 11, name: 'goalie gear', category: 'goalie gear', description: 'new one', price: 25 },
         { id: 12, name: 'old goalie gear', category: 'goalie gear', description: 'old one', price: 15 },
 
         { id: 13, name: 'accessory', category: 'accessories', description: 'new one', price: 25 },
@@ -31,7 +31,7 @@ const Sticks = () => {
         { id: 16, name: 'old team shirt', category: 'team apparel', description: 'old one', price: 15 },
     ]
 
-    const filteredProducts = products.filter(_product => _product.category.includes("stick"))
+    const filteredProducts = products.filter(_product => _product.category.includes("protective gear"))
     console.log(filteredProducts)
 
     return (
@@ -49,4 +49,4 @@ const Sticks = () => {
     )
 }
 
-export default Sticks;
+export default ProtectiveGear;

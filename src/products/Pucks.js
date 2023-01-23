@@ -2,7 +2,7 @@ import React from "react";
 import "../style/Products.css";
 import { getAllProducts } from "../api";
 
-const Sticks = () => {
+const Pucks = () => {
 
     //const products = getAllProducts();
     const products = [
@@ -12,8 +12,8 @@ const Sticks = () => {
         { id: 3, name: 'stick', category: 'stick', description: 'new one', price: 25 },
         { id: 4, name: 'old stick', category: 'stick', description: 'old one', price: 15 },
 
-        { id: 5, name: 'puck', category: 'puck', description: 'new one', price: 25 },
-        { id: 6, name: 'old puck', category: 'puck', description: 'old one', price: 15 },
+        { id: 5, name: 'puck', category: 'pucks', description: 'new one', price: 25 },
+        { id: 6, name: 'old puck', category: 'pucks', description: 'old one', price: 15 },
 
         { id: 7, name: 'helmet', category: 'helmets', description: 'new one', price: 25 },
         { id: 8, name: 'old helmet', category: 'helmets', description: 'old one', price: 15 },
@@ -21,7 +21,7 @@ const Sticks = () => {
         { id: 9, name: 'protective gear', category: 'protective gear', description: 'new one', price: 25 },
         { id: 10, name: 'old protective gear', category: 'protective gear', description: 'old one', price: 15 },
 
-        { id: 11, name: 'goal gear', category: 'goalie gear', description: 'new one', price: 25 },
+        { id: 11, name: 'goalie gear', category: 'goalie gear', description: 'new one', price: 25 },
         { id: 12, name: 'old goalie gear', category: 'goalie gear', description: 'old one', price: 15 },
 
         { id: 13, name: 'accessory', category: 'accessories', description: 'new one', price: 25 },
@@ -31,7 +31,7 @@ const Sticks = () => {
         { id: 16, name: 'old team shirt', category: 'team apparel', description: 'old one', price: 15 },
     ]
 
-    const filteredProducts = products.filter(_product => _product.category.includes("stick"))
+    const filteredProducts = products.filter(_product => _product.category.includes("pucks"))
     console.log(filteredProducts)
 
     return (
@@ -49,4 +49,4 @@ const Sticks = () => {
     )
 }
 
-export default Sticks;
+export default Pucks;
