@@ -76,3 +76,18 @@ export const loginUser = async (email, password) => {
     console.error(error);
   }
 };
+
+export const getAllProducts = async () => {
+  try {
+    const response = await fetch("http://localhost:4001/api/products", {
+      header: {
+        "Content-Type": "application/json",
+      },
+
+    })
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}
