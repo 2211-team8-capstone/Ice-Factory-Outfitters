@@ -77,17 +77,18 @@ export const loginUser = async (email, password) => {
   }
 };
 
-export const getAllProducts = async () => {
+export const getAllProducts = async (setProducts) => {
   try {
     const response = await fetch("http://localhost:4001/api/products", {
       header: {
         "Content-Type": "application/json",
       },
-
-    })
+    });
     const data = await response.json();
-    return data;
+    console.log("UUUUUUUUU", data.products);
+    setProducts(data.products);
+    // return data.products;
   } catch (error) {
     console.error(error);
   }
-}
+};
