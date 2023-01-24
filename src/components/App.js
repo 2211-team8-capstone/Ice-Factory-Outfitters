@@ -25,7 +25,7 @@ const App = () => {
   const [user, setUser] = useState({});
   const [products, setProducts] = useState([]);
 
-  console.log("APP.js token", products);
+  // console.log("APP.js token", products);
 
   useEffect(() => {
     // const result = await getAllProducts

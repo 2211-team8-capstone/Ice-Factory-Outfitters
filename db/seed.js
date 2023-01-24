@@ -38,7 +38,7 @@ async function createTables() {
       quantity INTEGER NOT NULL,
       size VARCHAR (255) NOT NULL,
       color VARCHAR (255) NOT NULL,
-      image bytea
+      image TEXT
     );
     `);
 
@@ -89,7 +89,7 @@ async function createInitialProducts() {
     quantity: 1,
     size: "38",
     color: "Ice Blue",
-    image: "https://images.footballfanatics.com/colorado-avalanche/colorado-avalanche-inglasco-2022-stanley-cup-champions-mini-wood-hockey-stick_pi4962000_ff_4962194-3aa8d435411e57074444_full.jpg?_hv=2&w=600",
+    image: "https://res.cloudinary.com/dulsfxtjz/image/upload/v1674586719/Ice%20Factory%20Outfitters/colorado-avalanche-inglasco-2022-stanley-cup-champions-mini-wood-hockey-stick_pi4962000_ff_4962194-3aa8d435411e57074444_full_dzihic.jpg",
   });
   await createProduct({
     category: "Pucks",
@@ -99,6 +99,7 @@ async function createInitialProducts() {
     quantity: 1,
     size: "Standard",
     color: "Black",
+    image: "https://res.cloudinary.com/dulsfxtjz/image/upload/v1674586738/Ice%20Factory%20Outfitters/19315599-hockey-puck-in-fire-flames-and-splashing-water_uawhis.jpg",
   });
   await createProduct({
     category: "Skates",
@@ -107,7 +108,8 @@ async function createInitialProducts() {
     price: 150,
     quantity: 2,
     size: "11",
-    color: "All of 'em"
+    color: "All of 'em",
+    image: "https://res.cloudinary.com/dulsfxtjz/image/upload/v1674586757/Ice%20Factory%20Outfitters/7eecd7fe-a348-4785-aa2e-24bbfeb47d28.9ff6ad024759fabb26ecd21b971f7b63_fle9n5.jpg",
   });
   await createProduct({
     category:"Helmets",
@@ -117,6 +119,7 @@ async function createInitialProducts() {
     quantity: 1,
     size: "Jumbo",
     color: "Metalic",
+    image: "https://res.cloudinary.com/dulsfxtjz/image/upload/v1674586866/Ice%20Factory%20Outfitters/2c31e3b26e1db8c6d80f26f528d8706f_jpawwn.jpg",
   });
   await createProduct({
     category: "Protective Gear",
@@ -126,6 +129,7 @@ async function createInitialProducts() {
     quantity: 2,
     size: "Large",
     color: "Red",
+    image: "https://res.cloudinary.com/dulsfxtjz/image/upload/v1674586879/Ice%20Factory%20Outfitters/warrior-hockey-gloves-alpha-dx3-sr_isqanu.jpg",
   });
   await createProduct({
     category: "Goalie Gear",
@@ -135,6 +139,7 @@ async function createInitialProducts() {
     quantity: 5,
     size: "Large",
     color: "Burgundy",
+    image: "https://res.cloudinary.com/dulsfxtjz/image/upload/v1674586893/Ice%20Factory%20Outfitters/goalie-equipment-edit_ppea39.webp",
   });
   await createProduct({
     category: "Accessories",
@@ -144,6 +149,7 @@ async function createInitialProducts() {
     quantity: 1,
     size: "Very Big",
     color: "Team Colors",
+    image: "https://res.cloudinary.com/dulsfxtjz/image/upload/v1674586905/Ice%20Factory%20Outfitters/41qeYLTzn4S._AC_SY1000__utf9d0.jpg",
   });
   await createProduct({
     category: "Team Apparel",
@@ -153,6 +159,7 @@ async function createInitialProducts() {
     quantity: 100,
     size: "All",
     color: "Avalanche Colors",
+    image: "https://res.cloudinary.com/dulsfxtjz/image/upload/v1674586917/Ice%20Factory%20Outfitters/colorado-avalanche-primegreen-authentic-adidas-alternate-jersey-6_y7joz5.jpg",
   });
 
   console.log("Finished creating products!");
