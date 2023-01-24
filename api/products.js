@@ -23,4 +23,23 @@ productsRouter.get("/", async (req, res, next) => {
   });
 });
 
+productsRouter.get("/:productid", async (req, res, next) => {
+  console.log(req.params);
+  
+  const {productid} = req.params; 
+  console.log('this is productID in productsrouter', productid)
+
+  try {
+    const product = await getProductById(productid);
+    console.log('this is product in productsrouter returned from DB', product)
+    res.send({
+      product
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+
+
 module.exports = productsRouter;

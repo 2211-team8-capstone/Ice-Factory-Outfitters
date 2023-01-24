@@ -26,6 +26,7 @@ const App = () => {
   const [token, setToken] = useState("");
   const [user, setUser] = useState({});
   const [products, setProducts] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState([]);
 
   // console.log("APP.js token", products);
 
@@ -55,7 +56,7 @@ const App = () => {
           <Route path="/helmets" element={<Helmets products={products} />}></Route>
           <Route path="/protectiveGear" element={<ProtectiveGear products={products} />}></Route>
           <Route path="/goalieGear" element={<GoalieGear products={products} />}></Route>
-          <Route path="/accessories" element={<Accessories products={products} />}></Route>
+          <Route path="/accessories" element={<Accessories products={products} setSelectedProduct={setSelectedProduct} selectedProduct={selectedProduct} />}></Route>
           <Route path="/teamApparel" element={<TeamApparel products={products} />}></Route>
           <Route
             path="/LoginRegister"
