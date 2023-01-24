@@ -13,7 +13,7 @@ const Header = (props) => {
       <div className="header">
         <div className="logo">
           <Link to={"/"} className="head-links">
-            LOGO
+            <img src="https://res.cloudinary.com/dulsfxtjz/image/upload/v1674588307/Ice%20Factory%20Outfitters/images_wzlgn3.png"/>
           </Link>
         </div>
         <h2 className="delete-later">Ice Factory Outfitters</h2>
