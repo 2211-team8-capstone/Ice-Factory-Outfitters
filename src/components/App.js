@@ -48,13 +48,13 @@ const App = () => {
             path="/sticks"
             element={<Sticks products={products} />}
           ></Route>
-          <Route path="/pucks" element={<Pucks />}></Route>
-          <Route path="/skates" element={<Skates />}></Route>
-          <Route path="/helmets" element={<Helmets />}></Route>
-          <Route path="/protectiveGear" element={<ProtectiveGear />}></Route>
-          <Route path="/goalieGear" element={<GoalieGear />}></Route>
-          <Route path="/accessories" element={<Accessories />}></Route>
-          <Route path="/teamApparel" element={<TeamApparel />}></Route>
+          <Route path="/pucks" element={<Pucks products={products}/>}></Route>
+          <Route path="/skates" element={<Skates products={products}/>}></Route>
+          <Route path="/helmets" element={<Helmets products={products}/>}></Route>
+          <Route path="/protectiveGear" element={<ProtectiveGear products={products}/>}></Route>
+          <Route path="/goalieGear" element={<GoalieGear products={products}/>}></Route>
+          <Route path="/accessories" element={<Accessories products={products}/>}></Route>
+          <Route path="/teamApparel" element={<TeamApparel products={products}/>}></Route>
           <Route
             path="/LoginRegister"
             element={<LoginRegister setToken={setToken} />}

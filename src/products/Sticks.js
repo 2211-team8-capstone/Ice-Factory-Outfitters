@@ -3,12 +3,9 @@ import "../style/Products.css";
 import { getAllProducts } from "../api";
 
 const Sticks = (props) => {
-  console.log("OOOOOOOOOOO", props);
-
   const filteredProducts = props.products.filter((_product) =>
     _product.category.includes("Sticks")
   );
-  console.log(filteredProducts);
 
   return (
     <>
