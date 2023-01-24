@@ -97,7 +97,9 @@ export const getAllProducts = async (setProducts) => {
   }
 };
 
-export const getSingleProduct = async (productID) => {
+export const getSingleProduct = async (productID, setSelectedProduct) => {
+  
+  console.log(productID);
   try {
     const response = await fetch(`http://localhost:4001/api/products/${productID}`, {
       header: {
@@ -105,11 +107,10 @@ export const getSingleProduct = async (productID) => {
       },
     });
     const data = await response.json();
-    // console.log("UUUUUUUUU", data.products);
+    console.log("this is data.prodcuts in getSinleProd FE API", data.product);
 
     // set the state of selected product to the single product received form the call 
-    setSelectedProduct(data);
-    
+    setSelectedProduct(data.product);
   } catch (error) {
     console.error(error);
   }

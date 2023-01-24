@@ -3,24 +3,25 @@ import React from "react";
 const SingleProduct = (props) => {
     console.log(props);
 // need to pass selectedContact state through props, then pull name, desc, price, image off that selectedContact to render data on the single product view displayed
-    const { selectedContact } = props;
-    const {name, description, price, image } = selectedContact;
+    // const { selectedContact } = props;
+    // const {name, description, price, image } = selectedContact;
 
-    return 
+    return (
         <div>
-            <h1> {name} </h1>
+            <h1> NAME </h1>
             <div>
-                {image}
+                IMAGE
             </div>
             <h3> About This Item </h3>
-            <p> {description}</p>
+            <p>DESCRIPTION</p>
             <div>
-                <p> ${price} </p>
-                <input> Quantity </input>
+                <p> $$$$$ </p>
+                {/* <input> Quantity </input> */}
                 <button> ADD TO CART </button>
             </div>
 
         </div>
+    )
 }
 
 export default SingleProduct 
