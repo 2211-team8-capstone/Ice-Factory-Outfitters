@@ -12,8 +12,8 @@ const Helmets = (props) => {
             {filteredProducts.map((product) => {
                 return (
                     <div key={product.id} className="single-product">
-                        <div className="image">"image here"</div>
                         <h2 >{product.name}</h2>
+                        <img src={product.image}/>
                         <h3>${product.price}</h3>
                         <button>More Info</button>
                     </div>)

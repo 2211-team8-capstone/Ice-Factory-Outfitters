@@ -85,7 +85,7 @@ export const getAllProducts = async (setProducts) => {
       },
     });
     const data = await response.json();
-    console.log("UUUUUUUUU", data.products);
+    // console.log("UUUUUUUUU", data.products);
     setProducts(data.products);
     // return data.products;
   } catch (error) {
