@@ -77,6 +77,10 @@ export const loginUser = async (email, password) => {
   }
 };
 
+
+
+// ***************************** ALL PRODUCTS FUNCTIONS **************************
+
 export const getAllProducts = async (setProducts) => {
   try {
     const response = await fetch("http://localhost:4001/api/products", {
@@ -88,6 +92,24 @@ export const getAllProducts = async (setProducts) => {
     console.log("UUUUUUUUU", data.products);
     setProducts(data.products);
     // return data.products;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getSingleProduct = async (productID) => {
+  try {
+    const response = await fetch(`http://localhost:4001/api/products/${productID}`, {
+      header: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    // console.log("UUUUUUUUU", data.products);
+
+    // set the state of selected product to the single product received form the call 
+    setSelectedProduct(data);
+    
   } catch (error) {
     console.error(error);
   }
