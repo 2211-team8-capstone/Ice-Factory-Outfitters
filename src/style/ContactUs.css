@@ -1,0 +1,40 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.title {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-forms {
+    display: flex;
+    text-align: right;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+.contact-questions label {
+    display: inline-block;
+
+}
+
+.contact-forms input,
+.contact-questions textarea {
+    width: 500 px;
+}
+
+.contact-questions textarea {
+    vertical-align: top;
+    text-align: top;
+
+}
+
+.contact-submit {
+    text-align: center;
+}

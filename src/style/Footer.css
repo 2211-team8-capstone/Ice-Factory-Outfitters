@@ -1,0 +1,29 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.footer {
+    background-color: #023047;
+    border-top: 1px black solid;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    margin-top: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.foot-links {
+    margin: 10px;
+    color: white;
+}
+
+.foot-links:hover {
+    color: #fb8500;
+    text-decoration: none;
+}

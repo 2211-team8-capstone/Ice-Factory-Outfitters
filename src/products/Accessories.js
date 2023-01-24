@@ -1,6 +1,6 @@
 import React from "react";
 import "../style/Products.css";
-import { getAllProducts } from "../api";
+import { getAllProducts, getSingleProduct } from "../api";
 
 const Accessories = (props) => {
     const filteredProducts = props.products.filter((_product) =>
@@ -15,7 +15,8 @@ const Accessories = (props) => {
                         <div className="image">"image here"</div>
                         <h2 >{product.name}</h2>
                         <h3>${product.price}</h3>
-                        <button>More Info</button>
+                        {/* onclick we want to run the API call getSingleProduct, which will grab product and set the selectedProduct state */}
+                        <button onClick={() => getSingleProduct(product.id)}>More Info</button>
                     </div>)
             })}
         </div>
