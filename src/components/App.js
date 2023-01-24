@@ -8,6 +8,8 @@ import LoginRegister from "./LoginRegister";
 import Home from "./Home";
 import Header from "./Header";
 import NavBar from "./NavBar";
+import Footer from "./Footer";
+import ContactUs from "./ContactUs"
 import Product from "./Product";
 import "../style/App.css";
 import Sticks from "../products/Sticks";
@@ -48,19 +50,21 @@ const App = () => {
             path="/sticks"
             element={<Sticks products={products} />}
           ></Route>
-          <Route path="/pucks" element={<Pucks products={products}/>}></Route>
-          <Route path="/skates" element={<Skates products={products}/>}></Route>
-          <Route path="/helmets" element={<Helmets products={products}/>}></Route>
-          <Route path="/protectiveGear" element={<ProtectiveGear products={products}/>}></Route>
-          <Route path="/goalieGear" element={<GoalieGear products={products}/>}></Route>
-          <Route path="/accessories" element={<Accessories products={products}/>}></Route>
-          <Route path="/teamApparel" element={<TeamApparel products={products}/>}></Route>
+          <Route path="/pucks" element={<Pucks products={products} />}></Route>
+          <Route path="/skates" element={<Skates products={products} />}></Route>
+          <Route path="/helmets" element={<Helmets products={products} />}></Route>
+          <Route path="/protectiveGear" element={<ProtectiveGear products={products} />}></Route>
+          <Route path="/goalieGear" element={<GoalieGear products={products} />}></Route>
+          <Route path="/accessories" element={<Accessories products={products} />}></Route>
+          <Route path="/teamApparel" element={<TeamApparel products={products} />}></Route>
           <Route
             path="/LoginRegister"
             element={<LoginRegister setToken={setToken} />}
           ></Route>
+          <Route path="/ContactUs" element={<ContactUs />}></Route>
         </Routes>
       </div>
+      <Footer />
     </>
   );
 };
