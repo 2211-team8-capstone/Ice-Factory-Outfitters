@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../style/Products.css";
-import { getAllProducts } from "../api";
+import { getAllProducts, getSingleProduct } from "../api";
+import SingleProduct from "./SingleProduct";
 
 const TeamApparel = (props) => {
+    const {setSelectedProduct, selectedProduct} = props;
+    
+    useEffect(() => {
+            setSelectedProduct(0);
+        }, [])
 
     const filteredProducts = props.products.filter((_product) =>
     _product.category.includes("Team Apparel")
@@ -10,13 +16,15 @@ const TeamApparel = (props) => {
 
     return (
         <div className="all-products">
-            {filteredProducts.map((product) => {
+            {selectedProduct ? <SingleProduct selectedProduct={selectedProduct}/> 
+            : 
+            filteredProducts.map((product) => {
                 return (
                     <div key={product.id} className="single-product">
                         <h2 >{product.name}</h2>
                         <img src={product.image}/>
                         <h3>${product.price}</h3>
-                        <button>More Info</button>
+                        <button onClick={() => getSingleProduct(product.id, setSelectedProduct)}>More Info</button>
                     </div>)
             })}
         </div>

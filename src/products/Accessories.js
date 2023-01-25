@@ -6,23 +6,17 @@ import SingleProduct from "./SingleProduct";
 const Accessories = (props) => {
     const {setSelectedProduct, selectedProduct} = props;
     
-    // const [useEffectSetter, setUseEffectSetter] = useState(false)
-
     useEffect(() => {
-            setSelectedProduct(0);
+            setSelectedProduct();
         }, [])
-    
-        
     
     const filteredProducts = props.products.filter((_product) =>
     _product.category.includes("Accessories")
   );
 
-  console.log(selectedProduct);
-
     return (
         <div className="all-products">
-            {selectedProduct ? <SingleProduct /> 
+            {selectedProduct ? <SingleProduct selectedProduct={selectedProduct}/> 
             : 
             filteredProducts.map((product) => {
                 return (
@@ -35,7 +29,6 @@ const Accessories = (props) => {
                     </div>)
             })
             }
-        
         </div>
     )
 }
