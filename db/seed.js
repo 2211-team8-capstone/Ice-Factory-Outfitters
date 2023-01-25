@@ -2,6 +2,7 @@ const client = require("./client");
 const { getAllUsers, createUser } = require("./models/users");
 const { createProduct, getAllProducts } = require("./models/products");
 const { addProductToCart, getCartByUserId } = require("./models/cart");
+const { seedData } = require("./seedData")
 
 async function dropTables() {
   try {
@@ -178,6 +179,8 @@ async function createInitialProducts() {
       image:
         "https://res.cloudinary.com/dulsfxtjz/image/upload/v1674586917/Ice%20Factory%20Outfitters/colorado-avalanche-primegreen-authentic-adidas-alternate-jersey-6_y7joz5.jpg",
     });
+    
+    await Promise.all(seedData.map(createProduct));
 
     console.log("Finished creating products!");
   } catch (error) {
@@ -220,6 +223,7 @@ async function rebuildDB() {
     await createTables();
     await createInitialUsers();
     await createInitialProducts();
+    // await Promise.all(seedData.map(createProduct));
     await createInitialCart();
   } catch (error) {
     console.error(error);
