@@ -1,0 +1,32 @@
+.product-container {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 30px;
+    flex-wrap: wrap;
+
+}
+
+.single-product {
+    color: whitesmoke;
+    border: solid;
+    border-radius: 15px;
+    max-width: 20%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: fit-content;
+    background-color: #1d849e;
+    
+}
+
+.headers {
+    align-self: center;
+}
+
+.btn-container {
+    display: flex;
+    flex-direction: row;
+    /*  */
+}
+
