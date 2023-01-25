@@ -13,7 +13,7 @@ const Header = (props) => {
       <div className="header">
         <div className="logo">
           <Link to={"/"} className="head-links">
-            <img src="https://res.cloudinary.com/dulsfxtjz/image/upload/v1674588307/Ice%20Factory%20Outfitters/images_wzlgn3.png"/>
+            <img src="https://res.cloudinary.com/dulsfxtjz/image/upload/v1674588307/Ice%20Factory%20Outfitters/images_wzlgn3.png" />
           </Link>
         </div>
         <h2 className="delete-later">Ice Factory Outfitters</h2>
@@ -21,14 +21,22 @@ const Header = (props) => {
         {!props.token ? (
           <div className="register-login">
             <Link to={"/LoginRegister"} className="head-links">
-              Login/Register
+              My Profile
             </Link>
           </div>
         ) : (
-          <div className="logout" onClick={handleLogout}>
-            <Link to={"/"} className="head-links">
-              Logout
-            </Link>
+          <div className="logged-in">
+            <div className="profile">
+              <Link to={"/Profile"} className="head-links">
+                My Profile
+              </Link>
+            </div>
+
+            <div className="logout" onClick={handleLogout}>
+              <Link to={"/"} className="head-links">
+                Logout
+              </Link>
+            </div>
           </div>
         )}
         <div className="cart">

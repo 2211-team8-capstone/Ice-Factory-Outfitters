@@ -11,6 +11,7 @@ import NavBar from "./NavBar";
 import Footer from "./Footer";
 import ContactUs from "./ContactUs"
 import Product from "./Product";
+import Profile from "./Profile";
 import "../style/App.css";
 import Sticks from "../products/Sticks";
 import Skates from "../products/Skates";
@@ -46,49 +47,53 @@ const App = () => {
       <NavBar />
       <div>
         <Routes>
-          <Route 
-            exact path="/" 
+          <Route
+            exact path="/"
             element={<Home />}>
           </Route>
           <Route
             path="/sticks"
-            element={<Sticks products={products} setSelectedProduct={setSelectedProduct} selectedProduct={selectedProduct}/>}
+            element={<Sticks products={products} setSelectedProduct={setSelectedProduct} selectedProduct={selectedProduct} />}
           ></Route>
-          <Route 
-            path="/pucks" 
-            element={<Pucks products={products} setSelectedProduct={setSelectedProduct} selectedProduct={selectedProduct}/>}>
+          <Route
+            path="/pucks"
+            element={<Pucks products={products} setSelectedProduct={setSelectedProduct} selectedProduct={selectedProduct} />}>
           </Route>
-          <Route 
-            path="/skates" 
-            element={<Skates products={products} setSelectedProduct={setSelectedProduct} selectedProduct={selectedProduct}/>}>
+          <Route
+            path="/skates"
+            element={<Skates products={products} setSelectedProduct={setSelectedProduct} selectedProduct={selectedProduct} />}>
           </Route>
 
-          <Route 
-            path="/helmets" 
-            element={<Helmets products={products} setSelectedProduct={setSelectedProduct} selectedProduct={selectedProduct}/>}>
+          <Route
+            path="/helmets"
+            element={<Helmets products={products} setSelectedProduct={setSelectedProduct} selectedProduct={selectedProduct} />}>
           </Route>
-          <Route 
-            path="/protectiveGear" 
-            element={<ProtectiveGear products={products} setSelectedProduct={setSelectedProduct} selectedProduct={selectedProduct}/>}>
+          <Route
+            path="/protectiveGear"
+            element={<ProtectiveGear products={products} setSelectedProduct={setSelectedProduct} selectedProduct={selectedProduct} />}>
           </Route>
-          <Route 
-            path="/goalieGear" 
-            element={<GoalieGear products={products} setSelectedProduct={setSelectedProduct} selectedProduct={selectedProduct}/>}>  
+          <Route
+            path="/goalieGear"
+            element={<GoalieGear products={products} setSelectedProduct={setSelectedProduct} selectedProduct={selectedProduct} />}>
           </Route>
-          <Route 
-            path="/accessories" 
+          <Route
+            path="/accessories"
             element={<Accessories products={products} setSelectedProduct={setSelectedProduct} selectedProduct={selectedProduct} />}>
           </Route>
-          <Route 
-            path="/teamApparel" 
+          <Route
+            path="/teamApparel"
             element={<TeamApparel products={products} setSelectedProduct={setSelectedProduct} selectedProduct={selectedProduct} />}>
           </Route>
           <Route
             path="/LoginRegister"
             element={<LoginRegister setToken={setToken} />}
           ></Route>
-          <Route 
-            path="/ContactUs" 
+          <Route
+            path="/Profile"
+            element={<Profile setToken={setToken} />}
+          ></Route>
+          <Route
+            path="/ContactUs"
             element={<ContactUs />}>
           </Route>
         </Routes>
