@@ -1,4 +1,5 @@
 import React from "react";
+import "../style/SingleProduct.css";
 
 const SingleProduct = (props) => {
     
@@ -7,11 +8,11 @@ const SingleProduct = (props) => {
     const {name, description, price, image } = selectedProduct;
 
     return (
-        <div>
-            <h1> {name} </h1>
+        <div className="single-prod">
             <div>
                 IMAGE
             </div>
+            <h1> {name} </h1>
             <h3> About This Item </h3>
             <p>{description}</p>
             <div>

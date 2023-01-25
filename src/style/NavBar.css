@@ -17,6 +17,7 @@
     padding: 10px;
     margin: 5px;
     font-weight: bold;
+    border-radius: 5px;
     
     
     /* text-decoration: none; */
@@ -26,5 +27,6 @@
     display: flex;
     justify-content: center;
     margin: 10px;
+    border-radius: 5px;
 
 }
