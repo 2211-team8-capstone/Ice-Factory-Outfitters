@@ -1,4 +1,3 @@
-const { post } = require("../../api");
 const client = require("../client");
 
 async function createProduct({

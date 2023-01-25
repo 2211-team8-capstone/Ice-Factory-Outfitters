@@ -9,10 +9,8 @@ const LoginRegister = (props) => {
   const [password, setPassword] = useState("");
   const [passwordTwo, setPasswordTwo] = useState("");
   const [stateError, setStateError] = useState("");
-  // const [token, setToken] = useState("");
   const navigate = useNavigate();
 
-  console.log("TTTTTTTTTTTTTTTTTTT", emailTwo, props);
   return (
     <>
       <div className="login-register">
@@ -33,8 +31,7 @@ const LoginRegister = (props) => {
                   localStorage.setItem("token", token);
                   props.setToken(token);
 
-                  // localStorage.setItem("token", token);
-                  // navigate("/");
+                  navigate("/");
                 } catch (error) {
                   console.error(error);
                 }
@@ -80,7 +77,7 @@ const LoginRegister = (props) => {
                   // console.log("YYYYYYYYYYYY", token);
                   props.setToken(token);
                   localStorage.setItem("token", token);
-                  // navigate("/");
+                  navigate("/");
                 } catch (error) {
                   console.error(error);
                 }
