@@ -1,7 +1,7 @@
 const client = require("./client");
 const { getAllUsers, createUser } = require("./models/users");
 const { createProduct, getAllProducts } = require("./models/products");
-const { addProductToCart, getCartByUserId } = require("./models/cart");
+const { addProductToCartItems, getCartItemsByCartId, createCarts } = require("./models/carts");
 const {fakeProducts} = require("./mockdata");
 
 async function dropTables() {
@@ -9,9 +9,10 @@ async function dropTables() {
     console.log("starting to drop tables....");
 
     await client.query(`
-    DROP TABLE IF EXISTS cart;
-    DROP TABLE IF EXISTS products;
-    DROP TABLE IF EXISTS users;
+    DROP TABLE IF EXISTS cartItems CASCADE;
+    DROP TABLE IF EXISTS carts CASCADE;
+    DROP TABLE IF EXISTS products CASCADE;
+    DROP TABLE IF EXISTS users CASCADE;
     `);
 
     console.log("completed dropping tables!");
@@ -44,12 +45,17 @@ async function createTables() {
       image TEXT
     );
 
-    CREATE TABLE cart (
+    CREATE TABLE carts (
       id SERIAL PRIMARY KEY, 
-      "userId" INTEGER REFERENCES users(id) NOT NULL,
-      "productId" INTEGER REFERENCES products(id) NOT NULL,
-      "totalPrice" INTEGER 
+      "userId" INTEGER REFERENCES users(id) NOT NULL
     ); 
+
+    CREATE TABLE cartItems (
+      id SERIAL PRIMARY KEY,
+      "cartId" INTEGER REFERENCES carts(id) NOT NULL,
+      "productId" INTEGER REFERENCES products(id) NOT NULL,
+      quantity INTEGER DEFAULT 1
+    );
     `);
 
     console.log("finished creating tables!");
@@ -189,28 +195,54 @@ async function createInitialProducts() {
   }
 }
 
-async function createInitialCart() {
+async function createInitialCarts() {
+try {
+  console.log("Starting to create initial Carts...")
+  await createCarts({
+    userId: 1,
+  }),
+  await createCarts({
+    userId: 2,
+  }),
+  await createCarts({
+    userId: 3,
+  }),
+  await createCarts({  
+    userId: 4,
+  })
+  console.log("Finished to create initial Carts...")
+} catch (error) {
+  console.error("Error buidling inital Carts")
+  throw error;
+}
+}
+
+async function createInitialCartItems() {
   try {
-    console.log("Starting to create initial cart...");
-    await addProductToCart({
-      userId: 2,
+    console.log("Starting to create initial cartItems...");
+    await addProductToCartItems({
+      cartId: 2,
       productId: 5,
+      quantity: 1,
     });
-    await addProductToCart({
-      userId: 2,
+    await addProductToCartItems({
+      cartId: 2,
       productId: 2,
+      quantity: 1,
     });
-    await addProductToCart({
-      userId: 2,
+    await addProductToCartItems({
+      cartId: 2,
       productId: 3,
+      quantity: 1,
     });
-    await addProductToCart({
-      userId: 3,
+    await addProductToCartItems({
+      cartId: 3,
       productId: 2,
+      quantity: 1,
     });
-    console.log("Finished creating cart!");
+    console.log("Finished creating cartItems!");
   } catch (error) {
-    console.error("Error building cart!");
+    console.error("Error building cartItems!");
     throw error;
   }
 }
@@ -234,9 +266,13 @@ async function rebuildDB() {
     await Promise.all(fakeProducts.map(createProduct));
     console.log("finished creating products")
 
-    console.log("beginning to create cart...")
-    await createInitialCart();
-    console.log("finished creating cart!")
+    console.log("Beginning to create Cart...")
+    await createInitialCarts();
+    console.log("Finished creting Carts")
+
+    console.log("beginning to create cartItems...")
+    await createInitialCartItems();
+    console.log("finished creating cartItems!")
   } catch (error) {
     console.error(error);
   }
