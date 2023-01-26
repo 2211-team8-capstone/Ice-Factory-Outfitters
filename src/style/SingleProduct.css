@@ -1,6 +1,19 @@
 .single-prod {
     text-align: center;
-    color: whitesmoke;
+    color: black;
     margin: 30px;
-    
+    display: inline-flex
+}
+
+.single-prod-image {
+    float: left;
+    width: 60%;
+}
+
+.single-prod-info {
+    float: right;
+    width: 30%;
+    text-align: left;
+    margin-left: 30px;
+
 }

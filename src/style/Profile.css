@@ -1,8 +1,9 @@
-/* * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-} */
+.user-profile-container {
+    max-width: fit-content;
+    margin: auto;
+
+}
+
 
 /* .update {
     display: flex;
