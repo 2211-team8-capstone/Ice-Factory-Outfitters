@@ -1,18 +1,19 @@
 const client = require("../client");
 
-async function createProduct({
-  category,
-  name,
-  description,
-  price,
-  quantity,
-  size,
-  color,
-  image,
-}) {
+async function createProduct(product) {
+
   try {
+    const {category,
+      name,
+      description,
+      price,
+      quantity,
+      size,
+      color,
+      image} = product;
+
     const {
-      rows: [product],
+      rows: [newProduct],
     } = await client.query(
       `
         INSERT INTO products(category, name, description, price, quantity, size, color, image)
@@ -23,11 +24,12 @@ async function createProduct({
       [category, name, description, price, quantity, size, color, image]
     );
 
-    return product;
+    return newProduct;
   } catch (error) {
     throw error;
   }
 }
+
 
 async function getAllProducts() {
   try {
@@ -41,6 +43,7 @@ async function getAllProducts() {
     throw error;
   }
 }
+
 
 async function getProductById(productId) {
   try {
