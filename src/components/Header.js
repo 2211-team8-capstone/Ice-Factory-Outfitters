@@ -41,7 +41,7 @@ const Header = (props) => {
         <div className="login-cart"></div>
         {!props.token ? (
           <div className="register-login">
-            <i class="fa-solid fa-user"></i>
+            <i className="fa-solid fa-user"></i>
             <Link to={"/LoginRegister"} className="head-links">
               Login/Register
             </Link>
