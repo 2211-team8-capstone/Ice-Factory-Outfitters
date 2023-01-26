@@ -73,10 +73,20 @@ const LoginRegister = (props) => {
                   e.preventDefault();
                   //console.log(password, email);
                   localStorage.setItem("email", emailTwo);
-                  const token = await registerUser(emailTwo, passwordTwo);
-                  // console.log("YYYYYYYYYYYY", token);
+
+                  const result = await registerUser(emailTwo, passwordTwo);
+                  console.log("YYYYYYYYYYYY", result);
+
+                  const token = result.token
+                  console.log('this is token in reg user', token)
                   props.setToken(token);
                   localStorage.setItem("token", token);
+
+                  const userId = result.user.id;
+                  console.log('this is userId in reg user', userId)
+                  localStorage.setItem("userId", userId);
+                  // const cart = await createCart(userId);
+
                   navigate("/");
                 } catch (error) {
                   console.error(error);
