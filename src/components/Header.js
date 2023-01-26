@@ -16,12 +16,34 @@ const Header = (props) => {
             <img src="https://res.cloudinary.com/dulsfxtjz/image/upload/v1674588307/Ice%20Factory%20Outfitters/images_wzlgn3.png" />
           </Link>
         </div>
-        <h2 className="delete-later">Ice Factory Outfitters</h2>
+        {/* <h2 className="delete-later">Ice Factory Outfitters</h2> */}
+
+        <div className="search-bar">
+          <form>
+            <input
+              type="search"
+              name="search"
+              placeholder="Search the Factory"
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            <button
+              type="submit"
+              className="search-button"
+              onClick={(e) => {
+                handleSearch(e);
+              }}
+            >
+              Search
+            </button>
+          </form>
+        </div>
+
         <div className="login-cart"></div>
         {!props.token ? (
           <div className="register-login">
+            <i class="fa-solid fa-user"></i>
             <Link to={"/LoginRegister"} className="head-links">
-              My Profile
+              Login/Register
             </Link>
           </div>
         ) : (
