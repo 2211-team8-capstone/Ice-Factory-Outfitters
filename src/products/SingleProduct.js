@@ -1,21 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../style/SingleProduct.css";
 
 const SingleProduct = (props) => {
   // need to pass selectedContact state through props, then pull name, desc, price, image off that selectedContact to render data on the single product view displayed
   const { selectedProduct } = props;
-  const { name, description, price, imag, id, color, category } =
+  const { name, description, price, image, id, color, category } =
     selectedProduct;
   const [quantity, setQuantity] = useState(1);
 
   console.log("DDDDDDDDDDD", quantity);
   console.log("AAAAAAAAAAAAA", selectedProduct);
 
+
   const handleAddToCart = (
     name,
     description,
     price,
-    imag,
+    image,
     id,
     color,
     category
@@ -30,7 +31,7 @@ const SingleProduct = (props) => {
 
   return (
     <div className="single-prod">
-      <div className="single-prod-image">IMAGE</div>
+      <img className="single-prod-image" src={image} />
       <div className="single-prod-info">
         <h1> {name} </h1>
         <h3> About This Item </h3>
