@@ -2,7 +2,7 @@ const client = require("./client");
 const { getAllUsers, createUser } = require("./models/users");
 const { createProduct, getAllProducts } = require("./models/products");
 const { addProductToCart, getCartByUserId } = require("./models/cart");
-const { seedData } = require("./seedData")
+const {fakeProducts} = require("./mockdata");
 
 async function dropTables() {
   try {
@@ -218,13 +218,25 @@ async function createInitialCart() {
 async function rebuildDB() {
   try {
     client.connect();
-
+    console.log("beginning to drop tables...")
     await dropTables();
+    console.log("finished drop tables!")
+
+    console.log("beginning to create tables...")
     await createTables();
+    console.log("finished create tables!")
+
+    console.log("beginning to create users...")
     await createInitialUsers();
-    await createInitialProducts();
-    // await Promise.all(seedData.map(createProduct));
+    console.log("finished creating users!")
+
+    console.log("beginning to create products...")
+    await Promise.all(fakeProducts.map(createProduct));
+    console.log("finished creating products")
+
+    console.log("beginning to create cart...")
     await createInitialCart();
+    console.log("finished creating cart!")
   } catch (error) {
     console.error(error);
   }
