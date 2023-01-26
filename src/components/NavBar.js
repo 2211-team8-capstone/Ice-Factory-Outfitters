@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "../style/NavBar.css";
 
 const NavBar = () => {
-  const routeTo = () => {};
+  const routeTo = () => { };
 
   return (
     <>
@@ -35,7 +35,7 @@ const NavBar = () => {
           Team Apparel
         </Link>
       </div>
-      <div className="search-bar">
+      {/* <div className="search-bar">
         <form>
           <input
             type="search"
@@ -53,7 +53,7 @@ const NavBar = () => {
             Search for Products
           </button>
         </form>
-      </div>
+      </div> */}
     </>
   );
 };
