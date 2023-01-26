@@ -41,11 +41,14 @@ export const registerUser = async (email, password) => {
         password,
       }),
     });
-
-    const { token } = await response.json();
+    
+    const result = await response.json();
+    const token = result.token;
+    const userID = result.user.id
+    console.log(result);
     console.log("this is the registerUser token", token);
 
-    return token;
+    return result;
 
     // const data = await response.json();
     // console.log("this is the registerUser data.token", data.token);
