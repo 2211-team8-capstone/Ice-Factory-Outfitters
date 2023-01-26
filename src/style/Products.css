@@ -1,9 +1,9 @@
 .product-container {
     display: flex;
-    justify-content: space-evenly;
-    margin: 30px;
     flex-wrap: wrap;
+    justify-content: center;
 
+    margin: 30px;
 }
 
 .single-product {
