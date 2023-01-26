@@ -9,7 +9,7 @@ const SingleProduct = (props) => {
   const [quantity, setQuantity] = useState(1);
 
   console.log("DDDDDDDDDDD", quantity);
-  console.log("AAAAAAAAAAAAA", props);
+  console.log("AAAAAAAAAAAAA", selectedProduct);
 
   const handleAddToCart = (
     name,
@@ -21,7 +21,11 @@ const SingleProduct = (props) => {
     category
   ) => {
     console.log("hello");
-    localStorage.setItem(`${name}`, `${name}`);
+    // localStorage.setItem(`Product#${id}`, `{"name":${name}}`);
+    localStorage.setItem(
+      `Product#${id}`,
+      JSON.stringify(selectedProduct, `"QUAntity": ${quantity}`)
+    );
   };
 
   return (

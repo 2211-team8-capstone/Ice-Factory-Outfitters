@@ -33,7 +33,11 @@ const App = () => {
 
   useEffect(() => {
     // const result = await getAllProducts
-    getAllProducts(setProducts);
+    const getProducts = async () => {
+      const data = await getAllProducts();
+      setProducts(data);
+    };
+    getProducts();
     // const getAPIStatus = async () => {
     //   const { healthy } = await getAPIHealth();
     //   setAPIHealth(healthy ? "api is up! :D" : "api is down :/");
