@@ -179,6 +179,8 @@ async function createInitialProducts() {
       image:
         "https://res.cloudinary.com/dulsfxtjz/image/upload/v1674586917/Ice%20Factory%20Outfitters/colorado-avalanche-primegreen-authentic-adidas-alternate-jersey-6_y7joz5.jpg",
     });
+    
+    await Promise.all(seedData.map(createProduct));
 
     console.log("Finished creating products!");
   } catch (error) {

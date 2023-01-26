@@ -1,31 +1,48 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+   box-sizing: border-box;
+   margin-left: 50px;
+   margin-right: 50px;
+   padding: 0;
+   font-family: Arial, Helvetica, sans-serif, "Graduate";
 
- }
+}
 
- .welcome{
-
-    color: whitesmoke;
-    display: flex;
-    justify-content: center;
- }
-
- .all-products-container{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    
- }
-
- .home-products{
+.welcome {
+   color: Black;
    display: flex;
-    border: black 5px solid;
-    margin: 10px;
-    padding: 30px;
-    border-radius: 50px;
-    width: 295px;
-    justify-content: center;
+   justify-content: center;
+}
 
- }
+.all-products-container {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   font-family: "Graduate", sans-serif;
+
+}
+
+.home-products {
+   display: flex;
+   border: black 1px solid;
+   margin: 10px;
+   padding: 30px;
+   border-radius: 50px;
+   width: 295px;
+   justify-content: center;
+   text-decoration: none;
+   font-family: "Graduate", sans-serif;
+
+}
+
+a:link {
+   text-decoration: none;
+}
+
+a:visited {
+   color: inherit;
+   text-decoration: none;
+}
+
+a:hover {
+   text-decoration: underline;
+}
