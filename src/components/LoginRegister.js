@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { loginUser, registerUser, createCart } from "../api";
+
+import { loginUser, registerUser, createCart, getCartIdByUserId } from "../api";
 import "../style/LoginRegister.css";
 
 // import "../style/Header.css";
@@ -28,11 +29,26 @@ const LoginRegister = (props) => {
                 try {
                   e.preventDefault();
                   localStorage.setItem("email", email);
-                  const token = await loginUser(email, password);
-                  localStorage.setItem("token", token);
-                  props.setToken(token);
+                  const result = await loginUser(email, password);
+                  console.log("YYYYYYYYYYYY", result);
 
-                  navigate("/");
+                  const token = result.token;
+                  // console.log("this is token in reg user", token);
+                  props.setToken(token);
+                  localStorage.setItem("token", token);
+
+                  const userId = result.user.id;
+                  console.log("this is userId in reg user", userId);
+                  localStorage.setItem("userId", userId);
+
+                  const cart = await getCartIdByUserId(userId, token);
+                  console.log(
+                    "this is the newly created cart in loginUser",
+                    cart
+                  );
+                  localStorage.setItem("cart#", cart.id);
+
+                  // navigate("/");
                 } catch (error) {
                   console.error(error);
                 }
@@ -88,7 +104,11 @@ const LoginRegister = (props) => {
                   localStorage.setItem("userId", userId);
 
                   const cart = await createCart(userId, token);
-                  console.log('this is the newly created cart in loginUser', cart);
+                  console.log(
+                    "this is the newly created cart in loginUser",
+                    cart
+                  );
+                  localStorage.setItem("cart#", cart.id);
 
                   navigate("/");
                 } catch (error) {

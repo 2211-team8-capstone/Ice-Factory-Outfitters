@@ -24,10 +24,15 @@ async function addProductToCartItems({ cartId, productId, quantity }) {
 
 async function getCartItemsByCartId(cartId) {
   try {
-    const { rows: [cartItems] } = await client.query(`
+    const {
+      rows: [cartItems],
+    } = await client.query(
+      `
     SELECT * FROM cartItems
     WHERE "cartId" = $1;
-    `, [cartId]);
+    `,
+      [cartId]
+    );
 
     return cartItems;
   } catch (error) {
@@ -38,10 +43,15 @@ async function getCartItemsByCartId(cartId) {
 
 async function getCartByUserId(userId) {
   try {
-    const { rows: [cart] } = await client.query (`
+    const {
+      rows: [cart],
+    } = await client.query(
+      `
     SELECT * FROM carts
     WHERE "userId" = $1;
-    `, [userId]);
+    `,
+      [userId]
+    );
 
     return cart;
   } catch (error) {
@@ -52,11 +62,59 @@ async function getCartByUserId(userId) {
 
 async function createCarts(userId) {
   try {
-    const { rows: [cart] } = await client.query (`
+    const {
+      rows: [cart],
+    } = await client.query(
+      `
     INSERT INTO carts ("userId")
     VALUES ($1)
     RETURNING *;
-    `, [userId]);
+    `,
+      [userId]
+    );
+
+    return cart;
+  } catch (error) {
+    console.error("Error with creating cart", error);
+    throw error;
+  }
+}
+
+async function getMyCart(cartId) {
+  try {
+    const { rows: cart } = await client.query(
+      `
+    SELECT *
+    FROM cartitems
+    JOIN products ON cartitems."productId" = products.id
+    WHERE "cartId" = $1
+    
+    ;
+    `,
+      [cartId]
+    );
+
+    return cart;
+  } catch (error) {
+    console.error("Error with creating cart", error);
+    throw error;
+  }
+}
+
+async function getMyCartId(userId) {
+  try {
+    const {
+      rows: [cart],
+    } = await client.query(
+      `
+    SELECT *
+    FROM carts
+    WHERE "userId" = $1
+    
+    ;
+    `,
+      [userId]
+    );
 
     return cart;
   } catch (error) {
@@ -70,4 +128,6 @@ module.exports = {
   getCartItemsByCartId,
   getCartByUserId,
   createCarts,
+  getMyCart,
+  getMyCartId,
 };

@@ -41,10 +41,10 @@ export const registerUser = async (email, password) => {
         password,
       }),
     });
-    
+
     const result = await response.json();
     const token = result.token;
-    const userID = result.user.id
+    const userID = result.user.id;
     console.log(result);
     console.log("this is the registerUser token", token);
 
@@ -71,9 +71,9 @@ export const loginUser = async (email, password) => {
         password,
       }),
     });
-    const { token } = await response.json();
-
-    return token;
+    const result = await response.json();
+    console.log("LOGIN", result);
+    return result;
   } catch (error) {
     console.error(error);
   }
@@ -117,8 +117,6 @@ export const getSingleProduct = async (productID, setSelectedProduct) => {
   }
 };
 
-
-
 // ************************ Cart Functions Below *******************************
 
 export const createCart = async (userId, token) => {
@@ -127,18 +125,53 @@ export const createCart = async (userId, token) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        'Authorization': `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        userId
+        userId,
       }),
     });
 
     const data = await response.json();
-console.log('this is data in createCart ',data)
-    return data 
-
+    console.log("this is data in createCart ", data);
+    return data;
   } catch (error) {
     console.error(error);
   }
-}
+};
+
+export const getCartByCartId = async (cartId) => {
+  try {
+    const response = await fetch(`http://localhost:4001/api/carts/${cartId}`, {
+      header: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    console.log("getCARTBYID API", data);
+
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getCartIdByUserId = async (userId, token) => {
+  try {
+    const response = await fetch(
+      `http://localhost:4001/api/carts/cartNum/${userId}`,
+      {
+        header: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const data = await response.json();
+    console.log("getCARTBYIDBYUSERIDDDD API", data);
+
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};

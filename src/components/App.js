@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 // getAPIHealth is defined in our axios-services directory index.js
 // you can think of that directory as a collection of api adapters
 // where each adapter fetches specific info from our express server's /api route
-import { getAllProducts, getAPIHealth } from "../api";
+import { getAllProducts, getAPIHealth, getCartByCartId } from "../api";
 import LoginRegister from "./LoginRegister";
 import Home from "./Home";
 import Header from "./Header";
@@ -20,6 +20,7 @@ import ProtectiveGear from "../products/ProtectiveGear";
 import GoalieGear from "../products/GoalieGear";
 import Accessories from "../products/Accessories";
 import TeamApparel from "../products/TeamApparel";
+import Cart from "./Cart";
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState("");
@@ -27,8 +28,10 @@ const App = () => {
   const [user, setUser] = useState({});
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState([]);
+  const [userCartNum, setUserCartNum] = useState(localStorage.getItem("cart#"));
+  const [userCart, setUserCart] = useState();
 
-  // console.log("APP.js token", products);
+  console.log("APP.js token", userCartNum);
 
   useEffect(() => {
     // const result = await getAllProducts
@@ -36,7 +39,13 @@ const App = () => {
       const data = await getAllProducts();
       setProducts(data);
     };
+    const getCart = async () => {
+      const data = await getCartByCartId(userCartNum);
+      setUserCart(data);
+    };
+
     getProducts();
+    getCart();
     // const getAPIStatus = async () => {
     //   const { healthy } = await getAPIHealth();
     //   setAPIHealth(healthy ? "api is up! :D" : "api is down :/");
@@ -140,6 +149,7 @@ const App = () => {
             path="/Profile"
             element={<Profile setToken={setToken} />}
           ></Route>
+          <Route path="/cart" element={<Cart />}></Route>
           <Route path="/ContactUs" element={<ContactUs />}></Route>
         </Routes>
       </div>

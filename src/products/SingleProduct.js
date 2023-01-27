@@ -11,7 +11,6 @@ const SingleProduct = (props) => {
   console.log("DDDDDDDDDDD", quantity);
   console.log("AAAAAAAAAAAAA", selectedProduct);
 
-
   const handleAddToCart = (
     name,
     description,
@@ -22,11 +21,11 @@ const SingleProduct = (props) => {
     category
   ) => {
     console.log("hello");
-    // localStorage.setItem(`Product#${id}`, `{"name":${name}}`);
-    localStorage.setItem(
-      `Product#${id}`,
-      JSON.stringify(selectedProduct, `"QUAntity": ${quantity}`)
-    );
+
+    // localStorage.setItem(
+    //   `Product#${id}`,
+    //   JSON.stringify(selectedProduct, `"QUAntity": ${quantity}`)
+    // );
   };
 
   return (
@@ -57,7 +56,7 @@ const SingleProduct = (props) => {
                   name,
                   description,
                   price,
-                  imag,
+                  image,
                   id,
                   color,
                   category

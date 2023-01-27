@@ -1,8 +1,13 @@
 const client = require("./client");
 const { getAllUsers, createUser } = require("./models/users");
 const { createProduct, getAllProducts } = require("./models/products");
-const { addProductToCartItems, getCartItemsByCartId, createCarts } = require("./models/carts");
-const {fakeProducts} = require("./mockdata");
+const {
+  addProductToCartItems,
+  getCartItemsByCartId,
+  createCarts,
+  getMyCart,
+} = require("./models/carts");
+const { fakeProducts } = require("./mockdata");
 
 async function dropTables() {
   try {
@@ -225,7 +230,7 @@ async function createInitialProducts() {
       image:
         "https://res.cloudinary.com/dulsfxtjz/image/upload/v1674586917/Ice%20Factory%20Outfitters/colorado-avalanche-primegreen-authentic-adidas-alternate-jersey-6_y7joz5.jpg",
     });
-    
+
     await Promise.all(seedData.map(createProduct));
 
     console.log("Finished creating products!");
@@ -236,25 +241,17 @@ async function createInitialProducts() {
 }
 
 async function createInitialCarts() {
-try {
-  console.log("Starting to create initial Carts...")
-  await createCarts({
-    userId: 1,
-  }),
-  await createCarts({
-    userId: 2,
-  }),
-  await createCarts({
-    userId: 3,
-  }),
-  await createCarts({  
-    userId: 4,
-  })
-  console.log("Finished to create initial Carts...")
-} catch (error) {
-  console.error("Error buidling inital Carts")
-  throw error;
-}
+  try {
+    console.log("Starting to create initial Carts...");
+    await createCarts(1),
+      await createCarts(2),
+      await createCarts(3),
+      await createCarts(4);
+    console.log("Finished to create initial Carts...");
+  } catch (error) {
+    console.error("Error buidling inital Carts");
+    throw error;
+  }
 }
 
 async function createInitialCartItems() {
@@ -290,29 +287,29 @@ async function createInitialCartItems() {
 async function rebuildDB() {
   try {
     client.connect();
-    console.log("beginning to drop tables...")
+    console.log("beginning to drop tables...");
     await dropTables();
-    console.log("finished drop tables!")
+    console.log("finished drop tables!");
 
-    console.log("beginning to create tables...")
+    console.log("beginning to create tables...");
     await createTables();
-    console.log("finished create tables!")
+    console.log("finished create tables!");
 
-    console.log("beginning to create users...")
+    console.log("beginning to create users...");
     await createInitialUsers();
-    console.log("finished creating users!")
+    console.log("finished creating users!");
 
-    console.log("beginning to create products...")
+    console.log("beginning to create products...");
     await Promise.all(fakeProducts.map(createProduct));
-    console.log("finished creating products")
+    console.log("finished creating products");
 
-    console.log("Beginning to create Cart...")
+    console.log("Beginning to create Cart...");
     await createInitialCarts();
-    console.log("Finished creting Carts")
+    console.log("Finished creting Carts");
 
-    console.log("beginning to create cartItems...")
+    console.log("beginning to create cartItems...");
     await createInitialCartItems();
-    console.log("finished creating cartItems!")
+    console.log("finished creating cartItems!");
   } catch (error) {
     console.error(error);
   }
@@ -327,6 +324,9 @@ async function testDB() {
 
     const products = await getAllProducts();
     // console.log("this is getAllProducts-------->", products);
+
+    const myCart = await getMyCart(2);
+    console.log("this is getMyCart-------->", myCart);
 
     console.log("finsihed testing the database!");
   } catch (error) {
