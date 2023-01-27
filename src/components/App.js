@@ -10,7 +10,6 @@ import Header from "./Header";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
 import ContactUs from "./ContactUs";
-import Product from "./Product";
 import Profile from "./Profile";
 import "../style/App.css";
 import Sticks from "../products/Sticks";

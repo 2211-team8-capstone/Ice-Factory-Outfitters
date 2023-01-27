@@ -29,16 +29,7 @@ const Accessories = (props) => {
                 <h3 className="headers">${product.price}</h3>
                 <div className="sub-container">
                   <div className="btn-container">
-                    {/* <input
-                      className="prod-btn"
-                      min={1}
-                      type="number"
-                      placeholder="quantity"
-                      onChange={(e) => {
-                        setQuantity(e.target.value);
-                      }}
-                    ></input> */}
-                    <button className="prod-btn">Add to Cart</button>
+                    {/* <button className="prod-btn">Add to Cart</button> */}
                     <button
                       className="prod-btn"
                       onClick={() =>
