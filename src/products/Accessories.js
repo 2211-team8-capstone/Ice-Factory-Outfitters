@@ -24,7 +24,7 @@ const Accessories = (props) => {
           return (
             <div className="product-container" key={product.id}>
               <div className="single-product">
-                <img className="headers" src={product.image} />
+                <img className="product-thumbnail" src={product.image} />
                 <h2 className="headers">{product.name}</h2>
                 <h3 className="headers">${product.price}</h3>
                 <div className="sub-container">

@@ -35,8 +35,10 @@ const SingleProduct = (props) => {
         <h1> {name} </h1>
         <h3> About This Item </h3>
         <p>{description}</p>
+        <br></br>
         <div>
           <p> ${price} </p>
+          <br></br>
           <div className="btn-container">
             <input
               className="prod-btn"
