@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { loginUser, registerUser } from "../api";
+import "../style/LoginRegister.css";
 
 // import "../style/Header.css";
 const LoginRegister = (props) => {
@@ -77,13 +78,13 @@ const LoginRegister = (props) => {
                   const result = await registerUser(emailTwo, passwordTwo);
                   console.log("YYYYYYYYYYYY", result);
 
-                  const token = result.token
-                  console.log('this is token in reg user', token)
+                  const token = result.token;
+                  console.log("this is token in reg user", token);
                   props.setToken(token);
                   localStorage.setItem("token", token);
 
                   const userId = result.user.id;
-                  console.log('this is userId in reg user', userId)
+                  console.log("this is userId in reg user", userId);
                   localStorage.setItem("userId", userId);
                   // const cart = await createCart(userId);
 
