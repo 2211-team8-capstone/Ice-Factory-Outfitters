@@ -3,7 +3,18 @@ const client = require("../client");
 const bcrypt = require("bcrypt");
 const SALT_COUNT = 10;
 
-async function createUser({ email, password }) {
+async function createUser({ 
+  email, 
+  password,
+  phone,
+  firstName,
+  lastName,
+  addressNum,
+  addressSt,
+  city,
+  state,
+  zip,
+  }) {
   const hashedPassword = await bcrypt.hash(password, SALT_COUNT);
 
   try {
@@ -11,12 +22,31 @@ async function createUser({ email, password }) {
       rows: [user],
     } = await client.query(
       `
-    INSERT INTO users(email, password)
-    VALUES ($1, $2)
+    INSERT INTO users(
+      email, 
+      password, 
+      phone, 
+      firstName, 
+      lastName, 
+      addressNum, 
+      addressSt, 
+      city, 
+      state, 
+      zip)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
     ON CONFLICT (email) DO NOTHING
     RETURNING *;
     `,
-      [email, hashedPassword]
+      [email, 
+        hashedPassword, 
+        phone, 
+        firstName, 
+        lastName, 
+        addressNum, 
+        addressSt, 
+        city, 
+        state, 
+        zip]
     );
 
     delete user.password;

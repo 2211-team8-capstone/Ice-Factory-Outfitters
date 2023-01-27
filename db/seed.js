@@ -30,7 +30,15 @@ async function createTables() {
     CREATE TABLE users (
       id SERIAL PRIMARY KEY,
       email VARCHAR(255) UNIQUE NOT NULL,
-      password VARCHAR(255) NOT NULL
+      password VARCHAR(255) NOT NULL,
+      phone TEXT,
+      firstName VARCHAR(255),
+      lastName VARCHAR(255),
+      addressNum INTEGER,
+      addressSt VARCHAR(255),
+      city VARCHAR(255),
+      state VARCHAR(255),
+      zip INTEGER
     );
 
     CREATE TABLE products (
@@ -72,18 +80,50 @@ async function createInitialUsers() {
     const kevin = await createUser({
       email: "kevin@email.com",
       password: "password1",
+      phone: "111 111-1111",
+      firstName: "Kevin",
+      lastName: "Chicago",
+      addressNum: 1234,
+      addressSt: "Main St",
+      city: "Chicago",
+      state: "IL",
+      zip: 12345,
     });
     const jae = await createUser({
       email: "jae@email.com",
       password: "password12",
+      phone: "222 222-2222",
+      firstName: "Jae",
+      lastName: "Chicago",
+      addressNum: 9876,
+      addressSt: "Main St",
+      city: "Chicago",
+      state: "IL",
+      zip: 12345,
     });
     const thomas = await createUser({
       email: "thomas@email.com",
-      password: "password123",
+      password: "password",
+      phone: "333 333-3333",
+      firstName: "Thomas",
+      lastName: "Denver",
+      addressNum: 6666,
+      addressSt: "Main St",
+      city: "Denver",
+      state: "CO",
+      zip: 98765,
     });
     const dylan = await createUser({
       email: "dylan@email.com",
       password: "password1234",
+      phone: "444 444-4444",
+      firstName: "Dylan",
+      lastName: "Richmond",
+      addressNum: 9999,
+      addressSt: "Main St",
+      city: "Richmond",
+      state: "VA",
+      zip: 13579,
     });
 
     console.log("Finished creating users!");
@@ -231,12 +271,12 @@ async function createInitialCartItems() {
       quantity: 1,
     });
     await addProductToCartItems({
-      cartId: 2,
+      cartId: 3,
       productId: 3,
       quantity: 1,
     });
     await addProductToCartItems({
-      cartId: 3,
+      cartId: 4,
       productId: 2,
       quantity: 1,
     });
