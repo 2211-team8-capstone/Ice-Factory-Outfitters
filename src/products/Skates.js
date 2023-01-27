@@ -28,8 +28,6 @@ const Skates = (props) => {
                 <h3 className="headers">${product.price}</h3>
                 <div className="sub-container">
                   <div className="btn-container">
-                    {/* <input className="prod-btn" type="number" placeholder="quantity"></input> */}
-                    <button className="prod-btn">Add to Cart</button>
                     <button
                       className="prod-btn"
                       onClick={() =>
