@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { loginUser, registerUser } from "../api";
+import { loginUser, registerUser, createCart } from "../api";
 import "../style/LoginRegister.css";
 
 // import "../style/Header.css";
@@ -76,17 +76,19 @@ const LoginRegister = (props) => {
                   localStorage.setItem("email", emailTwo);
 
                   const result = await registerUser(emailTwo, passwordTwo);
-                  console.log("YYYYYYYYYYYY", result);
+                  // console.log("YYYYYYYYYYYY", result);
 
                   const token = result.token;
-                  console.log("this is token in reg user", token);
+                  // console.log("this is token in reg user", token);
                   props.setToken(token);
                   localStorage.setItem("token", token);
 
                   const userId = result.user.id;
                   console.log("this is userId in reg user", userId);
                   localStorage.setItem("userId", userId);
-                  // const cart = await createCart(userId);
+
+                  const cart = await createCart(userId, token);
+                  console.log('this is the newly created cart in loginUser', cart);
 
                   navigate("/");
                 } catch (error) {
