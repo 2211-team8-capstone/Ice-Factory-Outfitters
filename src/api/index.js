@@ -116,3 +116,29 @@ export const getSingleProduct = async (productID, setSelectedProduct) => {
     console.error(error);
   }
 };
+
+
+
+// ************************ Cart Functions Below *******************************
+
+export const createCart = async (userId, token) => {
+  try {
+    const response = await fetch("http://localhost:4001/api/carts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        userId
+      }),
+    });
+
+    const data = await response.json();
+console.log('this is data in createCart ',data)
+    return data 
+
+  } catch (error) {
+    console.error(error);
+  }
+}

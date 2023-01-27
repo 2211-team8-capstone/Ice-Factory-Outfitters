@@ -50,7 +50,7 @@ async function getCartByUserId(userId) {
   }
 }
 
-async function createCarts({userId}) {
+async function createCarts(userId) {
   try {
     const { rows: [cart] } = await client.query (`
     INSERT INTO carts ("userId")
