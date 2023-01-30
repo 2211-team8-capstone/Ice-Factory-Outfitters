@@ -1,0 +1,41 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.add-products-title {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-products-form {
+    display: flex;
+    text-align: right;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+.add-products-form label {
+    display: inline-block;
+
+}
+
+.add-products-form input,
+.add-products-form textarea {
+    width: 500 px;
+}
+
+.add-products-form textarea {
+    vertical-align: top;
+    text-align: top;
+
+}
+
+.add-products-add {
+    text-align: center;
+    align-items: center;
+}
