@@ -24,14 +24,14 @@ import Cart from "./Cart";
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState("");
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState({});
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState([]);
   const [userCartNum, setUserCartNum] = useState(localStorage.getItem("cart#"));
   const [userCart, setUserCart] = useState();
 
-  console.log("APP.js token", userCartNum);
+  // console.log("APP.js token", token);
 
   useEffect(() => {
     // const result = await getAllProducts
@@ -67,6 +67,8 @@ const App = () => {
                 products={products}
                 setSelectedProduct={setSelectedProduct}
                 selectedProduct={selectedProduct}
+                setProducts={setProducts}
+                token={token}
               />
             }
           ></Route>
@@ -77,6 +79,8 @@ const App = () => {
                 products={products}
                 setSelectedProduct={setSelectedProduct}
                 selectedProduct={selectedProduct}
+                setProducts={setProducts}
+                token={token}
               />
             }
           ></Route>
@@ -87,6 +91,8 @@ const App = () => {
                 products={products}
                 setSelectedProduct={setSelectedProduct}
                 selectedProduct={selectedProduct}
+                setProducts={setProducts}
+                token={token}
               />
             }
           ></Route>
@@ -98,6 +104,8 @@ const App = () => {
                 products={products}
                 setSelectedProduct={setSelectedProduct}
                 selectedProduct={selectedProduct}
+                setProducts={setProducts}
+                token={token}
               />
             }
           ></Route>
@@ -108,6 +116,8 @@ const App = () => {
                 products={products}
                 setSelectedProduct={setSelectedProduct}
                 selectedProduct={selectedProduct}
+                setProducts={setProducts}
+                token={token}
               />
             }
           ></Route>
@@ -118,6 +128,8 @@ const App = () => {
                 products={products}
                 setSelectedProduct={setSelectedProduct}
                 selectedProduct={selectedProduct}
+                setProducts={setProducts}
+                token={token}
               />
             }
           ></Route>
@@ -128,6 +140,8 @@ const App = () => {
                 products={products}
                 setSelectedProduct={setSelectedProduct}
                 selectedProduct={selectedProduct}
+                setProducts={setProducts}
+                token={token}
               />
             }
           ></Route>
@@ -138,6 +152,8 @@ const App = () => {
                 products={products}
                 setSelectedProduct={setSelectedProduct}
                 selectedProduct={selectedProduct}
+                setProducts={setProducts}
+                token={token}
               />
             }
           ></Route>

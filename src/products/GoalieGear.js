@@ -2,9 +2,25 @@ import React, { useEffect } from "react";
 import "../style/Products.css";
 import { getAllProducts, getSingleProduct } from "../api";
 import SingleProduct from "./SingleProduct";
+import { deleteSingleProduct } from "../api/admin";
 
 const GoalieGear = (props) => {
-  const { setSelectedProduct, selectedProduct } = props;
+  const { setSelectedProduct, selectedProduct, products, setProducts, token } =
+    props;
+  // console.log("token", token);
+
+  const handleDelete = async (productIdToDelete) => {
+    const response = await deleteSingleProduct(token, productIdToDelete);
+    // console.log("error?", response);
+
+    if (response && !response.error) {
+      const getProducts = async () => {
+        const data = await getAllProducts();
+        setProducts(data);
+      };
+      getProducts();
+    }
+  };
 
   useEffect(() => {
     setSelectedProduct(0);
@@ -28,6 +44,14 @@ const GoalieGear = (props) => {
                 <h3 className="headers">${product.price}</h3>
                 <div className="sub-container">
                   <div className="btn-container">
+                    {/* <button
+                      className="prod-btn"
+                      onClick={() =>
+                        editSingleProduct(product.id, setSelectedProduct)
+                      }
+                    >
+                      Edit
+                    </button> */}
                     <button
                       className="prod-btn"
                       onClick={() =>
@@ -35,6 +59,12 @@ const GoalieGear = (props) => {
                       }
                     >
                       More Info
+                    </button>
+                    <button
+                      className="prod-btn"
+                      onClick={() => handleDelete(product.id)}
+                    >
+                      Delete
                     </button>
                   </div>
                 </div>
