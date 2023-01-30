@@ -21,6 +21,9 @@ import GoalieGear from "../products/GoalieGear";
 import Accessories from "../products/Accessories";
 import TeamApparel from "../products/TeamApparel";
 import Cart from "./Cart";
+import AddProducts from "./AddProducts";
+import AdminLogin from "./AdminLogin";
+import AdminProfile from "./Admin";
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState("");
@@ -167,6 +170,9 @@ const App = () => {
           ></Route>
           <Route path="/cart" element={<Cart />}></Route>
           <Route path="/ContactUs" element={<ContactUs />}></Route>
+          <Route path="/AddProducts" element={<AddProducts />}></Route>
+          <Route path="/AdminLogin" element={<AdminLogin />}></Route>
+          <Route path="/Admin" element={<AdminProfile />}></Route>
         </Routes>
       </div>
       <Footer />

@@ -79,6 +79,26 @@ export const loginUser = async (email, password) => {
   }
 };
 
+export const loginAdmin = async (adminEmail, adminPassword) => {
+  try {
+    const response = await fetch("http://localhost:4001/api/admin/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        adminEmail,
+        adminPassword,
+      }),
+    });
+    const result = await response.json();
+    console.log("LOGIN", result);
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 // ***************************** ALL PRODUCTS FUNCTIONS **************************
 
 export const getAllProducts = async () => {
