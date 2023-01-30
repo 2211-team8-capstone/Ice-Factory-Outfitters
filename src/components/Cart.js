@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 const Cart = (props) => {
-  const { userCart, setUserCart } = props;
-  
-  console.log('this is state of userCart inside cart component',userCart);
+  const { userCart, setUserCart, cartPriceTotal, setCartPriceTotal} = props;
 
   return (
 
@@ -23,8 +21,8 @@ const Cart = (props) => {
           );
         }
       )}
-      <div> TOTAL PRICE: ()
-        
+      <div> 
+        TOTAL PRICE: ${cartPriceTotal}
       </div>
       <button> CHECKOUT </button>
     </div>
