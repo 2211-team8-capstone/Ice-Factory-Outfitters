@@ -56,17 +56,24 @@ const App = () => {
   }, []);
 
 
-  // update cartTotal everytime cart adds/deleetes item
-  // useEffect((userCart) => {
-  //   let totalPrice = 0;
-  //   for (let i=0; i < userCart.length; i++) {
-  //     totalPrice + userCart.price
-  //     setCartPriceTotal(totalprice)
-      
-  //   }
+  // // update cartTotal everytime cart adds/deleetes item
+  useEffect(() => {
+    
+    const priceArr = userCart?.map((a) => a.price)
+    console.log(priceArr);
 
-  //   return totalPrice; 
-  // }, userCart)
+    const findSum = (array) => {
+      let sum = 0; 
+
+      for (let i=0; i < array?.length; i++) {
+        sum += priceArr[i];
+      }
+      return sum;
+  }
+
+    const totalCartPrice = findSum(priceArr);
+    setCartPriceTotal(totalCartPrice);
+  }, [userCart])
 
 
   return (
@@ -183,7 +190,12 @@ const App = () => {
           ></Route>
           <Route 
           path="/cart" 
-          element={<Cart userCart={userCart} setUserCart={setUserCart}/>}></Route>
+          element={<Cart 
+            userCart={userCart} 
+            setUserCart={setUserCart}
+            cartPriceTotal={cartPriceTotal}
+            setCartPriceTotal={setCartPriceTotal} />}
+            ></Route>
           <Route path="/ContactUs" element={<ContactUs />}></Route>
           <Route path="/AddProducts" element={<AddProducts />}></Route>
           <Route path="/AdminLogin" element={<AdminLogin />}></Route>
