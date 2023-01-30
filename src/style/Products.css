@@ -22,7 +22,7 @@
     padding: 15px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     background-color: #1d849e;
     text-align: center;
 

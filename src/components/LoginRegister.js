@@ -48,7 +48,7 @@ const LoginRegister = (props) => {
                   );
                   localStorage.setItem("cart#", cart.id);
 
-                  // navigate("/");
+                  navigate("/");
                 } catch (error) {
                   console.error(error);
                 }

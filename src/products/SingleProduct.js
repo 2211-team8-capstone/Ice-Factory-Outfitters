@@ -8,9 +8,6 @@ const SingleProduct = (props) => {
     selectedProduct;
   const [quantity, setQuantity] = useState(1);
 
-  console.log("DDDDDDDDDDD", quantity);
-  console.log("AAAAAAAAAAAAA", selectedProduct);
-
   const handleAddToCart = (
     name,
     description,

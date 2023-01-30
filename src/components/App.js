@@ -28,10 +28,9 @@ const App = () => {
   const [user, setUser] = useState({});
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState([]);
-  const [userCartNum, setUserCartNum] = useState(localStorage.getItem("cart#"));
   const [userCart, setUserCart] = useState();
+  const [cartPriceTotal, setCartPriceTotal] = useState(0);
 
-  console.log("APP.js token", userCartNum);
 
   useEffect(() => {
     // const result = await getAllProducts
@@ -40,7 +39,8 @@ const App = () => {
       setProducts(data);
     };
     const getCart = async () => {
-      const data = await getCartByCartId(userCartNum);
+      const cartId = localStorage.getItem("cart#")
+      const data = await getCartByCartId(cartId);
       setUserCart(data);
     };
 
@@ -52,6 +52,20 @@ const App = () => {
     // };
     // getAPIStatus();
   }, []);
+
+
+  // update cartTotal everytime cart adds/deleetes item
+  // useEffect((userCart) => {
+  //   let totalPrice = 0;
+  //   for (let i=0; i < userCart.length; i++) {
+  //     totalPrice + userCart.price
+  //     setCartPriceTotal(totalprice)
+      
+  //   }
+
+  //   return totalPrice; 
+  // }, userCart)
+
 
   return (
     <>
@@ -149,7 +163,9 @@ const App = () => {
             path="/Profile"
             element={<Profile setToken={setToken} />}
           ></Route>
-          <Route path="/cart" element={<Cart />}></Route>
+          <Route 
+          path="/cart" 
+          element={<Cart userCart={userCart} setUserCart={setUserCart}/>}></Route>
           <Route path="/ContactUs" element={<ContactUs />}></Route>
         </Routes>
       </div>
