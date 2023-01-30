@@ -31,7 +31,7 @@ const Skates = (props) => {
   return (
     <div className="all-products">
       {selectedProduct ? (
-        <SingleProduct selectedProduct={selectedProduct} />
+        <SingleProduct selectedProduct={selectedProduct} token={token}/>
       ) : (
         filteredProducts.map((product) => {
           return (
