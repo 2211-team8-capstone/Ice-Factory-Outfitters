@@ -33,7 +33,7 @@ const LoginRegister = (props) => {
                   console.log("YYYYYYYYYYYY", result);
 
                   const token = result.token;
-                  // console.log("this is token in reg user", token);
+                  console.log("this is token in reg user", token);
                   props.setToken(token);
                   localStorage.setItem("token", token);
 

@@ -1,16 +1,9 @@
 const client = require("../client");
 
 async function createProduct(product) {
-
   try {
-    const {category,
-      name,
-      description,
-      price,
-      quantity,
-      size,
-      color,
-      image} = product;
+    const { category, name, description, price, quantity, size, color, image } =
+      product;
 
     const {
       rows: [newProduct],
@@ -30,7 +23,6 @@ async function createProduct(product) {
   }
 }
 
-
 async function getAllProducts() {
   try {
     const { rows } = await client.query(`
@@ -43,7 +35,6 @@ async function getAllProducts() {
     throw error;
   }
 }
-
 
 async function getProductById(productId) {
   try {
@@ -70,8 +61,29 @@ async function getProductById(productId) {
   }
 }
 
+async function destroyProduct(id) {
+  try {
+    const {
+      rows: [product],
+    } = await client.query(
+      `
+      DELETE 
+      FROM products
+      WHERE id=${id}
+      RETURNING *
+    `
+    );
+
+    return product;
+  } catch (error) {
+    console.error("Error deleting product");
+    throw error;
+  }
+}
+
 module.exports = {
   createProduct,
   getAllProducts,
   getProductById,
+  destroyProduct,
 };
