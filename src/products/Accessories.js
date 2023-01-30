@@ -2,10 +2,24 @@ import React, { useEffect, useState } from "react";
 import "../style/Products.css";
 import { getAllProducts, getSingleProduct } from "../api";
 import SingleProduct from "./SingleProduct";
+import { deleteSingleProduct } from "../api/admin";
 
 const Accessories = (props) => {
-  const { setSelectedProduct, selectedProduct } = props;
-  // const [quantity, setQuantity] = useState(0);
+  const { setSelectedProduct, selectedProduct, products, setProducts, token } =
+    props;
+
+  const handleDelete = async (productIdToDelete) => {
+    const response = await deleteSingleProduct(token, productIdToDelete);
+    // console.log("error?", response);
+
+    if (response && !response.error) {
+      const getProducts = async () => {
+        const data = await getAllProducts();
+        setProducts(data);
+      };
+      getProducts();
+    }
+  };
 
   useEffect(() => {
     setSelectedProduct();
@@ -29,7 +43,14 @@ const Accessories = (props) => {
                 <h3 className="headers">${product.price}</h3>
                 <div className="sub-container">
                   <div className="btn-container">
-                    {/* <button className="prod-btn">Add to Cart</button> */}
+                    {/* <button
+                      className="prod-btn"
+                      onClick={() =>
+                        editSingleProduct(product.id, setSelectedProduct)
+                      }
+                    >
+                      Edit
+                    </button> */}
                     <button
                       className="prod-btn"
                       onClick={() =>
@@ -37,6 +58,12 @@ const Accessories = (props) => {
                       }
                     >
                       More Info
+                    </button>
+                    <button
+                      className="prod-btn"
+                      onClick={() => handleDelete(product.id)}
+                    >
+                      Delete
                     </button>
                   </div>
                 </div>

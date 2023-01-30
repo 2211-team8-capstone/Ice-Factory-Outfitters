@@ -1,0 +1,90 @@
+.admin-profile-container {
+    /* max-width: fit-content; */
+    display: flex;
+    margin: 30px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+    justify-content: center;
+
+}
+
+.admin-profile-container-left {
+    float: left;
+    padding: 10px;
+}
+
+.admin-profile {
+    border: solid #023047;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: #1d849e;
+    color: whitesmoke;
+    width: 350px;
+    /* margin-bottom: 20px; */
+}
+
+
+.admin-update-profile {
+    border: solid #023047;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: #1d849e;
+    color: whitesmoke;
+    width: 350px;
+    display: flex;
+    text-align: right;
+    align-items: center;
+    justify-content: center;
+
+    /* margin-bottom: 20px; */
+}
+
+/* .user-profile label {
+    display: inline-block;
+    text-align: right;
+    align-items: center;
+    justify-content: center;
+} */
+
+.admin-update-profile label {
+    display: inline-block;
+    text-align: right;
+    display: inline-flex;
+    text-align: right;
+    align-items: right;
+    justify-content: right;
+}
+
+.admin-update-profile input {
+    margin: 3px 0px 3px 10px;
+
+}
+
+.admin-profile-container-right {
+    float: left;
+    padding: 10px;
+}
+
+.admin-order-history {
+    float: right;
+    border: solid #023047;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: #1d849e;
+    color: whitesmoke;
+    width: 500px;
+    /* margin-bottom: 20px; */
+}
+
+/* .update {
+    display: flex;
+    text-align: right;
+    align-items: center;
+    justify-content: center;
+}
+
+.title {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+} */
