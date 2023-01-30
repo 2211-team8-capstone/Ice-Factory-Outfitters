@@ -8,6 +8,8 @@ const {
   getAllProducts,
   getProductById,
   destroyProduct,
+  updateProduct,
+  getProductByName,
 } = require("../db/models/products");
 
 productsRouter.use((req, res, next) => {
@@ -51,6 +53,52 @@ productsRouter.delete("/:productid", async (req, res, next) => {
     res.send({
       result,
     });
+  } catch (error) {
+    next(error);
+  }
+});
+
+productsRouter.patch("/:productid", async (req, res, next) => {
+  const { productid } = req.params;
+  const { productName, productDesc, productPrice } = req.body;
+  console.log("this is productID in patchproductsrouter", productid);
+
+  const fields = {};
+  if (productName) {
+    fields.name = productName;
+  }
+
+  if (productDesc) {
+    fields.description = productDesc;
+  }
+
+  if (productPrice) {
+    fields.price = productPrice;
+  }
+
+  try {
+    const checkForProduct = await getProductByName(productName);
+
+    if (checkForProduct.name === productName) {
+      next({
+        name: "Product name exists",
+        message: `A product with name ${productName} already exists`,
+      });
+    } else if (!checkForProduct.id) {
+      next({
+        name: "Product not found",
+        message: `Product ${productid} not found`,
+      });
+    } else {
+      const result = await updateProduct(productid, ...fields);
+      console.log(
+        "this is message in patchproductsrouter returned from DB",
+        result
+      );
+      res.send({
+        result,
+      });
+    }
   } catch (error) {
     next(error);
   }

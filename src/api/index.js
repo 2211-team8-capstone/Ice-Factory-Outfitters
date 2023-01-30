@@ -168,7 +168,7 @@ export const getCartByCartId = async (cartId) => {
       },
     });
     const data = await response.json();
-    console.log("getCARTBYID API", data);
+    // console.log("getCARTBYID API", data);
 
     return data;
   } catch (error) {

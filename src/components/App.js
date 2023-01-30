@@ -33,6 +33,9 @@ const App = () => {
   const [selectedProduct, setSelectedProduct] = useState([]);
   const [userCart, setUserCart] = useState();
   const [cartPriceTotal, setCartPriceTotal] = useState(0);
+  const [editSelected, setEditSelected] = useState(false);
+
+  console.log("app.js editSelected", editSelected);
 
   useEffect(() => {
     // const result = await getAllProducts
@@ -41,7 +44,7 @@ const App = () => {
       setProducts(data);
     };
     const getCart = async () => {
-      const cartId = localStorage.getItem("cart#")
+      const cartId = localStorage.getItem("cart#");
       const data = await getCartByCartId(cartId);
       setUserCart(data);
     };
@@ -55,19 +58,17 @@ const App = () => {
     // getAPIStatus();
   }, []);
 
-
   // update cartTotal everytime cart adds/deleetes item
   // useEffect((userCart) => {
   //   let totalPrice = 0;
   //   for (let i=0; i < userCart.length; i++) {
   //     totalPrice + userCart.price
   //     setCartPriceTotal(totalprice)
-      
+
   //   }
 
-  //   return totalPrice; 
+  //   return totalPrice;
   // }, userCart)
-
 
   return (
     <>
@@ -158,6 +159,8 @@ const App = () => {
                 selectedProduct={selectedProduct}
                 setProducts={setProducts}
                 token={token}
+                setEditSelected={setEditSelected}
+                editSelected={editSelected}
               />
             }
           ></Route>
@@ -181,9 +184,10 @@ const App = () => {
             path="/Profile"
             element={<Profile setToken={setToken} />}
           ></Route>
-          <Route 
-          path="/cart" 
-          element={<Cart userCart={userCart} setUserCart={setUserCart}/>}></Route>
+          <Route
+            path="/cart"
+            element={<Cart userCart={userCart} setUserCart={setUserCart} />}
+          ></Route>
           <Route path="/ContactUs" element={<ContactUs />}></Route>
           <Route path="/AddProducts" element={<AddProducts />}></Route>
           <Route path="/AdminLogin" element={<AdminLogin />}></Route>

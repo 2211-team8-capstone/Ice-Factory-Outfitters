@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from "react";
+import { editSingleProduct } from "../api/admin";
 import "../style/SingleProduct.css";
 
 const SingleProduct = (props) => {
   // need to pass selectedContact state through props, then pull name, desc, price, image off that selectedContact to render data on the single product view displayed
-  const { selectedProduct } = props;
+  const { selectedProduct, editSelected, token } = props;
   const { name, description, price, image, id, color, category } =
     selectedProduct;
+
   const [quantity, setQuantity] = useState(1);
+  const [productName, setProductName] = useState(`${name}`);
+  const [productDesc, setProductDesc] = useState(`${description}`);
+  const [productPrice, setProductPrice] = useState(`${price}`);
+
+  console.log("single product edit", editSelected, productName);
 
   const handleAddToCart = (
     name,
@@ -25,17 +32,82 @@ const SingleProduct = (props) => {
     // );
   };
 
+  const handleEditProduct = async (
+    id,
+    productName,
+    productDesc,
+    productPrice
+  ) => {
+    const response = await editSingleProduct(
+      token,
+      id,
+      productName,
+      productDesc,
+      productPrice
+    );
+    console.log("error?", response);
+
+    // if (response && !response.error) {
+    //   const getProducts = async () => {
+    //     const data = await getAllProducts();
+    //     setProducts(data);
+    //   };
+    //   getProducts();
+    // }
+  };
+
   return (
     <div className="single-prod">
       <img className="single-prod-image" src={image} />
       <div className="single-prod-info">
-        <h1> {name} </h1>
+        {editSelected === false ? (
+          <h1> {name} </h1>
+        ) : (
+          <div>
+            <h1> {name} </h1>
+            <label htmlFor="productName">Edit Product Name:</label>
+            <input
+              value={productName}
+              type="text"
+              onChange={(e) => setProductName(e.target.value)}
+            ></input>
+          </div>
+        )}
         <h3> About This Item </h3>
-        <p>{description}</p>
-        <br></br>
-        <div>
-          <p> ${price} </p>
-          <br></br>
+        {editSelected === false ? (
+          <div>
+            <p>{description}</p>
+            <br></br>
+          </div>
+        ) : (
+          <div>
+            <p> {description} </p>
+            <label htmlFor="productName">Edit Product Description:</label>
+            <input
+              value={productDesc}
+              type="text"
+              onChange={(e) => setProductDesc(e.target.value)}
+            ></input>
+          </div>
+        )}
+
+        {editSelected === false ? (
+          <div>
+            <p> ${price} </p>
+            <br></br>
+          </div>
+        ) : (
+          <div>
+            <p> ${price} </p>
+            <label htmlFor="productName">Edit Product Price:</label>
+            <input
+              value={productPrice}
+              type="text"
+              onChange={(e) => setProductPrice(e.target.value)}
+            ></input>
+          </div>
+        )}
+        {editSelected === false ? (
           <div className="btn-container">
             <input
               className="prod-btn"
@@ -66,7 +138,17 @@ const SingleProduct = (props) => {
               ADD TO CART{" "}
             </button>
           </div>
-        </div>
+        ) : (
+          <button
+            type="submit"
+            className="add-to-cart-button"
+            onClick={() =>
+              handleEditProduct(id, productName, productDesc, productPrice)
+            }
+          >
+            Edit Product
+          </button>
+        )}
       </div>
     </div>
   );
