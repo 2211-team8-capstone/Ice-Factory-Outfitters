@@ -17,7 +17,7 @@ const Accessories = (props) => {
 
   const handleDelete = async (productIdToDelete) => {
     const response = await deleteSingleProduct(token, productIdToDelete);
-    // console.log("error?", response);
+    console.log("error?", response);
 
     if (response && !response.error) {
       const getProducts = async () => {
@@ -56,6 +56,7 @@ const Accessories = (props) => {
           editSelected={editSelected}
           token={token}
           setProducts={setProducts}
+          setEditSelected={setEditSelected}
         />
       ) : (
         filteredProducts.map((product) => {

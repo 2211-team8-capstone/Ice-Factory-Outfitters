@@ -73,7 +73,7 @@ const App = () => {
   return (
     <>
       <Header setToken={setToken} token={token} />
-      <NavBar />
+      <NavBar setEditSelected={setEditSelected} />
       <div>
         <Routes>
           <Route exact path="/" element={<Home />}></Route>
@@ -86,6 +86,8 @@ const App = () => {
                 selectedProduct={selectedProduct}
                 setProducts={setProducts}
                 token={token}
+                setEditSelected={setEditSelected}
+                editSelected={editSelected}
               />
             }
           ></Route>
@@ -98,6 +100,8 @@ const App = () => {
                 selectedProduct={selectedProduct}
                 setProducts={setProducts}
                 token={token}
+                setEditSelected={setEditSelected}
+                editSelected={editSelected}
               />
             }
           ></Route>
@@ -110,6 +114,8 @@ const App = () => {
                 selectedProduct={selectedProduct}
                 setProducts={setProducts}
                 token={token}
+                setEditSelected={setEditSelected}
+                editSelected={editSelected}
               />
             }
           ></Route>
@@ -123,6 +129,8 @@ const App = () => {
                 selectedProduct={selectedProduct}
                 setProducts={setProducts}
                 token={token}
+                setEditSelected={setEditSelected}
+                editSelected={editSelected}
               />
             }
           ></Route>
@@ -135,6 +143,8 @@ const App = () => {
                 selectedProduct={selectedProduct}
                 setProducts={setProducts}
                 token={token}
+                setEditSelected={setEditSelected}
+                editSelected={editSelected}
               />
             }
           ></Route>
@@ -147,6 +157,8 @@ const App = () => {
                 selectedProduct={selectedProduct}
                 setProducts={setProducts}
                 token={token}
+                setEditSelected={setEditSelected}
+                editSelected={editSelected}
               />
             }
           ></Route>
@@ -173,6 +185,8 @@ const App = () => {
                 selectedProduct={selectedProduct}
                 setProducts={setProducts}
                 token={token}
+                setEditSelected={setEditSelected}
+                editSelected={editSelected}
               />
             }
           ></Route>

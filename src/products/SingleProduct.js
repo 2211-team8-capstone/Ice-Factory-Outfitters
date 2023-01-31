@@ -5,7 +5,8 @@ import "../style/SingleProduct.css";
 
 const SingleProduct = (props) => {
   // need to pass selectedContact state through props, then pull name, desc, price, image off that selectedContact to render data on the single product view displayed
-  const { selectedProduct, editSelected, token, setProducts } = props;
+  const { selectedProduct, editSelected, token, setProducts, setEditSelected } =
+    props;
   const { name, description, price, image, id, color, category } =
     selectedProduct;
 
@@ -143,11 +144,12 @@ const SingleProduct = (props) => {
           <button
             type="submit"
             className="add-to-cart-button"
-            onClick={() =>
-              handleEditProduct(id, productName, productDesc, productPrice)
-            }
+            onClick={() => {
+              handleEditProduct(id, productName, productDesc, productPrice);
+              setEditSelected(false);
+            }}
           >
-            Edit Product
+            Submit Edited Product
           </button>
         )}
       </div>
