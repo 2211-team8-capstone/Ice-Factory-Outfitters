@@ -5,11 +5,19 @@ import SingleProduct from "./SingleProduct";
 import { deleteSingleProduct } from "../api/admin";
 
 const Sticks = (props) => {
-  const { setSelectedProduct, selectedProduct, products, setProducts, token } =
-    props;
+  const {
+    setSelectedProduct,
+    selectedProduct,
+    products,
+    setProducts,
+    token,
+    setEditSelected,
+    editSelected,
+  } = props;
+
   const handleDelete = async (productIdToDelete) => {
     const response = await deleteSingleProduct(token, productIdToDelete);
-    // console.log("error?", response);
+    console.log("error?", response);
 
     if (response && !response.error) {
       const getProducts = async () => {
@@ -21,7 +29,7 @@ const Sticks = (props) => {
   };
 
   useEffect(() => {
-    setSelectedProduct(0);
+    setSelectedProduct();
   }, []);
 
   const filteredProducts = props.products.filter((_product) =>
@@ -30,55 +38,56 @@ const Sticks = (props) => {
   // console.log("ssssssssssss", filteredProducts);
 
   return (
-    <>
-      {props ? (
-        <div className="all-products">
-          {selectedProduct ? (
-            <SingleProduct selectedProduct={selectedProduct} token={token}/>
-          ) : (
-            filteredProducts.map((product) => {
-              return (
-                <div className="product-container" key={product.id}>
-                  <div className="single-product">
-                    <img className="headers" src={product.image} />
-                    <h2 className="headers">{product.name}</h2>
-                    <h3 className="headers">${product.price}</h3>
-                    <div className="sub-container">
-                      <div className="btn-container">
-                        {/* <button
+    <div className="all-products">
+      {selectedProduct ? (
+        <SingleProduct
+          selectedProduct={selectedProduct}
+          editSelected={editSelected}
+          token={token}
+          setProducts={setProducts}
+          setEditSelected={setEditSelected}
+        />
+      ) : (
+        filteredProducts.map((product) => {
+          return (
+            <div className="product-container" key={product.id}>
+              <div className="single-product">
+                <img className="product-thumbnail" src={product.image} />
+                <h2 className="headers">{product.name}</h2>
+                <h3 className="headers">${product.price}</h3>
+                <div className="sub-container">
+                  <div className="btn-container">
+                    <button
                       className="prod-btn"
-                      onClick={() =>
-                        editSingleProduct(product.id, setSelectedProduct)
-                      }
+                      onClick={() => {
+                        getSingleProduct(product.id, setSelectedProduct);
+                        setEditSelected(true);
+                      }}
                     >
                       Edit
-                    </button> */}
-                        <button
-                          className="prod-btn"
-                          onClick={() =>
-                            getSingleProduct(product.id, setSelectedProduct)
-                          }
-                        >
-                          More Info
-                        </button>
-                        <button
-                          className="prod-btn"
-                          onClick={() => handleDelete(product.id)}
-                        >
-                          Delete
-                        </button>
-                      </div>
-                    </div>
+                    </button>
+                    <button
+                      className="prod-btn"
+                      onClick={() =>
+                        getSingleProduct(product.id, setSelectedProduct)
+                      }
+                    >
+                      More Info
+                    </button>
+                    <button
+                      className="prod-btn"
+                      onClick={() => handleDelete(product.id)}
+                    >
+                      Delete
+                    </button>
                   </div>
                 </div>
-              );
-            })
-          )}
-        </div>
-      ) : (
-        ""
+              </div>
+            </div>
+          );
+        })
       )}
-    </>
+    </div>
   );
 };
 

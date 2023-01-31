@@ -33,10 +33,10 @@ const App = () => {
   const [selectedProduct, setSelectedProduct] = useState([]);
   const [userCart, setUserCart] = useState([]);
   const [cartPriceTotal, setCartPriceTotal] = useState(0);
-
-  console.log("userCart at app.js", userCart);
+  const [editSelected, setEditSelected] = useState(false);
 
   const cartId = localStorage.getItem("cart#");
+
   useEffect(() => {
     // const result = await getAllProducts
     const getProducts = async () => {
@@ -80,7 +80,7 @@ const App = () => {
   return (
     <>
       <Header setToken={setToken} token={token} setUserCart={setUserCart} />
-      <NavBar />
+      <NavBar setEditSelected={setEditSelected} />
       <div>
         <Routes>
           <Route exact path="/" element={<Home />}></Route>
@@ -93,6 +93,8 @@ const App = () => {
                 selectedProduct={selectedProduct}
                 setProducts={setProducts}
                 token={token}
+                setEditSelected={setEditSelected}
+                editSelected={editSelected}
               />
             }
           ></Route>
@@ -105,6 +107,8 @@ const App = () => {
                 selectedProduct={selectedProduct}
                 setProducts={setProducts}
                 token={token}
+                setEditSelected={setEditSelected}
+                editSelected={editSelected}
               />
             }
           ></Route>
@@ -117,6 +121,8 @@ const App = () => {
                 selectedProduct={selectedProduct}
                 setProducts={setProducts}
                 token={token}
+                setEditSelected={setEditSelected}
+                editSelected={editSelected}
               />
             }
           ></Route>
@@ -130,6 +136,8 @@ const App = () => {
                 selectedProduct={selectedProduct}
                 setProducts={setProducts}
                 token={token}
+                setEditSelected={setEditSelected}
+                editSelected={editSelected}
               />
             }
           ></Route>
@@ -142,6 +150,8 @@ const App = () => {
                 selectedProduct={selectedProduct}
                 setProducts={setProducts}
                 token={token}
+                setEditSelected={setEditSelected}
+                editSelected={editSelected}
               />
             }
           ></Route>
@@ -154,6 +164,8 @@ const App = () => {
                 selectedProduct={selectedProduct}
                 setProducts={setProducts}
                 token={token}
+                setEditSelected={setEditSelected}
+                editSelected={editSelected}
               />
             }
           ></Route>
@@ -166,6 +178,8 @@ const App = () => {
                 selectedProduct={selectedProduct}
                 setProducts={setProducts}
                 token={token}
+                setEditSelected={setEditSelected}
+                editSelected={editSelected}
               />
             }
           ></Route>
@@ -178,6 +192,8 @@ const App = () => {
                 selectedProduct={selectedProduct}
                 setProducts={setProducts}
                 token={token}
+                setEditSelected={setEditSelected}
+                editSelected={editSelected}
               />
             }
           ></Route>

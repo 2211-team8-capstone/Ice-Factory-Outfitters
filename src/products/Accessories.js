@@ -5,12 +5,19 @@ import SingleProduct from "./SingleProduct";
 import { deleteSingleProduct } from "../api/admin";
 
 const Accessories = (props) => {
-  const { setSelectedProduct, selectedProduct, products, setProducts, token } =
-    props;
+  const {
+    setSelectedProduct,
+    selectedProduct,
+    products,
+    setProducts,
+    token,
+    setEditSelected,
+    editSelected,
+  } = props;
 
   const handleDelete = async (productIdToDelete) => {
     const response = await deleteSingleProduct(token, productIdToDelete);
-    // console.log("error?", response);
+    console.log("error?", response);
 
     if (response && !response.error) {
       const getProducts = async () => {
@@ -19,6 +26,18 @@ const Accessories = (props) => {
       };
       getProducts();
     }
+  };
+
+  const handleEdit = async (productIdToEdit) => {
+    // const response = await deleteSingleProduct(token, productIdToEdit);
+    // // console.log("error?", response);
+    // if (response && !response.error) {
+    //   const getProducts = async () => {
+    //     const data = await getAllProducts();
+    //     setProducts(data);
+    //   };
+    //   getProducts();
+    // }
   };
 
   useEffect(() => {
@@ -32,7 +51,14 @@ const Accessories = (props) => {
   return (
     <div className="all-products">
       {selectedProduct ? (
-        <SingleProduct selectedProduct={selectedProduct} token={token}/>
+        <SingleProduct
+          selectedProduct={selectedProduct}
+          editSelected={editSelected}
+          token={token}
+          setProducts={setProducts}
+          setEditSelected={setEditSelected}
+          token={token}
+        />
       ) : (
         filteredProducts.map((product) => {
           return (
@@ -43,14 +69,15 @@ const Accessories = (props) => {
                 <h3 className="headers">${product.price}</h3>
                 <div className="sub-container">
                   <div className="btn-container">
-                    {/* <button
+                    <button
                       className="prod-btn"
-                      onClick={() =>
-                        editSingleProduct(product.id, setSelectedProduct)
-                      }
+                      onClick={() => {
+                        getSingleProduct(product.id, setSelectedProduct);
+                        setEditSelected(true);
+                      }}
                     >
                       Edit
-                    </button> */}
+                    </button>
                     <button
                       className="prod-btn"
                       onClick={() =>

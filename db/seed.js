@@ -48,13 +48,13 @@ async function createTables() {
 
     CREATE TABLE products (
       id SERIAL PRIMARY KEY,
-      category VARCHAR(255) NOT NULL,
+      category VARCHAR(255) NULL,
       name VARCHAR(255) UNIQUE NOT NULL,
       description TEXT NOT NULL,
       price INTEGER NOT NULL,
-      quantity INTEGER NOT NULL,
-      size VARCHAR (255) NOT NULL,
-      color VARCHAR (255) NOT NULL,
+      quantity INTEGER NULL,
+      size VARCHAR (255) NULL,
+      color VARCHAR (255)  NULL,
       image TEXT
     );
 
@@ -326,7 +326,7 @@ async function testDB() {
     // console.log("this is getAllProducts-------->", products);
 
     const myCart = await getMyCart(2);
-    console.log("this is getMyCart-------->", myCart);
+    // console.log("this is getMyCart-------->", myCart);
 
     console.log("finsihed testing the database!");
   } catch (error) {
