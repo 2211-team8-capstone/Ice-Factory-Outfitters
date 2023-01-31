@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { editSingleProduct } from "../api/admin";
+import { getAllProducts } from "../api";
 import "../style/SingleProduct.css";
 
 const SingleProduct = (props) => {
   // need to pass selectedContact state through props, then pull name, desc, price, image off that selectedContact to render data on the single product view displayed
-  const { selectedProduct, editSelected, token } = props;
+  const { selectedProduct, editSelected, token, setProducts } = props;
   const { name, description, price, image, id, color, category } =
     selectedProduct;
 
@@ -33,27 +34,27 @@ const SingleProduct = (props) => {
   };
 
   const handleEditProduct = async (
-    id,
+    productID,
     productName,
     productDesc,
     productPrice
   ) => {
     const response = await editSingleProduct(
       token,
-      id,
+      productID,
       productName,
       productDesc,
       productPrice
     );
-    console.log("error?", response);
+    console.log("singleproduct handleEdit error?", response);
 
-    // if (response && !response.error) {
-    //   const getProducts = async () => {
-    //     const data = await getAllProducts();
-    //     setProducts(data);
-    //   };
-    //   getProducts();
-    // }
+    if (response && !response.error) {
+      const getProducts = async () => {
+        const data = await getAllProducts();
+        setProducts(data);
+      };
+      getProducts();
+    }
   };
 
   return (

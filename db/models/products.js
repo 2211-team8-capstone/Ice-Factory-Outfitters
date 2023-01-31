@@ -48,6 +48,7 @@ async function getProductByName(name) {
       `,
       [name]
     );
+    console.log("BBBBBBBBBBBBBBBBBB", product);
     return product;
   } catch (error) {
     console.log("Error getting Product by Name");
@@ -100,6 +101,7 @@ async function destroyProduct(id) {
 }
 
 async function updateProduct({ productid, ...fields }) {
+  // console.log("AAAAAAAAAAAAAAAAAA", fields);
   const setString = Object.keys(fields)
     .map((key, index) => `"${key}"=$${index + 1}`)
     .join(", ");

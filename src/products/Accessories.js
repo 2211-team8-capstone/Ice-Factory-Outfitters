@@ -55,6 +55,7 @@ const Accessories = (props) => {
           selectedProduct={selectedProduct}
           editSelected={editSelected}
           token={token}
+          setProducts={setProducts}
         />
       ) : (
         filteredProducts.map((product) => {

@@ -326,7 +326,7 @@ async function testDB() {
     // console.log("this is getAllProducts-------->", products);
 
     const myCart = await getMyCart(2);
-    console.log("this is getMyCart-------->", myCart);
+    // console.log("this is getMyCart-------->", myCart);
 
     console.log("finsihed testing the database!");
   } catch (error) {
