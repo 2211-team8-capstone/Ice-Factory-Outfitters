@@ -163,7 +163,7 @@ export const createCart = async (userId, token) => {
 export const getCartByCartId = async (cartId) => {
   try {
     const response = await fetch(`http://localhost:4001/api/carts/${cartId}`, {
-      header: {
+      headers: {
         "Content-Type": "application/json",
       },
     });
@@ -181,9 +181,9 @@ export const getCartIdByUserId = async (userId, token) => {
     const response = await fetch(
       `http://localhost:4001/api/carts/cartNum/${userId}`,
       {
-        header: {
+        headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          "Authorization": `Bearer ${token}`,
         },
       }
     );
@@ -200,11 +200,12 @@ export const getCartIdByUserId = async (userId, token) => {
 export const addProductToCart = async (productId, cartId, quantity, token) => {
   console.log('this is in addprodtocart prod ID',productId); 
   console.log('this is in addprodtocart quantity',quantity); 
+  console.log('this is in addprodtocart token',token);
   
   try {
     const response = await fetch(`http://localhost:4001/api/carts/addprod/${cartId}`, {
         method: "POST",
-        header: {
+        headers: {
           "Content-Type": "application/json",
           "Authorization": `Bearer ${token}`,
         },
