@@ -9,16 +9,70 @@ const {
     createAdmin,
 } = require("../db/models/admin");
 
-
 adminRouter.use((req, res, next) => {
     console.log("A request is being made to /admin");
 
     next();
 });
 
-adminRouter.post("/AdminLogin", async (req, res, next) => {
+adminRouter.post("/register", async (req, res, next) => {
     const { adminEmail, adminPassword } = req.body;
+    //   console.log("AAAAAAAA", email);
 
+    try {
+        const existingAdminCheck = await getAdminByEmail(adminEmail);
+        // console.log("BBBBBBBB", existingUserCheck);
+
+        if (existingAdminCheck) {
+            res.status(401);
+            next({
+                name: "AdminExistsError",
+                message: `Admin Email address ${adminEmail} is already a registered account. Please login with those account details.`,
+            });
+        } else if (password.length < 8) {
+            res.status(401);
+            next({
+                name: "PasswordLengthError",
+                message: "Password must be at least 8 characters long.",
+            });
+        } else {
+            // create user in the DB
+            const user = await createAdmin({ adminEmail, adminPassword });
+            // if no user is created, send user reg error
+            if (!admin) {
+                next({
+                    name: "AdminCreationError",
+                    message: "There was a problem registering you. Please retry.",
+                });
+            } else {
+                // admin was created, create adminToken
+                const adminToken = jwt.sign(
+                    {
+                        id: admin.id,
+                        adminEmail,
+                    },
+                    process.env.JWT_SECRET,
+                    {
+                        expiresIn: "1w",
+                    }
+                );
+                // send success message, adminToken, and user in response
+                res.send({
+                    message: "Thank you for signing up!",
+                    adminToken,
+                    admin,
+                });
+            }
+        }
+    } catch ({ name, message }) {
+        next({ name, message });
+    }
+});
+
+
+adminRouter.post("/login", async (req, res, next) => {
+    const { adminEmail, adminPassword } = req.body;
+    console.log(adminEmail, adminPassword)
     // if no username or password provided, send error
     if (!adminEmail || !adminPassword) {
         next({
@@ -34,11 +88,11 @@ adminRouter.post("/AdminLogin", async (req, res, next) => {
         let adminPasswordsMatch = await bcrypt.compare(adminPassword, hashedAdminPassword);
 
         if (admin && adminPasswordsMatch) {
-            // create token & return to user
-            const token = jwt.sign({ id: admin.id, email }, JWT_SECRET, {
+            // create adminToken & return to admin
+            const adminToken = jwt.sign({ id: admin.id, adminEmail }, JWT_SECRET, {
                 expiresIn: "1w",
             });
-            res.send({ message: "you're logged in!", token, admin });
+            res.send({ message: "you're logged in!", adminToken, admin });
         } else {
             next({
                 name: "IncorrectCredentialsError",

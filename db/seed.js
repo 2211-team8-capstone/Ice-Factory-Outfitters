@@ -1,5 +1,6 @@
 const client = require("./client");
 const { getAllUsers, createUser } = require("./models/users");
+const { getAllAdmins, createAdmin } = require("./models/admin");
 const { createProduct, getAllProducts } = require("./models/products");
 const {
   addProductToCartItems,
@@ -18,6 +19,7 @@ async function dropTables() {
     DROP TABLE IF EXISTS carts CASCADE;
     DROP TABLE IF EXISTS products CASCADE;
     DROP TABLE IF EXISTS users CASCADE;
+    DROP TABLE IF EXISTS admins CASCADE;
     `);
 
     console.log("completed dropping tables!");
@@ -32,6 +34,12 @@ async function createTables() {
     console.log("starting to create tables....");
 
     await client.query(`
+    CREATE TABLE admins (
+      id SERIAL PRIMARY KEY,
+      adminEmail VARCHAR(255) UNIQUE NOT NULL,
+      adminPassword VARCHAR(255) NOT NULL
+    );
+
     CREATE TABLE users (
       id SERIAL PRIMARY KEY,
       email VARCHAR(255) UNIQUE NOT NULL,
@@ -74,6 +82,22 @@ async function createTables() {
     console.log("finished creating tables!");
   } catch (error) {
     console.error("Error building tables!");
+    throw error;
+  }
+}
+
+async function createInitialAdmins() {
+  try {
+    console.log("Starting to create admin...");
+
+    const adminDefault = await createAdmin({
+      adminEmail: "admin@email.com",
+      adminPassword: "passwordadmin"
+    });
+
+    console.log("Finished creating admin!");
+  } catch (error) {
+    console.error("Error creating admin!");
     throw error;
   }
 }
@@ -295,6 +319,10 @@ async function rebuildDB() {
     await createTables();
     console.log("finished create tables!");
 
+    console.log("beginning to create admin...");
+    await createInitialAdmins();
+    console.log("finished creating admin!");
+
     console.log("beginning to create users...");
     await createInitialUsers();
     console.log("finished creating users!");
@@ -318,6 +346,9 @@ async function rebuildDB() {
 async function testDB() {
   try {
     console.log("starting to test the database....");
+
+    const admin = await getAllAdmins();
+    // console.log("this is getAllAdmins-------->", admins);
 
     const users = await getAllUsers();
     // console.log("this is getAllUsers-------->", users);
