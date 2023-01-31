@@ -4,8 +4,8 @@ import { loginUser, registerUser } from "../api";
 import "../style/Admin.css";
 
 const AdminProfile = (props) => {
-    const [email, setEmailTwo] = useState("");
-    const [passwordTwo, setPasswordTwo] = useState("");
+    const [adminEmail, setAdminEmail] = useState("");
+    const [adminPassword, setAdminPassword] = useState("");
 
     const [nameFirst, setNameFirst] = useState("");
     const [nameLast, setNameLast] = useState("");
@@ -14,13 +14,13 @@ const AdminProfile = (props) => {
     // const [token, setToken] = useState("");
     const navigate = useNavigate();
 
-    console.log("TTTTTTTTTTTTTTTTTTT", emailTwo, props);
+    console.log("TTTTTTTTTTTTTTTTTTT", adminEmail, props);
     return (
         <>
-            <div className="user-profile-container">
-                <div className="user-profile-container-left">
-                    <div className="user-profile">
-                        <h3 className="title">
+            <div className="admin-profile-container">
+                <div className="admin-profile-container-left">
+                    <div className="admin-profile">
+                        <h3 className="admin-title">
                             Welcome Admin
                         </h3>
                         <div>Email Address: </div>
@@ -28,25 +28,25 @@ const AdminProfile = (props) => {
 
                     <br></br>
 
-                    <div className="update-profile">
-                        <div className="update">
-                            <h3 className="title">Update Profile</h3>
+                    <div className="update-admin-profile">
+                        <div className="update-admin">
+                            <h3 className="admin-title">Update Profile</h3>
                             <form
-                                className="update-form"
+                                className="update-admin-form"
                                 onSubmit={async (e) => {
-                                    if (!emailTwo || !passwordTwo) {
+                                    if (!adminEmail || !adminPassword) {
                                         e.preventDefault();
-                                        const errorMessage = "Please enter a valid Email and Password";
+                                        const errorMessage = "Please enter a valid Admin Email and Admin Password";
                                         setStateError(errorMessage);
                                     } else {
                                         try {
                                             e.preventDefault();
 
-                                            localStorage.setItem("email", emailTwo);
-                                            const token = await registerUser(emailTwo, passwordTwo);
+                                            localStorage.setItem("adminEmail", adminEmail);
+                                            const adminToken = await registerAdmin(adminEmail, adminPassword);
 
-                                            props.setToken(token);
-                                            localStorage.setItem("token", token);
+                                            props.setToken(adminToken);
+                                            localStorage.setItem("adminToken", adminToken);
                                         } catch (error) {
                                             console.error(error);
                                         }
@@ -54,23 +54,23 @@ const AdminProfile = (props) => {
                                 }}
                             >
                                 <div>
-                                    <label htmlFor="emailTwo">User Email: </label>
+                                    <label htmlFor="adminEmail">Admin Email: </label>
                                     <input
-                                        value={emailTwo}
+                                        value={adminEmail}
                                         type="text"
                                         placeholder="Email Address"
                                         minLength={3}
-                                        onChange={(e) => setEmailTwo(e.target.value)}
+                                        onChange={(e) => setAdminEmail(e.target.value)}
                                     ></input>
                                 </div>
                                 <div>
-                                    <label htmlFor="passwordTwo">Password: </label>
+                                    <label htmlFor="adminEmail">Password: </label>
                                     <input
-                                        value={passwordTwo}
+                                        value={adminPassword}
                                         type="password"
                                         placeholder="Password"
                                         minLength={3}
-                                        onChange={(e) => setPasswordTwo(e.target.value)}
+                                        onChange={(e) => setAdminPassword(e.target.value)}
                                     ></input>
                                 </div>
                                 <div>
@@ -105,11 +105,18 @@ const AdminProfile = (props) => {
                     </div>
                 </div>
                 <div className="admin-profile-container-right">
+                    <div className="edit-products">
+                        <h3 className="admin-add-products">
+                            <Link to="/AddProducts">Add Products</Link>
+                        </h3>
+                    </div>
+                    <br></br>
                     <div className="admin-order-history">
-                        <h3 className="title">Order History</h3>
+                        <h3 className="admin-title">Recent Orders</h3>
                     </div>
                     <br></br>
                 </div>
+
             </div>
         </>
     );

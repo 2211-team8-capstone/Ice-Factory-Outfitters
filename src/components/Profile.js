@@ -4,9 +4,7 @@ import { loginUser, registerUser } from "../api";
 import "../style/Profile.css";
 
 const Profile = (props) => {
-  const [email, setEmail] = useState("");
   const [emailTwo, setEmailTwo] = useState("");
-  const [password, setPassword] = useState("");
   const [passwordTwo, setPasswordTwo] = useState("");
 
   const [nameFirst, setNameFirst] = useState("");

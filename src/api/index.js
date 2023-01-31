@@ -71,9 +71,9 @@ export const loginUser = async (email, password) => {
         password,
       }),
     });
-    const result = await response.json();
-    console.log("LOGIN", result);
-    return result;
+    const adminResult = await response.json();
+    console.log("LOGIN", adminResult);
+    return adminResult;
   } catch (error) {
     console.error(error);
   }
