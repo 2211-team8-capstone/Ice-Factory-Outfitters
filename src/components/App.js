@@ -216,7 +216,13 @@ const App = () => {
           ></Route>
           <Route
             path="/LoginRegister"
-            element={<LoginRegister setToken={setToken} />}
+            element={
+              <LoginRegister
+                setToken={setToken}
+                cartRender={cartRender}
+                setCartRender={setCartRender}
+              />
+            }
           ></Route>
           <Route
             path="/Profile"
