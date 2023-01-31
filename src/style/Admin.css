@@ -76,6 +76,20 @@
     /* margin-bottom: 20px; */
 }
 
+.admin-add-products {
+    float: right;
+    border: solid #023047;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: #1d849e;
+    color: whitesmoke;
+    width: 500px;
+    display: flex;
+    text-align: right;
+    align-items: center;
+    justify-content: center;
+}
+
 /* .update {
     display: flex;
     text-align: right;

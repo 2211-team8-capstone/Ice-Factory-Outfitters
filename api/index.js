@@ -6,6 +6,7 @@ const { getUserById } = require("../db/models/users");
 const usersRouter = require("./users");
 const productsRouter = require("./products");
 const cartsRouter = require("./carts");
+const adminRouter = require("./admin");
 const { JWT_SECRET } = process.env;
 
 // assign a user if there is a user to be assigned based on request/authorization
@@ -68,6 +69,9 @@ apiRouter.use("/products", productsRouter);
 
 //router to /api/carts
 apiRouter.use("/carts", cartsRouter)
+
+//router to /api/admin
+apiRouter.use("/admin", adminRouter)
 
 //*******************  GENERIC ERROR HANDLER ***********************
 // whenever next function gets called in apiRouter and its children with an object in it (not empty like next()), it comes here and sends that error response

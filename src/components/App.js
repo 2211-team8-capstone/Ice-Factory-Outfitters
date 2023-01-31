@@ -62,7 +62,7 @@ const App = () => {
   //   for (let i=0; i < userCart.length; i++) {
   //     totalPrice + userCart.price
   //     setCartPriceTotal(totalprice)
-      
+
   //   }
 
   //   return totalPrice; 
@@ -181,9 +181,9 @@ const App = () => {
             path="/Profile"
             element={<Profile setToken={setToken} />}
           ></Route>
-          <Route 
-          path="/cart" 
-          element={<Cart userCart={userCart} setUserCart={setUserCart}/>}></Route>
+          <Route
+            path="/cart"
+            element={<Cart userCart={userCart} setUserCart={setUserCart} />}></Route>
           <Route path="/ContactUs" element={<ContactUs />}></Route>
           <Route path="/AddProducts" element={<AddProducts />}></Route>
           <Route path="/AdminLogin" element={<AdminLogin />}></Route>
