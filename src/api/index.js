@@ -104,7 +104,7 @@ export const loginAdmin = async (adminEmail, adminPassword) => {
 export const getAllProducts = async () => {
   try {
     const response = await fetch("http://localhost:4001/api/products", {
-      header: {
+      headers: {
         "Content-Type": "application/json",
       },
     });
@@ -122,7 +122,7 @@ export const getSingleProduct = async (productID, setSelectedProduct) => {
     const response = await fetch(
       `http://localhost:4001/api/products/${productID}`,
       {
-        header: {
+        headers: {
           "Content-Type": "application/json",
         },
       }
@@ -145,7 +145,7 @@ export const createCart = async (userId, token) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         userId,
@@ -183,7 +183,7 @@ export const getCartIdByUserId = async (userId, token) => {
       {
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     );
@@ -196,25 +196,23 @@ export const getCartIdByUserId = async (userId, token) => {
   }
 };
 
-
 export const addProductToCart = async (productId, cartId, quantity, token) => {
-  console.log('this is in addprodtocart prod ID',productId); 
-  console.log('this is in addprodtocart quantity',quantity); 
-  console.log('this is in addprodtocart token',token);
-  
   try {
-    const response = await fetch(`http://localhost:4001/api/carts/addprod/${cartId}`, {
+    const response = await fetch(
+      `http://localhost:4001/api/carts/addprod/${cartId}`,
+      {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
           productId,
           quantity,
         }),
-      });
-      
+      }
+    );
+
     const data = await response.json();
     console.log("product in addproducttocart FE api", data);
 
@@ -222,4 +220,26 @@ export const addProductToCart = async (productId, cartId, quantity, token) => {
   } catch (error) {
     console.error(error);
   }
-}
+};
+
+export const deleteProductFromCart = async (cartItemId, token) => {
+  try {
+    const response = await fetch(`http://localhost:4001/api/carts`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        cartItemId,
+      }),
+    });
+
+    const data = await response.json();
+    console.log("DELETE FE api", data);
+
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};

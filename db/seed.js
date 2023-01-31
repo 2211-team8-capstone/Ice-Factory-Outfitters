@@ -92,7 +92,7 @@ async function createInitialAdmins() {
 
     const adminDefault = await createAdmin({
       adminEmail: "admin@email.com",
-      adminPassword: "passwordadmin"
+      adminPassword: "passwordadmin",
     });
 
     console.log("Finished creating admin!");
@@ -281,26 +281,10 @@ async function createInitialCarts() {
 async function createInitialCartItems() {
   try {
     console.log("Starting to create initial cartItems...");
-    await addProductToCartItems({
-      cartId: 2,
-      productId: 5,
-      quantity: 1,
-    });
-    await addProductToCartItems({
-      cartId: 2,
-      productId: 2,
-      quantity: 1,
-    });
-    await addProductToCartItems({
-      cartId: 3,
-      productId: 3,
-      quantity: 1,
-    });
-    await addProductToCartItems({
-      cartId: 4,
-      productId: 2,
-      quantity: 1,
-    });
+    await addProductToCartItems(2, 5, 1);
+    await addProductToCartItems(2, 2, 1);
+    await addProductToCartItems(3, 3, 1);
+    await addProductToCartItems(4, 2, 1);
     console.log("Finished creating cartItems!");
   } catch (error) {
     console.error("Error building cartItems!");

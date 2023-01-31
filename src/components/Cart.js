@@ -1,7 +1,29 @@
 import React, { useEffect, useState } from "react";
+import { deleteProductFromCart } from "../api";
 
 const Cart = (props) => {
-  const { userCart, setUserCart, cartPriceTotal, setCartPriceTotal } = props;
+  const {
+    userCart,
+    setUserCart,
+    cartPriceTotal,
+    setCartPriceTotal,
+    token,
+    setCartRender,
+    cartRender,
+  } = props;
+
+  const handleDelete = async (productIdToDelete) => {
+    const response = await deleteProductFromCart(productIdToDelete, token);
+    // console.log("Cart Delete error?", response);
+    if (response && !response.error) {
+      if (cartRender) {
+        setCartRender(false);
+      } else {
+        setCartRender(true);
+      }
+    }
+  };
+
   console.log("usercart CART", userCart);
   return (
     <div className="all-products">
@@ -15,6 +37,12 @@ const Cart = (props) => {
                   <h2 className="headers">{product.name}</h2>
                   <h3 className="headers">${product.price}</h3>
                   <p className="description">{product.description}</p>
+                  <button
+                    className="prod-btn"
+                    onClick={() => handleDelete(product.id)}
+                  >
+                    Delete
+                  </button>
                 </div>
               </div>
             );

@@ -34,6 +34,7 @@ const App = () => {
   const [userCart, setUserCart] = useState([]);
   const [cartPriceTotal, setCartPriceTotal] = useState(0);
   const [editSelected, setEditSelected] = useState(false);
+  const [cartRender, setCartRender] = useState(false);
 
   const cartId = localStorage.getItem("cart#");
 
@@ -57,7 +58,7 @@ const App = () => {
     //   setAPIHealth(healthy ? "api is up! :D" : "api is down :/");
     // };
     // getAPIStatus();
-  }, []);
+  }, [cartRender]);
 
   // // update cartTotal everytime cart adds/deleetes item
   useEffect(() => {
@@ -213,6 +214,9 @@ const App = () => {
                 setUserCart={setUserCart}
                 cartPriceTotal={cartPriceTotal}
                 setCartPriceTotal={setCartPriceTotal}
+                token={token}
+                setCartRender={setCartRender}
+                cartRender={cartRender}
               />
             }
           ></Route>
