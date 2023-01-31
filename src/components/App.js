@@ -31,23 +31,27 @@ const App = () => {
   const [user, setUser] = useState({});
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState([]);
-  const [userCart, setUserCart] = useState();
+  const [userCart, setUserCart] = useState([]);
   const [cartPriceTotal, setCartPriceTotal] = useState(0);
 
+  console.log("userCart at app.js", userCart);
+
+  const cartId = localStorage.getItem("cart#");
   useEffect(() => {
     // const result = await getAllProducts
     const getProducts = async () => {
       const data = await getAllProducts();
       setProducts(data);
     };
-    const getCart = async () => {
-      const cartId = localStorage.getItem("cart#")
-      const data = await getCartByCartId(cartId);
-      setUserCart(data);
-    };
+    if (cartId) {
+      const getCart = async () => {
+        const data = await getCartByCartId(cartId);
+        setUserCart(data);
+      };
+      getCart();
+    }
 
     getProducts();
-    getCart();
     // const getAPIStatus = async () => {
     //   const { healthy } = await getAPIHealth();
     //   setAPIHealth(healthy ? "api is up! :D" : "api is down :/");
@@ -55,30 +59,27 @@ const App = () => {
     // getAPIStatus();
   }, []);
 
-
   // // update cartTotal everytime cart adds/deleetes item
   useEffect(() => {
-    
-    const priceArr = userCart?.map((a) => a.price)
+    const priceArr = userCart?.map((a) => a.price);
     console.log(priceArr);
 
     const findSum = (array) => {
-      let sum = 0; 
+      let sum = 0;
 
-      for (let i=0; i < array?.length; i++) {
+      for (let i = 0; i < array?.length; i++) {
         sum += priceArr[i];
       }
       return sum;
-  }
+    };
 
     const totalCartPrice = findSum(priceArr);
     setCartPriceTotal(totalCartPrice);
-  }, [userCart])
-
+  }, [userCart]);
 
   return (
     <>
-      <Header setToken={setToken} token={token} />
+      <Header setToken={setToken} token={token} setUserCart={setUserCart} />
       <NavBar />
       <div>
         <Routes>
@@ -188,14 +189,17 @@ const App = () => {
             path="/Profile"
             element={<Profile setToken={setToken} />}
           ></Route>
-          <Route 
-          path="/cart" 
-          element={<Cart 
-            userCart={userCart} 
-            setUserCart={setUserCart}
-            cartPriceTotal={cartPriceTotal}
-            setCartPriceTotal={setCartPriceTotal} />}
-            ></Route>
+          <Route
+            path="/cart"
+            element={
+              <Cart
+                userCart={userCart}
+                setUserCart={setUserCart}
+                cartPriceTotal={cartPriceTotal}
+                setCartPriceTotal={setCartPriceTotal}
+              />
+            }
+          ></Route>
           <Route path="/ContactUs" element={<ContactUs />}></Route>
           <Route path="/AddProducts" element={<AddProducts />}></Route>
           <Route path="/AdminLogin" element={<AdminLogin />}></Route>

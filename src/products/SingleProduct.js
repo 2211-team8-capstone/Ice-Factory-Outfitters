@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
+import { addProductToCart } from "../api";
 import "../style/SingleProduct.css";
 
 const SingleProduct = (props) => {
   // need to pass selectedContact state through props, then pull name, desc, price, image off that selectedContact to render data on the single product view displayed
-  const { selectedProduct } = props;
+  const { selectedProduct, token } = props;
   const { name, description, price, image, id, color, category } =
     selectedProduct;
   const [quantity, setQuantity] = useState(1);
+
+  const cartId = localStorage.getItem("cart#")
+console.log('this is cartId from localStorage in singleProdcut comp', cartId)
+console.log(id);
 
   const handleAddToCart = (
     name,
@@ -51,15 +56,7 @@ const SingleProduct = (props) => {
               type="submit"
               className="add-to-cart-button"
               onClick={() =>
-                handleAddToCart(
-                  name,
-                  description,
-                  price,
-                  image,
-                  id,
-                  color,
-                  category
-                )
+                addProductToCart(id, cartId, quantity, token)
               }
             >
               {" "}
