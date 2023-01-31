@@ -123,6 +123,22 @@ async function getMyCartId(userId) {
   }
 }
 
+async function addProductToCartItems (cartId, productId, quantity) {
+try {
+  const { rows: [product] } = await client.query(`
+    INSERT INTO cartItems ("cartId", "productId", quantity)
+    VALUES ($1, $2, $3)
+    RETURNING *
+  `, [cartId, productId, quantity]) 
+
+  console.log('this is product inserted in DB', product)
+  return product;
+} catch (error) {
+  console.error("Error with creating cart", error);
+    throw error;
+}
+}
+
 module.exports = {
   addProductToCartItems,
   getCartItemsByCartId,

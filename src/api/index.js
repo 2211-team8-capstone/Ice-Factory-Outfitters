@@ -145,7 +145,7 @@ export const createCart = async (userId, token) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        "Authorization": `Bearer ${token}`,
       },
       body: JSON.stringify({
         userId,
@@ -163,12 +163,12 @@ export const createCart = async (userId, token) => {
 export const getCartByCartId = async (cartId) => {
   try {
     const response = await fetch(`http://localhost:4001/api/carts/${cartId}`, {
-      header: {
+      headers: {
         "Content-Type": "application/json",
       },
     });
     const data = await response.json();
-    console.log("getCARTBYID API", data);
+    // console.log("getCARTBYID API", data);
 
     return data;
   } catch (error) {
@@ -181,9 +181,9 @@ export const getCartIdByUserId = async (userId, token) => {
     const response = await fetch(
       `http://localhost:4001/api/carts/cartNum/${userId}`,
       {
-        header: {
+        headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          "Authorization": `Bearer ${token}`,
         },
       }
     );
@@ -195,3 +195,31 @@ export const getCartIdByUserId = async (userId, token) => {
     console.error(error);
   }
 };
+
+
+export const addProductToCart = async (productId, cartId, quantity, token) => {
+  console.log('this is in addprodtocart prod ID',productId); 
+  console.log('this is in addprodtocart quantity',quantity); 
+  console.log('this is in addprodtocart token',token);
+  
+  try {
+    const response = await fetch(`http://localhost:4001/api/carts/addprod/${cartId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          productId,
+          quantity,
+        }),
+      });
+      
+    const data = await response.json();
+    console.log("product in addproducttocart FE api", data);
+
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}

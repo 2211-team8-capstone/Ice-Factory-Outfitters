@@ -5,11 +5,19 @@ import SingleProduct from "./SingleProduct";
 import { deleteSingleProduct } from "../api/admin";
 
 const TeamApparel = (props) => {
-  const { setSelectedProduct, selectedProduct, products, setProducts, token } =
-    props;
+  const {
+    setSelectedProduct,
+    selectedProduct,
+    products,
+    setProducts,
+    token,
+    setEditSelected,
+    editSelected,
+  } = props;
+
   const handleDelete = async (productIdToDelete) => {
     const response = await deleteSingleProduct(token, productIdToDelete);
-    // console.log("error?", response);
+    console.log("error?", response);
 
     if (response && !response.error) {
       const getProducts = async () => {
@@ -19,8 +27,9 @@ const TeamApparel = (props) => {
       getProducts();
     }
   };
+
   useEffect(() => {
-    setSelectedProduct(0);
+    setSelectedProduct();
   }, []);
 
   const filteredProducts = props.products.filter((_product) =>
@@ -30,25 +39,26 @@ const TeamApparel = (props) => {
   return (
     <div className="all-products">
       {selectedProduct ? (
-        <SingleProduct selectedProduct={selectedProduct} />
+        <SingleProduct selectedProduct={selectedProduct} token={token}/>
       ) : (
         filteredProducts.map((product) => {
           return (
             <div className="product-container" key={product.id}>
               <div className="single-product">
-                <img className="headers" src={product.image} />
+                <img className="product-thumbnail" src={product.image} />
                 <h2 className="headers">{product.name}</h2>
                 <h3 className="headers">${product.price}</h3>
                 <div className="sub-container">
                   <div className="btn-container">
-                    {/* <button
+                    <button
                       className="prod-btn"
-                      onClick={() =>
-                        editSingleProduct(product.id, setSelectedProduct)
-                      }
+                      onClick={() => {
+                        getSingleProduct(product.id, setSelectedProduct);
+                        setEditSelected(true);
+                      }}
                     >
                       Edit
-                    </button> */}
+                    </button>
                     <button
                       className="prod-btn"
                       onClick={() =>
