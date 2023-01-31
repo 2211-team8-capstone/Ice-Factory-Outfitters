@@ -13,6 +13,8 @@ const TeamApparel = (props) => {
     token,
     setEditSelected,
     editSelected,
+    cartRender,
+    setCartRender,
   } = props;
 
   const handleDelete = async (productIdToDelete) => {
@@ -39,7 +41,15 @@ const TeamApparel = (props) => {
   return (
     <div className="all-products">
       {selectedProduct ? (
-        <SingleProduct selectedProduct={selectedProduct} token={token}/>
+        <SingleProduct
+          selectedProduct={selectedProduct}
+          editSelected={editSelected}
+          token={token}
+          setProducts={setProducts}
+          setEditSelected={setEditSelected}
+          cartRender={cartRender}
+          setCartRender={setCartRender}
+        />
       ) : (
         filteredProducts.map((product) => {
           return (

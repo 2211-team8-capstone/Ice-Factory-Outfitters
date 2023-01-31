@@ -96,6 +96,8 @@ const App = () => {
                 token={token}
                 setEditSelected={setEditSelected}
                 editSelected={editSelected}
+                cartRender={cartRender}
+                setCartRender={setCartRender}
               />
             }
           ></Route>
@@ -110,6 +112,8 @@ const App = () => {
                 token={token}
                 setEditSelected={setEditSelected}
                 editSelected={editSelected}
+                cartRender={cartRender}
+                setCartRender={setCartRender}
               />
             }
           ></Route>
@@ -124,6 +128,8 @@ const App = () => {
                 token={token}
                 setEditSelected={setEditSelected}
                 editSelected={editSelected}
+                cartRender={cartRender}
+                setCartRender={setCartRender}
               />
             }
           ></Route>
@@ -139,6 +145,8 @@ const App = () => {
                 token={token}
                 setEditSelected={setEditSelected}
                 editSelected={editSelected}
+                cartRender={cartRender}
+                setCartRender={setCartRender}
               />
             }
           ></Route>
@@ -153,6 +161,8 @@ const App = () => {
                 token={token}
                 setEditSelected={setEditSelected}
                 editSelected={editSelected}
+                cartRender={cartRender}
+                setCartRender={setCartRender}
               />
             }
           ></Route>
@@ -167,6 +177,8 @@ const App = () => {
                 token={token}
                 setEditSelected={setEditSelected}
                 editSelected={editSelected}
+                cartRender={cartRender}
+                setCartRender={setCartRender}
               />
             }
           ></Route>
@@ -181,6 +193,8 @@ const App = () => {
                 token={token}
                 setEditSelected={setEditSelected}
                 editSelected={editSelected}
+                cartRender={cartRender}
+                setCartRender={setCartRender}
               />
             }
           ></Route>
@@ -195,6 +209,8 @@ const App = () => {
                 token={token}
                 setEditSelected={setEditSelected}
                 editSelected={editSelected}
+                cartRender={cartRender}
+                setCartRender={setCartRender}
               />
             }
           ></Route>

@@ -13,6 +13,8 @@ const Sticks = (props) => {
     token,
     setEditSelected,
     editSelected,
+    cartRender,
+    setCartRender,
   } = props;
 
   const handleDelete = async (productIdToDelete) => {
@@ -46,6 +48,8 @@ const Sticks = (props) => {
           token={token}
           setProducts={setProducts}
           setEditSelected={setEditSelected}
+          cartRender={cartRender}
+          setCartRender={setCartRender}
         />
       ) : (
         filteredProducts.map((product) => {
