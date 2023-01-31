@@ -24,6 +24,7 @@ import Cart from "./Cart";
 import AddProducts from "./AddProducts";
 import AdminLogin from "./AdminLogin";
 import AdminProfile from "./Admin";
+import { fetchMe } from "../api";
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState("");
@@ -33,8 +34,9 @@ const App = () => {
   const [selectedProduct, setSelectedProduct] = useState([]);
   const [userCart, setUserCart] = useState([]);
   const [cartPriceTotal, setCartPriceTotal] = useState(0);
+  const [email, setEmail] = useState(localStorage.getItem("email"));
 
-  console.log("userCart at app.js", userCart);
+  // console.log("userCart at app.js", userCart);
 
   const cartId = localStorage.getItem("cart#");
   useEffect(() => {
@@ -59,10 +61,20 @@ const App = () => {
     // getAPIStatus();
   }, []);
 
+  useEffect(() => {
+    const getMe = async () => {
+      const data = await fetchMe(token, email);
+      setUser(data);
+    };
+    if (token) {
+      getMe();
+    }
+  }, []);
+
   // // update cartTotal everytime cart adds/deleetes item
   useEffect(() => {
     const priceArr = userCart?.map((a) => a.price);
-    console.log(priceArr);
+    // console.log(priceArr);
 
     const findSum = (array) => {
       let sum = 0;
@@ -186,8 +198,16 @@ const App = () => {
             element={<LoginRegister setToken={setToken} />}
           ></Route>
           <Route
-            path="/Profile"
-            element={<Profile setToken={setToken} />}
+            path="/profile/me"
+            element={
+              <Profile 
+                setToken={setToken} 
+                user={user}
+                setUser={setUser}
+                setEmail={setEmail}
+                email={email}
+              />
+            }
           ></Route>
           <Route
             path="/cart"

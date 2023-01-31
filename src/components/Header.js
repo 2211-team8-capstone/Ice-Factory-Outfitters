@@ -51,7 +51,7 @@ const Header = (props) => {
         ) : (
           <div className="logged-in">
             <div className="profile">
-              <Link to={"/Profile"} className="head-links">
+              <Link to={"/profile/me"} className="head-links">
                 My Profile
               </Link>
             </div>

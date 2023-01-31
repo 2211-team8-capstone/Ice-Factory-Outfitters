@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { loginUser, registerUser } from "../api";
+import { loginUser, registerUser, fetchMe } from "../api";
 import "../style/Profile.css";
 
 const Profile = (props) => {
-  const [email, setEmail] = useState("");
+  const { token, user, setUser, email, setEmail } = props;
   const [emailTwo, setEmailTwo] = useState("");
   const [password, setPassword] = useState("");
   const [passwordTwo, setPasswordTwo] = useState("");
@@ -20,8 +20,11 @@ const Profile = (props) => {
   const [stateError, setStateError] = useState("");
   // const [token, setToken] = useState("");
   const navigate = useNavigate();
+  const [selectedUser, setSelectedUser] = useState([]);
 
-  console.log("TTTTTTTTTTTTTTTTTTT", emailTwo, props);
+console.log("USER", user)
+
+  // console.log("TTTTTTTTTTTTTTTTTTT", emailTwo, props);
   return (
     <>
       <div className="user-profile-container">
@@ -30,13 +33,15 @@ const Profile = (props) => {
             <h3 className="title">
               Welcome
             </h3>
-            <div>Email Address: </div>
-            <div>Phone Number: </div>
-            <div>Street Address: </div>
-            <div>Street Address 2: </div>
-            <div>City: </div>
-            <div>State: </div>
-            <div>Zip: </div>
+                <div key={user?.id}>
+                  <div>Email Address: {user?.email}</div>
+                  <div>Phone Number: {user?.phone}</div>
+                  <div>Street Address: {user?.addressNum}</div>
+                  <div>Street Address 2: {user?.addressSt}</div>
+                  <div>City: {user?.city}</div>
+                  <div>State: {user?.state}</div>
+                  <div>Zip: {user?.zip}</div>
+                </div>
           </div>
 
           <br></br>

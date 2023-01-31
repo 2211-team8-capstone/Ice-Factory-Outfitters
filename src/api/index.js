@@ -99,6 +99,27 @@ export const loginAdmin = async (adminEmail, adminPassword) => {
   }
 };
 
+export const fetchMe = async (token, email) => {
+  console.log("EMAIL", email)
+  try {
+    const response = await fetch("http://localhost:4001/api/profile/me", {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        email,
+      }),
+    });
+
+    const data = await response.json();
+    console.log("This is the fetchMe data", data)
+    return data;
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 // ***************************** ALL PRODUCTS FUNCTIONS **************************
 
 export const getAllProducts = async () => {
@@ -168,7 +189,7 @@ export const getCartByCartId = async (cartId) => {
       },
     });
     const data = await response.json();
-    console.log("getCARTBYID API", data);
+    // console.log("getCARTBYID API", data);
 
     return data;
   } catch (error) {

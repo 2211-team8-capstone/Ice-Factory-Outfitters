@@ -109,10 +109,27 @@ async function getUserByEmail(email) {
   }
 }
 
+async function getUser({ email, password }) {
+  const getUser = await getUserByEmail(email);
+  if (getUser.password === password) {
+    try {
+      const { rows: [user] } = await client.query (`
+      SELECT id, email FROM users
+      WHERE email = $1
+      `, [email]);
+
+      return user;
+    } catch (error) {
+      console.error(error);
+    }
+  } 
+}
+
 // add your database adapter fns here
 module.exports = {
   getAllUsers,
   createUser,
   getUserById,
   getUserByEmail,
+  getUser,
 };
