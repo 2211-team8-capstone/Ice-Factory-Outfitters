@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { addProductToCart } from "../api";
 import { editSingleProduct } from "../api/admin";
 import { getAllProducts } from "../api";
 import "../style/SingleProduct.css";
@@ -16,6 +17,10 @@ const SingleProduct = (props) => {
   const [productPrice, setProductPrice] = useState(`${price}`);
 
   console.log("single product edit", editSelected, productName);
+
+  const cartId = localStorage.getItem("cart#");
+  console.log("this is cartId from localStorage in singleProdcut comp", cartId);
+  console.log(id);
 
   const handleAddToCart = (
     name,
@@ -124,17 +129,7 @@ const SingleProduct = (props) => {
             <button
               type="submit"
               className="add-to-cart-button"
-              onClick={() =>
-                handleAddToCart(
-                  name,
-                  description,
-                  price,
-                  image,
-                  id,
-                  color,
-                  category
-                )
-              }
+              onClick={() => addProductToCart(id, cartId, quantity, token)}
             >
               {" "}
               ADD TO CART{" "}

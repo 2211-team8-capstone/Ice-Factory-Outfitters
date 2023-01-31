@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import "../style/Header.css";
 
 const Header = (props) => {
+  const { setUserCart } = props;
   const handleLogout = () => {
     localStorage.clear();
     props.setToken("");
+    setUserCart([]);
   };
 
   return (
