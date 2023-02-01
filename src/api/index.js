@@ -1,22 +1,5 @@
 import axios from "axios";
 
-// this file holds your frontend network request adapters
-// think about each function as a service that provides data
-// to your React UI through AJAX calls
-
-// for example, if we need to display a list of users
-// we'd probably want to define a getUsers service like this:
-
-/* 
-  export async function getUsers() {
-    try {
-      const { data: users } = await axios.get('/api/users')
-      return users;
-    } catch(err) {
-      console.error(err)
-    }
-  }
-*/
 
 export async function getAPIHealth() {
   try {
@@ -29,7 +12,6 @@ export async function getAPIHealth() {
 }
 
 export const registerUser = async (email, password) => {
-  // console.log("REGGGGGG", email);
   try {
     const response = await fetch("http://localhost:4001/api/users/register", {
       method: "POST",
@@ -49,17 +31,12 @@ export const registerUser = async (email, password) => {
     console.log("this is the registerUser token", token);
 
     return result;
-
-    // const data = await response.json();
-    // console.log("this is the registerUser data.token", data.token);
-    // return data;
   } catch (error) {
     console.error("Error registering user", error);
   }
 };
 
 export const loginUser = async (email, password) => {
-  // console.log("YOOOOOOOOOOOOOO", email);
   try {
     const response = await fetch("http://localhost:4001/api/users/login", {
       method: "POST",
@@ -100,7 +77,6 @@ export const loginAdmin = async (adminEmail, adminPassword) => {
 };
 
 export const fetchMe = async (token, email) => {
-  // console.log("EMAIL", email)
   try {
     const response = await fetch(`http://localhost:4001/api/users/profile/${email}`, {
       headers: {
@@ -108,9 +84,8 @@ export const fetchMe = async (token, email) => {
         'Authorization': `Bearer ${token}`,
       },
     });
-
     const data = await response.json();
-    console.log("This is the fetchMe data", data)
+    
     return data;
   } catch (error) {
     console.error(error)
@@ -127,7 +102,6 @@ export const getAllProducts = async () => {
       },
     });
     const data = await response.json();
-    // console.log("UUUUUUUUU", data.products);
 
     return data.products;
   } catch (error) {
@@ -146,9 +120,8 @@ export const getSingleProduct = async (productID, setSelectedProduct) => {
       }
     );
     const data = await response.json();
-
-    // set the state of selected product to the single product received form the call
     setSelectedProduct(data.product);
+
     return data.product;
   } catch (error) {
     console.error(error);
@@ -186,7 +159,6 @@ export const getCartByCartId = async (cartId) => {
       },
     });
     const data = await response.json();
-    // console.log("getCARTBYID API", data);
 
     return data;
   } catch (error) {
