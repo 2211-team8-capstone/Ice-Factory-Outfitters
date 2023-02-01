@@ -95,7 +95,12 @@ const App = () => {
 
   return (
     <>
-      <Header setToken={setToken} token={token} setUserCart={setUserCart} />
+      <Header
+        setToken={setToken}
+        token={token}
+        setUserCart={setUserCart}
+        setAdminAccess={setAdminAccess}
+      />
       <NavBar setEditSelected={setEditSelected} />
       <div>
         <Routes>

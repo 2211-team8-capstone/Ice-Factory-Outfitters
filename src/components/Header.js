@@ -3,11 +3,12 @@ import { Link } from "react-router-dom";
 import "../style/Header.css";
 
 const Header = (props) => {
-  const { setUserCart } = props;
+  const { setUserCart, setAdminAccess } = props;
   const handleLogout = () => {
     localStorage.clear();
     props.setToken("");
     setUserCart([]);
+    setAdminAccess(false);
   };
 
   return (
