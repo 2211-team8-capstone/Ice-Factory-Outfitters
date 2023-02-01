@@ -113,6 +113,7 @@ const App = () => {
                 editSelected={editSelected}
                 cartRender={cartRender}
                 setCartRender={setCartRender}
+                adminAccess={adminAccess}
               />
             }
           ></Route>
@@ -129,6 +130,7 @@ const App = () => {
                 editSelected={editSelected}
                 cartRender={cartRender}
                 setCartRender={setCartRender}
+                adminAccess={adminAccess}
               />
             }
           ></Route>
@@ -145,6 +147,7 @@ const App = () => {
                 editSelected={editSelected}
                 cartRender={cartRender}
                 setCartRender={setCartRender}
+                adminAccess={adminAccess}
               />
             }
           ></Route>
@@ -162,6 +165,7 @@ const App = () => {
                 editSelected={editSelected}
                 cartRender={cartRender}
                 setCartRender={setCartRender}
+                adminAccess={adminAccess}
               />
             }
           ></Route>
@@ -178,6 +182,7 @@ const App = () => {
                 editSelected={editSelected}
                 cartRender={cartRender}
                 setCartRender={setCartRender}
+                adminAccess={adminAccess}
               />
             }
           ></Route>
@@ -194,6 +199,7 @@ const App = () => {
                 editSelected={editSelected}
                 cartRender={cartRender}
                 setCartRender={setCartRender}
+                adminAccess={adminAccess}
               />
             }
           ></Route>
@@ -227,6 +233,7 @@ const App = () => {
                 editSelected={editSelected}
                 cartRender={cartRender}
                 setCartRender={setCartRender}
+                adminAccess={adminAccess}
               />
             }
           ></Route>
@@ -270,7 +277,9 @@ const App = () => {
           <Route path="/AddProducts" element={<AddProducts />}></Route>
           <Route
             path="/AdminLogin"
-            element={<AdminLogin setToken={setToken} />}
+            element={
+              <AdminLogin setToken={setToken} setAdminAccess={setAdminAccess} />
+            }
           ></Route>
           <Route
             path="/Admin"
