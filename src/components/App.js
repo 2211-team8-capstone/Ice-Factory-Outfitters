@@ -74,19 +74,17 @@ const App = () => {
 
   // // update cartTotal everytime cart adds/deleetes item
   useEffect(() => {
-    const priceArr = userCart?.map((a) => a.price);
-    // console.log(priceArr);
-
     const findSum = (array) => {
       let sum = 0;
 
       for (let i = 0; i < array?.length; i++) {
-        sum += priceArr[i];
+        let prodTotal = array[i].price * array[i].quantity;
+        sum += prodTotal;
       }
       return sum;
     };
 
-    const totalCartPrice = findSum(priceArr);
+    const totalCartPrice = findSum(userCart);
     setCartPriceTotal(totalCartPrice);
   }, [userCart]);
 

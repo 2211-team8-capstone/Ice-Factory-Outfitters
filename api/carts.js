@@ -9,7 +9,9 @@ const {
   getMyCartId,
   addProductToCartItems,
   destroyCartItem,
+  updateCartItemsQty
 } = require("../db/models/carts");
+const { DatabaseError } = require("pg");
 
 cartsRouter.use((req, res, next) => {
   console.log("A request is being made to /carts");
@@ -125,5 +127,27 @@ cartsRouter.delete("/", async (req, res, next) => {
     next(error);
   }
 });
+
+cartsRouter.patch("/updateqty", async (req, res, next) => {
+  const {cartItemsId, newQuantity} = req.body;
+  console.log('this is cartItemsId and newQTY in BE api', cartItemsId, newQuantity);
+
+  try {
+    const result = await updateCartItemsQty(cartItemsId, newQuantity);
+    console.log("this is result of update QTY from DB", result)
+
+    if (!result) {
+      next({
+        name: "UpdateQtyError",
+        message: `Failed to update product quantity in cartItems`,
+      });
+    } else {
+      res.send(result);
+    }
+  } catch ({ name, message }) {
+    next({ name, message })
+  }
+
+})
 
 module.exports = cartsRouter;

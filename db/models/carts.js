@@ -165,6 +165,24 @@ async function destroyCartItem(cartItemId) {
   }
 }
 
+async function updateCartItemsQty(cartItemsId, newQuantity) {
+  console.log('this is cartItemsID and newQTY inside DB', cartItemsId, newQuantity)
+  try {
+    const {rows: [product]} = await client.query(`
+      UPDATE cartitems
+      SET quantity = $2
+      WHERE id = $1
+      RETURNING *
+    `, [cartItemsId, newQuantity])
+
+    return product
+  } catch (error) {
+    console.error("Error updating quantity in cartItems table");
+    throw error;
+  }
+}
+
+
 module.exports = {
   addProductToCartItems,
   getCartItemsByCartId,
@@ -173,4 +191,5 @@ module.exports = {
   getMyCart,
   getMyCartId,
   destroyCartItem,
+  updateCartItemsQty,
 };
