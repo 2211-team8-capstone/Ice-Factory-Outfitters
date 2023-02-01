@@ -59,8 +59,10 @@ const Accessories = (props) => {
           token={token}
           setProducts={setProducts}
           setEditSelected={setEditSelected}
+
           cartRender={cartRender}
           setCartRender={setCartRender}
+
         />
       ) : (
         filteredProducts.map((product) => {

@@ -43,10 +43,10 @@ const AdminProfile = (props) => {
                                             e.preventDefault();
 
                                             localStorage.setItem("adminEmail", adminEmail);
-                                            const adminToken = await registerAdmin(adminEmail, adminPassword);
+                                            const token = await registerAdmin(adminEmail, adminPassword);
 
-                                            props.setToken(adminToken);
-                                            localStorage.setItem("adminToken", adminToken);
+                                            props.setToken(token);
+                                            localStorage.setItem("token", token);
                                         } catch (error) {
                                             console.error(error);
                                         }
@@ -112,7 +112,15 @@ const AdminProfile = (props) => {
                     </div>
                     <br></br>
                     <div className="admin-order-history">
-                        <h3 className="admin-title">Recent Orders</h3>
+                        <h3 className="admin-title">
+                            <Link to="/AllOrders">All Orders</Link>
+                        </h3>
+                    </div>
+                    <br></br>
+                    <div className="admin-users">
+                        <h3 className="admin-title">
+                            <Link to="/AllUsers">All Users</Link>
+                        </h3>
                     </div>
                     <br></br>
                 </div>

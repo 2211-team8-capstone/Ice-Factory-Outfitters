@@ -71,9 +71,9 @@ export const loginUser = async (email, password) => {
         password,
       }),
     });
-    const adminResult = await response.json();
-    console.log("LOGIN", adminResult);
-    return adminResult;
+    const result = await response.json();
+    console.log("LOGIN", result);
+    return result;
   } catch (error) {
     console.error(error);
   }
@@ -215,6 +215,7 @@ export const getCartIdByUserId = async (userId, token) => {
 };
 
 export const addProductToCart = async (productId, cartId, quantity, token) => {
+
   try {
     const response = await fetch(
       `http://localhost:4001/api/carts/addprod/${cartId}`,
@@ -222,7 +223,7 @@ export const addProductToCart = async (productId, cartId, quantity, token) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+         "Authorization": `Bearer ${token}`,
         },
         body: JSON.stringify({
           productId,
