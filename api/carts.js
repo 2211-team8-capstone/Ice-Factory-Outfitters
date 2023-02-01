@@ -3,7 +3,13 @@ const cartsRouter = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = process.env;
-const { createCarts, getMyCart, getMyCartId, addProductToCartItems } = require("../db/models/carts");
+const {
+  createCarts,
+  getMyCart,
+  getMyCartId,
+  addProductToCartItems,
+  destroyCartItem,
+} = require("../db/models/carts");
 
 cartsRouter.use((req, res, next) => {
   console.log("A request is being made to /carts");
@@ -76,16 +82,19 @@ cartsRouter.get("/cartNum/:userId", async (req, res, next) => {
 
 cartsRouter.post("/addprod/:cartId", async (req, res, next) => {
   const { cartId } = req.params;
-  console.log("this is req params", req.params);
-  console.log("this is cartId after destructure", cartId);
 
-  console.log('this is req body', req.body)
   const { productId, quantity } = req.body;
-  console.log("this is productId, quanity after destructure", productId, quantity);
 
   try {
-    const productAddedToCart = await addProductToCartItems(cartId, productId, quantity);
-    console.log("this is prodcut created in cartItems and sent from DB", productAddedToCart);
+    const productAddedToCart = await addProductToCartItems(
+      cartId,
+      productId,
+      quantity
+    );
+    console.log(
+      "this is prodcut created in cartItems and sent from DB",
+      productAddedToCart
+    );
     if (!productAddedToCart) {
       next({
         name: "FetchCartError",
@@ -96,6 +105,24 @@ cartsRouter.post("/addprod/:cartId", async (req, res, next) => {
     }
   } catch ({ name, message }) {
     next({ name, message });
+  }
+});
+
+cartsRouter.delete("/", async (req, res, next) => {
+  const { cartItemId } = req.body;
+  console.log("this is cartItemId in deletecartssrouter", cartItemId);
+
+  try {
+    const result = await destroyCartItem(cartItemId);
+    console.log(
+      "this is message in CARTrouter delete returned from DB",
+      result
+    );
+    res.send({
+      result,
+    });
+  } catch (error) {
+    next(error);
   }
 });
 

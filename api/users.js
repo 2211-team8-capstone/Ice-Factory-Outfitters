@@ -7,6 +7,7 @@ const {
   getAllUsers,
   getUserByEmail,
   createUser,
+  getUser,
 } = require("../db/models/users");
 
 usersRouter.use((req, res, next) => {
@@ -112,5 +113,24 @@ usersRouter.get("/", async (req, res) => {
     users,
   });
 });
+
+usersRouter.get('/profile/:email', async (req, res, next) => {
+  const { email } = req.params
+  try {
+    const user = await getUserByEmail(email)
+    if (!user) {
+      next (res.status(401).send({
+        error: "Error",
+        message: "Unable to get a user by that name",
+        name: "LogInError",
+      }))
+    }
+    res.send(user)
+    console.log("user data from getProfile", user)
+
+  } catch (error) {
+    next(error);
+  }
+})
 
 module.exports = usersRouter;

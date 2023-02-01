@@ -85,8 +85,8 @@ async function getMyCart(cartId) {
     const { rows: cart } = await client.query(
       `
     SELECT *
-    FROM cartitems
-    JOIN products ON cartitems."productId" = products.id
+    FROM products
+    JOIN cartitems ON products.id = cartitems."productId"
     WHERE "cartId" = $1
     
     ;
@@ -123,20 +123,46 @@ async function getMyCartId(userId) {
   }
 }
 
-async function addProductToCartItems (cartId, productId, quantity) {
-try {
-  const { rows: [product] } = await client.query(`
+async function addProductToCartItems(cartId, productId, quantity) {
+  try {
+    const {
+      rows: [product],
+    } = await client.query(
+      `
     INSERT INTO cartItems ("cartId", "productId", quantity)
     VALUES ($1, $2, $3)
     RETURNING *
-  `, [cartId, productId, quantity]) 
+  `,
+      [cartId, productId, quantity]
+    );
 
-  console.log('this is product inserted in DB', product)
-  return product;
-} catch (error) {
-  console.error("Error with creating cart", error);
+    console.log("this is product inserted in DB", product);
+    return product;
+  } catch (error) {
+    console.error("Error with creating cart", error);
     throw error;
+  }
 }
+
+async function destroyCartItem(cartItemId) {
+  try {
+    const {
+      rows: [product],
+    } = await client.query(
+      `
+      DELETE 
+      FROM cartitems
+      WHERE id=$1
+      RETURNING *
+    `,
+      [cartItemId]
+    );
+
+    return product;
+  } catch (error) {
+    console.error("Error deleting product");
+    throw error;
+  }
 }
 
 module.exports = {
@@ -146,4 +172,5 @@ module.exports = {
   createCarts,
   getMyCart,
   getMyCartId,
+  destroyCartItem,
 };

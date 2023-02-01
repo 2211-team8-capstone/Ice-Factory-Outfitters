@@ -13,6 +13,8 @@ const Accessories = (props) => {
     token,
     setEditSelected,
     editSelected,
+    cartRender,
+    setCartRender,
   } = props;
 
   const handleDelete = async (productIdToDelete) => {
@@ -57,6 +59,10 @@ const Accessories = (props) => {
           token={token}
           setProducts={setProducts}
           setEditSelected={setEditSelected}
+
+          cartRender={cartRender}
+          setCartRender={setCartRender}
+
         />
       ) : (
         filteredProducts.map((product) => {
