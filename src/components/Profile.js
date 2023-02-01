@@ -36,8 +36,8 @@ console.log("USER", user)
                 <div key={user?.id}>
                   <div>Email Address: {user?.email}</div>
                   <div>Phone Number: {user?.phone}</div>
-                  <div>Street Address: {user?.addressNum}</div>
-                  <div>Street Address 2: {user?.addressSt}</div>
+                  <div>Address 1: {user?.addressnum}</div>
+                  <div>Address 2: {user?.addressst}</div>
                   <div>City: {user?.city}</div>
                   <div>State: {user?.state}</div>
                   <div>Zip: {user?.zip}</div>

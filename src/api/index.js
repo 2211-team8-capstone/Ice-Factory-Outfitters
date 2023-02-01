@@ -100,16 +100,13 @@ export const loginAdmin = async (adminEmail, adminPassword) => {
 };
 
 export const fetchMe = async (token, email) => {
-  console.log("EMAIL", email)
+  // console.log("EMAIL", email)
   try {
-    const response = await fetch("http://localhost:4001/api/profile/me", {
+    const response = await fetch(`http://localhost:4001/api/users/profile/${email}`, {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`,
       },
-      body: JSON.stringify({
-        email,
-      }),
     });
 
     const data = await response.json();

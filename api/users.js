@@ -114,11 +114,10 @@ usersRouter.get("/", async (req, res) => {
   });
 });
 
-usersRouter.get('/profile/me', async (req, res, next) => {
-  const { email } = req.body
-  console.log("USER in the route", user)
+usersRouter.get('/profile/:email', async (req, res, next) => {
+  const { email } = req.params
   try {
-    const user = await getUserByEmail()
+    const user = await getUserByEmail(email)
     if (!user) {
       next (res.status(401).send({
         error: "Error",

@@ -62,11 +62,11 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    const getMe = async () => {
-      const data = await fetchMe(token, email);
-      setUser(data);
-    };
     if (token) {
+      const getMe = async () => {
+        const data = await fetchMe(token, email);
+        setUser(data);
+      };
       getMe();
     }
   }, []);
@@ -198,7 +198,7 @@ const App = () => {
             element={<LoginRegister setToken={setToken} />}
           ></Route>
           <Route
-            path="/profile/me"
+            path="/profile"
             element={
               <Profile 
                 setToken={setToken} 
