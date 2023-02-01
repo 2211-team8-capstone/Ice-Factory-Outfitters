@@ -133,4 +133,61 @@ usersRouter.get('/profile/:email', async (req, res, next) => {
   }
 })
 
+usersRouter.patch("/:userid", async (req,res, next) => {
+  const { userid } = req.params
+  const {
+    userEmail,
+    userPassword,
+    userFirstName,
+    userLastName,
+    userPhone,
+    userAddressNum,
+    userAddressSt,
+    userCity,
+    userState,
+    userZip,
+  } = req.body;
+
+  const fields = {};
+  if (userEmail) {
+    fields.name = userEmail;
+  }
+  if (userPassword) {
+    fields.name = userPassword;
+  }
+  if (userFirstName) {
+    fields.name = userFirstName;
+  }
+  if (userLastName) {
+    fields.name = userLastName;
+  }
+  if (userPhone) {
+    fields.name = userPhone;
+  }
+  if (userAddressNum) {
+    fields.name = userAddressNum;
+  }
+  if (userAddressSt) {
+    fields.name = userAddressSt;
+  }
+  if (userCity) {
+    fields.name = userCity;
+  }
+  if (userState) {
+    fields.name = userState;
+  }
+  if (userZip) {
+    fields.name = userZip;
+  }
+
+try {
+  const result = await updateUser({ userid, ...fields });  
+
+  res.send({ result, })
+} catch (error) {
+  next(error);
+}
+});
+
+
 module.exports = usersRouter;

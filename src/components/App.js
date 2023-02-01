@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 // getAPIHealth is defined in our axios-services directory index.js
 // you can think of that directory as a collection of api adapters
 // where each adapter fetches specific info from our express server's /api route
-import { getAllProducts, getAPIHealth, getCartByCartId } from "../api";
+import { getAllProducts, getAPIHealth, getCartByCartId, fetchMe} from "../api";
 import LoginRegister from "./LoginRegister";
 import Home from "./Home";
 import Header from "./Header";
@@ -25,8 +25,6 @@ import AddProducts from "./AddProducts";
 import AdminLogin from "./AdminLogin";
 import AdminProfile from "./Admin";
 import AllUsersList from "./AllUsers";
-import { fetchMe } from "../api";
-
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState("");
@@ -106,12 +104,12 @@ const App = () => {
             element={
               <Sticks
                 products={products}
-                setSelectedProduct={setSelectedProduct}
-                selectedProduct={selectedProduct}
                 setProducts={setProducts}
+                selectedProduct={selectedProduct}
+                setSelectedProduct={setSelectedProduct}
                 token={token}
-                setEditSelected={setEditSelected}
                 editSelected={editSelected}
+                setEditSelected={setEditSelected}
                 cartRender={cartRender}
                 setCartRender={setCartRender}
               />
@@ -247,8 +245,8 @@ const App = () => {
                 setToken={setToken} 
                 user={user}
                 setUser={setUser}
-                setEmail={setEmail}
                 email={email}
+                setEmail={setEmail}
               />
             }
           ></Route>

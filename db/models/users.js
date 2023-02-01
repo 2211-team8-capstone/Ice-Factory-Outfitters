@@ -125,11 +125,33 @@ async function getUser({ email, password }) {
   } 
 }
 
-// add your database adapter fns here
+async function updateUser({ userid, ...fields }) {
+  const setString = Object.keys(fields)
+  .map((key, index) => `"${key}"=$${index + 1}`)
+  .join(", ");
+if (setString.length === 0) {
+  return;
+}
+try {
+  const { rows: [users] } = await client.query(`
+  UPDATE users
+  SET ${setString}
+  WHERE id=${userid}
+  RETURNING *;
+  `, Object.values(fields)
+  );
+
+  return users;
+} catch (error) {
+  console.error("Error updating user profile");
+}
+}
+
 module.exports = {
   getAllUsers,
   createUser,
   getUserById,
   getUserByEmail,
   getUser,
+  updateUser,
 };

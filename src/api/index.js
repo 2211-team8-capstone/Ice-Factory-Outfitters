@@ -92,6 +92,50 @@ export const fetchMe = async (token, email) => {
   }
 }
 
+export const editUser = async (
+  token,
+  userId,
+  userEmail,
+  userPassword,
+  userFirstName,
+  userLastName,
+  userPhone,
+  userAddressNum,
+  userAddressSt,
+  userCity,
+  userState,
+  userZip,
+) => {
+  try {
+    const response = await fetch(
+      `http://localhost:4001/api/users/profile/${userId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          userEmail,
+          userPassword,
+          userFirstName,
+          userLastName,
+          userPhone,
+          userAddressNum,
+          userAddressSt,
+          userCity,
+          userState,
+          userZip,
+        }),
+      }
+    );
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    console,error(error);  
+  }
+};
+
 // ***************************** ALL PRODUCTS FUNCTIONS **************************
 
 export const getAllProducts = async () => {
