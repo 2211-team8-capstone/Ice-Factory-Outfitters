@@ -1,0 +1,39 @@
+.Search {
+    margin: 10px;
+    text-align: center;
+    font-size: 1.3rem;
+}
+
+.title {
+    margin: 0;
+    font-family: cursive;
+    font-size: 3rem;
+    text-shadow: 1px 1px gray;
+}
+
+#header-search {
+    margin: 50px 20px 30px;
+    width: 20vw;
+    height: 2rem;
+    font-size: 1.5rem;
+}
+
+
+.Search button {
+    background-color: #94e1eb;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    height: 2rem;
+    width: 40%;
+    font-size: 1.2rem;
+    margin: 0 10% 0;
+}
+
+.Search button:hover {
+    background-color: #94b8bd;
+}
+
+.Search ul {
+    text-align: left;
+}

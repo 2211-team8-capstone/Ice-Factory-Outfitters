@@ -79,26 +79,6 @@ export const loginUser = async (email, password) => {
   }
 };
 
-export const loginAdmin = async (adminEmail, adminPassword) => {
-  try {
-    const response = await fetch("http://localhost:4001/api/admin/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        adminEmail,
-        adminPassword,
-      }),
-    });
-    const result = await response.json();
-    console.log("LOGIN", result);
-    return result;
-  } catch (error) {
-    console.error(error);
-  }
-};
-
 export const fetchMe = async (token, email) => {
   // console.log("EMAIL", email)
   try {
@@ -112,6 +92,61 @@ export const fetchMe = async (token, email) => {
     const data = await response.json();
     console.log("This is the fetchMe data", data)
     return data;
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export const getAllUsers = async () => {
+  try {
+    const response = await fetch("http://localhost:4001/api/users", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+
+    return data.users;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+// ***************************** ALL ADMIN FUNCTIONS **************************
+export const loginAdmin = async (adminEmail, adminPassword, isAdmin) => {
+  try {
+    const response = await fetch("http://localhost:4001/api/admin/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        adminEmail,
+        adminPassword,
+        isAdmin,
+      }),
+    });
+    const adminResult = await response.json();
+    console.log("LOGIN", adminResult);
+    return adminResult;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getUsersList = async () => {
+  // console.log("EMAIL", email)
+  try {
+    const response = await fetch(`http://localhost:4001/api/users`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+
+    const data = await response.json();
+    console.log("This is the admin data", data)
+    return data.users;
   } catch (error) {
     console.error(error)
   }
@@ -223,7 +258,7 @@ export const addProductToCart = async (productId, cartId, quantity, token) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-         "Authorization": `Bearer ${token}`,
+          "Authorization": `Bearer ${token}`,
         },
         body: JSON.stringify({
           productId,

@@ -16,7 +16,9 @@ async function createAdmin({
             `
     INSERT INTO admins(
       adminEmail, 
-      adminPassword)
+      adminPassword,
+      "isAdmin"
+      )
     VALUES ($1, $2)
     ON CONFLICT (adminEmail) DO NOTHING
     RETURNING *;
@@ -25,7 +27,7 @@ async function createAdmin({
                 hashedAdminPassword]
         );
 
-        delete admin.adminPassword;
+        delete admin.adminpassword;
 
         return admin;
     } catch (error) {
@@ -36,7 +38,7 @@ async function createAdmin({
 
 async function getAllAdmins() {
     const { rows } = await client.query(`
-    SELECT adminEmail, adminPassword
+    SELECT adminEmail, adminPassword, "isAdmin"
     FROM admins;
   `);
 
@@ -57,7 +59,7 @@ async function getAdminById(adminId) {
         );
 
         // dont return password with user data
-        delete admin.adminPassword;
+        delete admin.adminpassword;
 
         return admin;
     } catch (error) {

@@ -7,7 +7,8 @@ import "../style/AdminLogin.css";
 const AdminLogin = (props) => {
     const [adminEmail, setAdminEmail] = useState("");
     const [adminPassword, setAdminPassword] = useState("");
-    const [stateError, setStateError] = useState("");
+    const [isAdmin, setIsAdmin] = useState("");
+    const [stateAdminError, setStateAdminError] = useState("");
     const navigate = useNavigate();
 
     return (
@@ -21,12 +22,12 @@ const AdminLogin = (props) => {
                             if (!adminEmail || !adminPassword) {
                                 e.preventDefault();
                                 const errorMessage = "Please enter a valid Admin Email and Admin Password";
-                                setStateError(errorMessage);
+                                setStateAdminError(errorMessage);
                             } else {
                                 try {
                                     e.preventDefault();
                                     localStorage.setItem("adminEmail", adminEmail);
-                                    const result = await loginAdmin(adminEmail, adminPassword);
+                                    const result = await loginAdmin(adminEmail, adminPassword, isAdmin);
                                     console.log("BBBBBK", result);
 
                                     const token = result.token;
@@ -45,7 +46,7 @@ const AdminLogin = (props) => {
                                     // );
                                     // localStorage.setItem("cart#", cart.id);
 
-                                    navigate("/");
+                                    navigate("/Admin");
                                 } catch (error) {
                                     console.error(error);
                                 }
@@ -74,7 +75,7 @@ const AdminLogin = (props) => {
                         </div>
                         <div>
                             <button type="Submit">Admin Sign In</button>
-                            {stateError ? <h3>{stateError}</h3> : ""}
+                            {stateAdminError ? <h3>{stateAdminError}</h3> : ""}
                         </div>
 
                     </form>
