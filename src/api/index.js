@@ -99,6 +99,24 @@ export const loginAdmin = async (adminEmail, adminPassword) => {
   }
 };
 
+export const fetchMe = async (token, email) => {
+  // console.log("EMAIL", email)
+  try {
+    const response = await fetch(`http://localhost:4001/api/users/profile/${email}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+
+    const data = await response.json();
+    console.log("This is the fetchMe data", data)
+    return data;
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 // ***************************** ALL PRODUCTS FUNCTIONS **************************
 
 export const getAllProducts = async () => {
