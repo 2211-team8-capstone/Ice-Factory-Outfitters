@@ -27,7 +27,6 @@ import AdminProfile from "./Admin";
 import AllUsersList from "./AllUsers";
 import { fetchMe } from "../api";
 
-
 const App = () => {
   const [APIHealth, setAPIHealth] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -38,9 +37,9 @@ const App = () => {
   const [cartPriceTotal, setCartPriceTotal] = useState(0);
   const [editSelected, setEditSelected] = useState(false);
   const [users, setUsers] = useState([]);
-  const [cartRender, setCartRender] = useState(false);  
+  const [cartRender, setCartRender] = useState(false);
   const [email, setEmail] = useState(localStorage.getItem("email"));
-
+  const [adminAccess, setAdminAccess] = useState(false);
 
   const cartId = localStorage.getItem("cart#");
 
@@ -211,6 +210,7 @@ const App = () => {
                 editSelected={editSelected}
                 cartRender={cartRender}
                 setCartRender={setCartRender}
+                adminAccess={adminAccess}
               />
             }
           ></Route>
@@ -243,8 +243,8 @@ const App = () => {
           <Route
             path="/profile"
             element={
-              <Profile 
-                setToken={setToken} 
+              <Profile
+                setToken={setToken}
                 user={user}
                 setUser={setUser}
                 setEmail={setEmail}
@@ -268,9 +268,18 @@ const App = () => {
           ></Route>
           <Route path="/ContactUs" element={<ContactUs />}></Route>
           <Route path="/AddProducts" element={<AddProducts />}></Route>
-          <Route path="/AdminLogin" element={<AdminLogin setToken={setToken} />}></Route>
-          <Route path="/Admin" element={<AdminProfile setToken={setToken} />}></Route>
-          <Route path="/AllUsers" element={<AllUsersList users={users} setUsers={setUsers} />}></Route>
+          <Route
+            path="/AdminLogin"
+            element={<AdminLogin setToken={setToken} />}
+          ></Route>
+          <Route
+            path="/Admin"
+            element={<AdminProfile setToken={setToken} />}
+          ></Route>
+          <Route
+            path="/AllUsers"
+            element={<AllUsersList users={users} setUsers={setUsers} />}
+          ></Route>
         </Routes>
       </div>
       <Footer />
