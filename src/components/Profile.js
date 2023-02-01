@@ -21,18 +21,17 @@ const Profile = (props) => {
   const navigate = useNavigate();
   const [selectedUser, setSelectedUser] = useState([]);
 
-console.log("USER", user)
-
-  // console.log("TTTTTTTTTTTTTTTTTTT", emailTwo, props);
   return (
     <>
       <div className="user-profile-container">
         <div className="user-profile-container-left">
           <div className="user-profile">
             <h3 className="title">
-              Welcome
+              Ice Factory Member
             </h3>
                 <div key={user?.id}>
+                  <div>First Name: {user?.firstname}</div>
+                  <div>Last Name: {user?.lastname}</div>
                   <div>Email Address: {user?.email}</div>
                   <div>Phone Number: {user?.phone}</div>
                   <div>Address 1: {user?.addressnum}</div>
@@ -111,21 +110,21 @@ console.log("USER", user)
                   ></input>
                 </div>
                 <div>
-                  <label htmlFor="addressStreet">Street Address: </label>
+                  <label htmlFor="addressStreet">Address 1: </label>
                   <input
                     value={addressStreet}
                     type="address-street"
-                    placeholder="Street Address"
-                    minLength={3}
+                    placeholder="Address 1"
+                    minLength={1}
                     onChange={(e) => setAddressStreet(e.target.value)}
                   ></input>
                 </div>
                 <div>
-                  <label htmlFor="addressStreet2">Street Address 2: </label>
+                  <label htmlFor="addressStreet2">Addreess 2: </label>
                   <input
                     value={addressStreet2}
                     type="address-street-2"
-                    placeholder="Street Address 2"
+                    placeholder="Address 2"
                     minLength={3}
                     onChange={(e) => setAddressStreet2(e.target.value)}
                   ></input>
