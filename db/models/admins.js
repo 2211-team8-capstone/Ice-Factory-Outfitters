@@ -5,7 +5,7 @@ const SALT_COUNT = 10;
 
 async function createAdmin({
     adminEmail,
-    adminPassword
+    adminPassword,
 }) {
     const hashedAdminPassword = await bcrypt.hash(adminPassword, SALT_COUNT);
 
@@ -25,7 +25,7 @@ async function createAdmin({
                 hashedAdminPassword]
         );
 
-        delete admin.password;
+        delete admin.adminPassword;
 
         return admin;
     } catch (error) {
@@ -57,7 +57,7 @@ async function getAdminById(adminId) {
         );
 
         // dont return password with user data
-        delete admin.password;
+        delete admin.adminPassword;
 
         return admin;
     } catch (error) {

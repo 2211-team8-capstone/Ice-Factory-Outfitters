@@ -71,9 +71,9 @@ export const loginUser = async (email, password) => {
         password,
       }),
     });
-    const adminResult = await response.json();
-    console.log("LOGIN", adminResult);
-    return adminResult;
+    const result = await response.json();
+    console.log("LOGIN", result);
+    return result;
   } catch (error) {
     console.error(error);
   }
@@ -198,23 +198,23 @@ export const getCartIdByUserId = async (userId, token) => {
 
 
 export const addProductToCart = async (productId, cartId, quantity, token) => {
-  console.log('this is in addprodtocart prod ID',productId); 
-  console.log('this is in addprodtocart quantity',quantity); 
-  console.log('this is in addprodtocart token',token);
-  
+  console.log('this is in addprodtocart prod ID', productId);
+  console.log('this is in addprodtocart quantity', quantity);
+  console.log('this is in addprodtocart token', token);
+
   try {
     const response = await fetch(`http://localhost:4001/api/carts/addprod/${cartId}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          productId,
-          quantity,
-        }),
-      });
-      
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        productId,
+        quantity,
+      }),
+    });
+
     const data = await response.json();
     console.log("product in addproducttocart FE api", data);
 

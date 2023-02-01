@@ -1,6 +1,6 @@
 const client = require("./client");
 const { getAllUsers, createUser } = require("./models/users");
-const { getAllAdmins, createAdmin } = require("./models/admin");
+const { getAllAdmins, createAdmin } = require("./models/admins");
 const { createProduct, getAllProducts } = require("./models/products");
 const {
   addProductToCartItems,
