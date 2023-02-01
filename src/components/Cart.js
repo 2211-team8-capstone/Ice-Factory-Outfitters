@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { deleteProductFromCart } from "../api";
+import { deleteProductFromCart, updateProductQty } from "../api";
 
 const Cart = (props) => {
   const {
@@ -35,8 +35,25 @@ const Cart = (props) => {
                 <div className="single-product">
                   <img className="product-thumbnail" src={product.image} />
                   <h2 className="headers">{product.name}</h2>
-                  <h3 className="headers">${product.price}</h3>
                   <p className="description">{product.description}</p>
+                  <h3 className="headers">Price: ${product.price}</h3>
+                  <input
+                    className="prod-btn"
+                    min={1}
+                    type="number"
+                    placeholder="quantity"
+                    value={product.quantity}
+                    onChange={async (e) => {
+                      let newQuantity = (e.target.value);
+                      await updateProductQty(newQuantity, product.id, token);
+
+                      if (cartRender) {
+                        setCartRender(false);
+                      } else {
+                        setCartRender(true);
+                      }
+                    }}
+                   ></input>
                   <button
                     className="prod-btn"
                     onClick={() => handleDelete(product.id)}

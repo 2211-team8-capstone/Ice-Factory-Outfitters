@@ -128,6 +128,7 @@ export const getSingleProduct = async (productID, setSelectedProduct) => {
   }
 };
 
+
 // ************************ Cart Functions Below *******************************
 
 export const createCart = async (userId, token) => {
@@ -234,3 +235,26 @@ export const deleteProductFromCart = async (cartItemId, token) => {
     console.error(error);
   }
 };
+
+export const updateProductQty = async (newQuantity, cartItemsId, token) => {
+  try {
+    const response = await fetch(`http://localhost:4001/api/carts/updateqty`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        cartItemsId,
+        newQuantity,
+      }),
+    });
+
+    const data = await response.json();
+    console.log("this is data in updatecartQTY FE API", data);
+
+    return data;
+  } catch (error) {
+    console.error(error)
+  }
+}
