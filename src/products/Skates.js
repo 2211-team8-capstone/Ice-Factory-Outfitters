@@ -15,6 +15,7 @@ const Skates = (props) => {
     editSelected,
     cartRender,
     setCartRender,
+    adminAccess,
   } = props;
 
   const handleDelete = async (productIdToDelete) => {
@@ -59,15 +60,28 @@ const Skates = (props) => {
                 <h3 className="headers">${product.price}</h3>
                 <div className="sub-container">
                   <div className="btn-container">
-                    <button
-                      className="prod-btn"
-                      onClick={() => {
-                        getSingleProduct(product.id, setSelectedProduct);
-                        setEditSelected(true);
-                      }}
-                    >
-                      Edit
-                    </button>
+                    {adminAccess ? (
+                      <div className="btn-container">
+                        <button
+                          className="prod-btn"
+                          onClick={() => {
+                            getSingleProduct(product.id, setSelectedProduct);
+                            setEditSelected(true);
+                          }}
+                        >
+                          Edit
+                        </button>
+                        <button
+                          className="prod-btn"
+                          onClick={() => handleDelete(product.id)}
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    ) : (
+                      ""
+                    )}
+
                     <button
                       className="prod-btn"
                       onClick={() =>
@@ -75,12 +89,6 @@ const Skates = (props) => {
                       }
                     >
                       More Info
-                    </button>
-                    <button
-                      className="prod-btn"
-                      onClick={() => handleDelete(product.id)}
-                    >
-                      Delete
                     </button>
                   </div>
                 </div>
