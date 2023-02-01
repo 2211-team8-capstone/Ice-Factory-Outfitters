@@ -36,6 +36,25 @@ async function getAllProducts() {
   }
 }
 
+async function getProductByName(name) {
+  try {
+    const {
+      rows: [product],
+    } = await client.query(
+      `
+      SELECT * 
+      FROM products
+      WHERE name=$1;
+      `,
+      [name]
+    );
+    console.log("BBBBBBBBBBBBBBBBBB", product);
+    return product;
+  } catch (error) {
+    console.log("Error getting Product by Name");
+  }
+}
+
 async function getProductById(productId) {
   try {
     const {
@@ -81,9 +100,37 @@ async function destroyProduct(id) {
   }
 }
 
+async function updateProduct({ productid, ...fields }) {
+  // console.log("AAAAAAAAAAAAAAAAAA", fields);
+  const setString = Object.keys(fields)
+    .map((key, index) => `"${key}"=$${index + 1}`)
+    .join(", ");
+  if (setString.length === 0) {
+    return;
+  }
+  try {
+    const {
+      rows: [products],
+    } = await client.query(
+      `
+    UPDATE products
+    SET ${setString}
+    WHERE id=${productid}
+    RETURNING *;
+    `,
+      Object.values(fields)
+    );
+    return products;
+  } catch (error) {
+    console.error("Error updating product");
+  }
+}
+
 module.exports = {
   createProduct,
   getAllProducts,
   getProductById,
   destroyProduct,
+  updateProduct,
+  getProductByName,
 };

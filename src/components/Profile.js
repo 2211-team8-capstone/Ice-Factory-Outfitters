@@ -6,7 +6,6 @@ import "../style/Profile.css";
 const Profile = (props) => {
   const { token, user, setUser, email, setEmail } = props;
   const [emailTwo, setEmailTwo] = useState("");
-  const [password, setPassword] = useState("");
   const [passwordTwo, setPasswordTwo] = useState("");
 
   const [nameFirst, setNameFirst] = useState("");

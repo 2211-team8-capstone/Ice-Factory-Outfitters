@@ -12,7 +12,7 @@ const Footer = (props) => {
                     </Link>
                 </div>
 
-                <div className="admin-login"></div>
+
                 {!props.token ? (
                     <div className="admin-login-form">
                         <i className="fa-solid fa-user"></i>
@@ -30,7 +30,7 @@ const Footer = (props) => {
 
                         <div className="admin-logout" onClick={handleLogout}>
                             <Link to={"/"} className="foot-links">
-                                Admnin Logout
+                                Admin Logout
                             </Link>
                         </div>
                     </div>

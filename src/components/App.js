@@ -34,11 +34,12 @@ const App = () => {
   const [selectedProduct, setSelectedProduct] = useState([]);
   const [userCart, setUserCart] = useState([]);
   const [cartPriceTotal, setCartPriceTotal] = useState(0);
+  const [editSelected, setEditSelected] = useState(false);
+  const [cartRender, setCartRender] = useState(false);  
   const [email, setEmail] = useState(localStorage.getItem("email"));
 
-  // console.log("userCart at app.js", userCart);
-
   const cartId = localStorage.getItem("cart#");
+
   useEffect(() => {
     // const result = await getAllProducts
     const getProducts = async () => {
@@ -59,7 +60,7 @@ const App = () => {
     //   setAPIHealth(healthy ? "api is up! :D" : "api is down :/");
     // };
     // getAPIStatus();
-  }, []);
+  }, [cartRender]);
 
   useEffect(() => {
     if (token) {
@@ -92,7 +93,7 @@ const App = () => {
   return (
     <>
       <Header setToken={setToken} token={token} setUserCart={setUserCart} />
-      <NavBar />
+      <NavBar setEditSelected={setEditSelected} />
       <div>
         <Routes>
           <Route exact path="/" element={<Home />}></Route>
@@ -105,6 +106,10 @@ const App = () => {
                 selectedProduct={selectedProduct}
                 setProducts={setProducts}
                 token={token}
+                setEditSelected={setEditSelected}
+                editSelected={editSelected}
+                cartRender={cartRender}
+                setCartRender={setCartRender}
               />
             }
           ></Route>
@@ -117,6 +122,10 @@ const App = () => {
                 selectedProduct={selectedProduct}
                 setProducts={setProducts}
                 token={token}
+                setEditSelected={setEditSelected}
+                editSelected={editSelected}
+                cartRender={cartRender}
+                setCartRender={setCartRender}
               />
             }
           ></Route>
@@ -129,6 +138,10 @@ const App = () => {
                 selectedProduct={selectedProduct}
                 setProducts={setProducts}
                 token={token}
+                setEditSelected={setEditSelected}
+                editSelected={editSelected}
+                cartRender={cartRender}
+                setCartRender={setCartRender}
               />
             }
           ></Route>
@@ -142,6 +155,10 @@ const App = () => {
                 selectedProduct={selectedProduct}
                 setProducts={setProducts}
                 token={token}
+                setEditSelected={setEditSelected}
+                editSelected={editSelected}
+                cartRender={cartRender}
+                setCartRender={setCartRender}
               />
             }
           ></Route>
@@ -154,6 +171,10 @@ const App = () => {
                 selectedProduct={selectedProduct}
                 setProducts={setProducts}
                 token={token}
+                setEditSelected={setEditSelected}
+                editSelected={editSelected}
+                cartRender={cartRender}
+                setCartRender={setCartRender}
               />
             }
           ></Route>
@@ -166,6 +187,10 @@ const App = () => {
                 selectedProduct={selectedProduct}
                 setProducts={setProducts}
                 token={token}
+                setEditSelected={setEditSelected}
+                editSelected={editSelected}
+                cartRender={cartRender}
+                setCartRender={setCartRender}
               />
             }
           ></Route>
@@ -178,6 +203,10 @@ const App = () => {
                 selectedProduct={selectedProduct}
                 setProducts={setProducts}
                 token={token}
+                setEditSelected={setEditSelected}
+                editSelected={editSelected}
+                cartRender={cartRender}
+                setCartRender={setCartRender}
               />
             }
           ></Route>
@@ -190,12 +219,22 @@ const App = () => {
                 selectedProduct={selectedProduct}
                 setProducts={setProducts}
                 token={token}
+                setEditSelected={setEditSelected}
+                editSelected={editSelected}
+                cartRender={cartRender}
+                setCartRender={setCartRender}
               />
             }
           ></Route>
           <Route
             path="/LoginRegister"
-            element={<LoginRegister setToken={setToken} />}
+            element={
+              <LoginRegister
+                setToken={setToken}
+                cartRender={cartRender}
+                setCartRender={setCartRender}
+              />
+            }
           ></Route>
           <Route
             path="/profile"
@@ -217,6 +256,9 @@ const App = () => {
                 setUserCart={setUserCart}
                 cartPriceTotal={cartPriceTotal}
                 setCartPriceTotal={setCartPriceTotal}
+                token={token}
+                setCartRender={setCartRender}
+                cartRender={cartRender}
               />
             }
           ></Route>

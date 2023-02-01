@@ -4,8 +4,8 @@ const bcrypt = require("bcrypt");
 const SALT_COUNT = 10;
 
 async function createAdmin({
-    email,
-    password
+    adminEmail,
+    adminPassword
 }) {
     const hashedAdminPassword = await bcrypt.hash(adminPassword, SALT_COUNT);
 
@@ -14,11 +14,11 @@ async function createAdmin({
             rows: [admin],
         } = await client.query(
             `
-    INSERT INTO admin(
-      email, 
-      password)
+    INSERT INTO admins(
+      adminEmail, 
+      adminPassword)
     VALUES ($1, $2)
-    ON CONFLICT (email) DO NOTHING
+    ON CONFLICT (adminEmail) DO NOTHING
     RETURNING *;
     `,
             [adminEmail,
@@ -36,8 +36,8 @@ async function createAdmin({
 
 async function getAllAdmins() {
     const { rows } = await client.query(`
-    SELECT email, password
-    FROM admin;
+    SELECT adminEmail, adminPassword
+    FROM admins;
   `);
 
     return rows;
@@ -50,7 +50,7 @@ async function getAdminById(adminId) {
         } = await client.query(
             `
         SELECT *
-        FROM admin
+        FROM admins
         WHERE id=$1;
     `,
             [adminId]
@@ -73,8 +73,8 @@ async function getAdminByEmail(adminEmail) {
         } = await client.query(
             `
       SELECT * 
-      FROM admin
-      WHERE email=$1;
+      FROM admins
+      WHERE adminEmail=$1;
     `,
             [adminEmail]
         );

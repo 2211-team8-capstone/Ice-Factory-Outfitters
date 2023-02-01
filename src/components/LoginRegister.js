@@ -6,6 +6,7 @@ import "../style/LoginRegister.css";
 
 // import "../style/Header.css";
 const LoginRegister = (props) => {
+  const { cartRender, setCartRender } = props;
   const [email, setEmail] = useState("");
   const [emailTwo, setEmailTwo] = useState("");
   const [password, setPassword] = useState("");
@@ -47,6 +48,11 @@ const LoginRegister = (props) => {
                     cart
                   );
                   localStorage.setItem("cart#", cart.id);
+                  if (cartRender) {
+                    setCartRender(false);
+                  } else {
+                    setCartRender(true);
+                  }
 
                   navigate("/");
                 } catch (error) {
@@ -109,6 +115,11 @@ const LoginRegister = (props) => {
                     cart
                   );
                   localStorage.setItem("cart#", cart.id);
+                  if (cartRender) {
+                    setCartRender(false);
+                  } else {
+                    setCartRender(true);
+                  }
 
                   navigate("/");
                 } catch (error) {

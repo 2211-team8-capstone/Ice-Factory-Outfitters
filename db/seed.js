@@ -1,5 +1,6 @@
 const client = require("./client");
 const { getAllUsers, createUser } = require("./models/users");
+const { getAllAdmins, createAdmin } = require("./models/admin");
 const { createProduct, getAllProducts } = require("./models/products");
 const {
   addProductToCartItems,
@@ -18,6 +19,7 @@ async function dropTables() {
     DROP TABLE IF EXISTS carts CASCADE;
     DROP TABLE IF EXISTS products CASCADE;
     DROP TABLE IF EXISTS users CASCADE;
+    DROP TABLE IF EXISTS admins CASCADE;
     `);
 
     console.log("completed dropping tables!");
@@ -32,6 +34,12 @@ async function createTables() {
     console.log("starting to create tables....");
 
     await client.query(`
+    CREATE TABLE admins (
+      id SERIAL PRIMARY KEY,
+      adminEmail VARCHAR(255) UNIQUE NOT NULL,
+      adminPassword VARCHAR(255) NOT NULL
+    );
+
     CREATE TABLE users (
       id SERIAL PRIMARY KEY,
       email VARCHAR(255) UNIQUE NOT NULL,
@@ -48,13 +56,13 @@ async function createTables() {
 
     CREATE TABLE products (
       id SERIAL PRIMARY KEY,
-      category VARCHAR(255) NOT NULL,
+      category VARCHAR(255) NULL,
       name VARCHAR(255) UNIQUE NOT NULL,
       description TEXT NOT NULL,
       price INTEGER NOT NULL,
-      quantity INTEGER NOT NULL,
-      size VARCHAR (255) NOT NULL,
-      color VARCHAR (255) NOT NULL,
+      quantity INTEGER NULL,
+      size VARCHAR (255) NULL,
+      color VARCHAR (255)  NULL,
       image TEXT
     );
 
@@ -74,6 +82,22 @@ async function createTables() {
     console.log("finished creating tables!");
   } catch (error) {
     console.error("Error building tables!");
+    throw error;
+  }
+}
+
+async function createInitialAdmins() {
+  try {
+    console.log("Starting to create admin...");
+
+    const adminDefault = await createAdmin({
+      adminEmail: "admin@email.com",
+      adminPassword: "passwordadmin",
+    });
+
+    console.log("Finished creating admin!");
+  } catch (error) {
+    console.error("Error creating admin!");
     throw error;
   }
 }
@@ -257,26 +281,10 @@ async function createInitialCarts() {
 async function createInitialCartItems() {
   try {
     console.log("Starting to create initial cartItems...");
-    await addProductToCartItems({
-      cartId: 2,
-      productId: 5,
-      quantity: 1,
-    });
-    await addProductToCartItems({
-      cartId: 2,
-      productId: 2,
-      quantity: 1,
-    });
-    await addProductToCartItems({
-      cartId: 3,
-      productId: 3,
-      quantity: 1,
-    });
-    await addProductToCartItems({
-      cartId: 4,
-      productId: 2,
-      quantity: 1,
-    });
+    await addProductToCartItems(2, 5, 1);
+    await addProductToCartItems(2, 2, 1);
+    await addProductToCartItems(3, 3, 1);
+    await addProductToCartItems(4, 2, 1);
     console.log("Finished creating cartItems!");
   } catch (error) {
     console.error("Error building cartItems!");
@@ -294,6 +302,10 @@ async function rebuildDB() {
     console.log("beginning to create tables...");
     await createTables();
     console.log("finished create tables!");
+
+    console.log("beginning to create admin...");
+    await createInitialAdmins();
+    console.log("finished creating admin!");
 
     console.log("beginning to create users...");
     await createInitialUsers();
@@ -319,6 +331,9 @@ async function testDB() {
   try {
     console.log("starting to test the database....");
 
+    const admin = await getAllAdmins();
+    // console.log("this is getAllAdmins-------->", admins);
+
     const users = await getAllUsers();
     // console.log("this is getAllUsers-------->", users);
 
@@ -326,7 +341,7 @@ async function testDB() {
     // console.log("this is getAllProducts-------->", products);
 
     const myCart = await getMyCart(2);
-    console.log("this is getMyCart-------->", myCart);
+    // console.log("this is getMyCart-------->", myCart);
 
     console.log("finsihed testing the database!");
   } catch (error) {
