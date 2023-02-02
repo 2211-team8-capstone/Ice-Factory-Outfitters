@@ -8,6 +8,11 @@
 
 } */
 
+.all-users-container {
+    align-items: center;
+    justify-content: center;
+}
+
 .single-user-container {
     display: "flex";
     flex-direction: "row";

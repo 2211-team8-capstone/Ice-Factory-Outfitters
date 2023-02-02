@@ -3,8 +3,8 @@ const client = require("../client");
 const bcrypt = require("bcrypt");
 const SALT_COUNT = 10;
 
-async function createUser({ 
-  email, 
+async function createUser({
+  email,
   password,
   phone,
   firstName,
@@ -14,7 +14,7 @@ async function createUser({
   city,
   state,
   zip,
-  }) {
+}) {
   const hashedPassword = await bcrypt.hash(password, SALT_COUNT);
 
   try {
@@ -37,16 +37,18 @@ async function createUser({
     ON CONFLICT (email) DO NOTHING
     RETURNING *;
     `,
-      [email, 
-        hashedPassword, 
-        phone, 
-        firstName, 
-        lastName, 
-        addressNum, 
-        addressSt, 
-        city, 
-        state, 
-        zip]
+      [
+        email,
+        hashedPassword,
+        phone,
+        firstName,
+        lastName,
+        addressNum,
+        addressSt,
+        city,
+        state,
+        zip,
+      ]
     );
 
     delete user.password;
@@ -60,7 +62,7 @@ async function createUser({
 
 async function getAllUsers() {
   const { rows } = await client.query(`
-    SELECT email, password
+    SELECT *
     FROM users;
   `);
 
@@ -113,16 +115,21 @@ async function getUser({ email, password }) {
   const getUser = await getUserByEmail(email);
   if (getUser.password === password) {
     try {
-      const { rows: [user] } = await client.query (`
+      const {
+        rows: [user],
+      } = await client.query(
+        `
       SELECT id, email FROM users
       WHERE email = $1
-      `, [email]);
+      `,
+        [email]
+      );
 
       return user;
     } catch (error) {
       console.error(error);
     }
-  } 
+  }
 }
 
 // add your database adapter fns here
