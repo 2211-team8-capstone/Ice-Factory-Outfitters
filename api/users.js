@@ -8,6 +8,7 @@ const {
   getUserByEmail,
   createUser,
   getUser,
+  updateUser,
 } = require("../db/models/users");
 
 usersRouter.use((req, res, next) => {
@@ -114,23 +115,83 @@ usersRouter.get("/", async (req, res) => {
   });
 });
 
-usersRouter.get('/profile/:email', async (req, res, next) => {
-  const { email } = req.params
+usersRouter.get("/profile/:email", async (req, res, next) => {
+  const { email } = req.params;
   try {
-    const user = await getUserByEmail(email)
+    const user = await getUserByEmail(email);
     if (!user) {
-      next (res.status(401).send({
-        error: "Error",
-        message: "Unable to get a user by that name",
-        name: "LogInError",
-      }))
+      next(
+        res.status(401).send({
+          error: "Error",
+          message: "Unable to get a user by that name",
+          name: "LogInError",
+        })
+      );
     }
-    res.send(user)
-    console.log("user data from getProfile", user)
-
+    res.send(user);
+    console.log("user data from getProfile", user);
   } catch (error) {
     next(error);
   }
-})
+});
+
+usersRouter.patch("/:userid", async (req, res, next) => {
+  const { userid } = req.params;
+  const {
+    userEmail,
+    userPassword,
+    userFirstName,
+    userLastName,
+    userPhone,
+    parseAddressNum,
+    userAddressSt,
+    userCity,
+    userState,
+    parseZip,
+  } = req.body;
+
+  // console.log("userPhone", userPhone);
+
+  const fields = {};
+  if (userEmail) {
+    fields.email = userEmail;
+  }
+  if (userPassword) {
+    fields.password = userPassword;
+  }
+  if (userFirstName) {
+    fields.firstname = userFirstName;
+  }
+  if (userLastName) {
+    fields.lastname = userLastName;
+  }
+  if (userPhone) {
+    fields.phone = userPhone;
+  }
+  if (parseAddressNum) {
+    fields.addressnum = parseAddressNum;
+  }
+  if (userAddressSt) {
+    fields.addressst = userAddressSt;
+  }
+  if (userCity) {
+    fields.city = userCity;
+  }
+  if (userState) {
+    fields.state = userState;
+  }
+  if (parseZip) {
+    fields.zip = parseZip;
+  }
+  console.log("USERS fields", fields);
+
+  try {
+    const result = await updateUser({ userid, ...fields });
+
+    res.send({ result });
+  } catch (error) {
+    next(error);
+  }
+});
 
 module.exports = usersRouter;
