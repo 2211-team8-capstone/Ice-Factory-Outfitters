@@ -9,6 +9,16 @@ const cartsRouter = require("./carts");
 const adminRouter = require("./admin");
 const { JWT_SECRET } = process.env;
 
+apiRouter.get("/health", async (req, res, next) => {
+  console.log("Server health is getting checked");
+  try {
+    res.send({
+      message: "server healthy",
+    });
+  } catch (error) {
+    next();
+  }
+});
 // assign a user if there is a user to be assigned based on request/authorization
 // 1. look at auth/req header and if it wasn't set we can't set user just next out of this block
 // 2. we have have auth, so check if prefix of request starts with bearer, if so then take the token off it and assign it to token.
@@ -68,10 +78,10 @@ apiRouter.use("/users", usersRouter);
 apiRouter.use("/products", productsRouter);
 
 //router to /api/carts
-apiRouter.use("/carts", cartsRouter)
+apiRouter.use("/carts", cartsRouter);
 
 //router to /api/admin
-apiRouter.use("/admin", adminRouter)
+apiRouter.use("/admin", adminRouter);
 
 //*******************  GENERIC ERROR HANDLER ***********************
 // whenever next function gets called in apiRouter and its children with an object in it (not empty like next()), it comes here and sends that error response
@@ -92,12 +102,6 @@ module.exports = apiRouter;
 // apiRouter.get('/', (req, res, next) => {
 //   res.send({
 //     message: 'API is under construction!',
-//   });
-// });
-
-// apiRouter.get('/health', (req, res, next) => {
-//   res.send({
-//     healthy: true,
 //   });
 // });
 

@@ -84,6 +84,7 @@ const Pucks = (props) => {
                     )}
 
                     <button
+                      id="moreinfo-btn"
                       className="prod-btn"
                       onClick={() =>
                         getSingleProduct(product.id, setSelectedProduct)

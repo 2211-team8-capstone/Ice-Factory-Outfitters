@@ -1,14 +1,16 @@
-import axios from "axios";
-
-export async function getAPIHealth() {
+export const getAPIHealth = async () => {
   try {
-    const { data } = await axios.get("/api/health");
+    const data = await fetch("http://localhost:4001/api/health", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     return data;
   } catch (err) {
     console.error(err);
     return { healthy: false };
   }
-}
+};
 
 export const registerUser = async (email, password) => {
   try {
@@ -175,6 +177,44 @@ export const editUser = async (
 };
 
 // ***************************** ALL PRODUCTS FUNCTIONS **************************
+
+export const createProduct = async (productToAdd) => {
+
+  const { category,
+    name,
+    description,
+    price,
+    size,
+    color,
+    image } = productToAdd
+  console.log("prodtest", name)
+  try {
+    const response = await fetch("http://localhost:4001/api/products/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        category,
+        name,
+        description,
+        price,
+        size,
+        color,
+        image,
+      }),
+    });
+
+    const result = await response.json();
+    const productID = result.product.id;
+    console.log(result);
+    console.log("this is the product ID", productID);
+
+    return result;
+  } catch (error) {
+    console.error("Error adding product", error);
+  }
+};
 
 export const getAllProducts = async () => {
   try {

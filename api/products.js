@@ -43,6 +43,42 @@ productsRouter.get("/:productid", async (req, res, next) => {
   }
 });
 
+productsRouter.post("/add", async (req, res, next) => {
+  const { category, name, description, price, quantity, size, color, image } = req.body;
+  //   console.log("AAAAAAAA", email);
+
+  try {
+    const existingProductCheck = await getProductByName(name);
+    // console.log("CDCDCCDCDDC", existingProductCheck);
+
+    if (existingProductCheck) {
+      res.status(401);
+      next({
+        name: "ProductExistsError",
+        message: `Product ${name} is already a registered product.`,
+      });
+    } else {
+      // create user in the DB
+      const product = await createProduct({ category, name, description, price, quantity, size, color, image });
+      // if no product is created, send product add error
+      if (!product) {
+        next({
+          name: "ProductCreationError",
+          message: "There was a problem adding this product.",
+        });
+      } else {
+        // send success message and product in response
+        res.send({
+          message: "Product added!",
+          product,
+        });
+      }
+    }
+  } catch ({ name, message }) {
+    next({ name, message });
+  }
+});
+
 productsRouter.delete("/:productid", async (req, res, next) => {
   const { productid } = req.params;
   console.log("this is productID in deleteproductsrouter", productid);
