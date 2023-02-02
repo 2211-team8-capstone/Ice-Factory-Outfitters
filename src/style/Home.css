@@ -3,22 +3,22 @@
    margin-left: 50px;
    margin-right: 50px;
    padding: 0;
-   font-family: Arial, Helvetica, sans-serif, "Graduate";
-
+   font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .welcome {
-   color: Black;
+   color: #023047;
+   font-size: 2.5em;
    display: flex;
    justify-content: center;
+   font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .all-products-container {
    display: flex;
    flex-wrap: wrap;
    justify-content: center;
-   font-family: "Graduate", sans-serif;
-
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .home-products {
@@ -30,7 +30,7 @@
    width: 295px;
    justify-content: center;
    text-decoration: none;
-   font-family: "Graduate", sans-serif;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
   
  
 
@@ -46,11 +46,11 @@
    margin: 10px;
    padding: 30px;
    border-radius: 50px;
-   width: 295px;
+   width: 350px;
    display: flex;
    justify-content: center;
    text-decoration: none;
-   font-family: "Graduate", sans-serif;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .skates{
@@ -63,11 +63,11 @@
     margin: 10px;
     padding: 30px;
     border-radius: 50px;
-    width: 295px;
+    width: 350px;
     display: flex;
     justify-content: center;
     text-decoration: none;
-    font-family: "Graduate", sans-serif;
+     font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .pucks{
@@ -80,11 +80,11 @@
     margin: 10px;
     padding: 30px;
     border-radius: 50px;
-    width: 295px;
+    width: 350px;
     display: flex;
     justify-content: center;
     text-decoration: none;
-    font-family: "Graduate", sans-serif;
+     font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .helmets{
@@ -97,11 +97,11 @@
     margin: 10px;
     padding: 30px;
     border-radius: 50px;
-    width: 295px;
+    width: 350px;
     display: flex;
     justify-content: center;
     text-decoration: none;
-    font-family: "Graduate", sans-serif;
+     font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .protective-gear{
@@ -114,11 +114,11 @@
     margin: 10px;
     padding: 30px;
     border-radius: 50px;
-    width: 295px;
+    width: 350px;
     display: flex;
     justify-content: center;
     text-decoration: none;
-    font-family: "Graduate", sans-serif;
+     font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .goalie-gear{
@@ -131,11 +131,11 @@
     margin: 10px;
     padding: 30px;
     border-radius: 50px;
-    width: 295px;
+    width: 350px;
     display: flex;
     justify-content: center;
     text-decoration: none;
-    font-family: "Graduate", sans-serif;
+     font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .accessories{
@@ -148,11 +148,11 @@
     margin: 10px;
     padding: 30px;
     border-radius: 50px;
-    width: 295px;
+    width: 350px;
     display: flex;
     justify-content: center;
     text-decoration: none;
-    font-family: "Graduate", sans-serif;
+     font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .team-apparel{
@@ -165,11 +165,11 @@
     margin: 10px;
     padding: 30px;
     border-radius: 50px;
-    width: 295px;
+    width: 350px;
     display: flex;
     justify-content: center;
     text-decoration: none;
-    font-family: "Graduate", sans-serif;
+     font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 a:link {
    text-decoration: none;

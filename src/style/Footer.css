@@ -2,7 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .footer {
@@ -19,10 +19,29 @@
     bottom: 0;
 }
 
-/* .foot-links {
-    margin: 10px;
-    color: white;
-} */
+.contact-us {
+    display: flex;
+    justify-content: center;
+    width: 20vw;
+    border: solid #023047;
+    padding: 5px;
+    border-radius: 15px;
+    background-color: #1d849e;
+    color: whitesmoke;
+    width: 350px;
+}
+
+.admin-login-form{
+    display: flex;
+    justify-content: center;
+    width: 20vw;
+    border: solid #023047;
+    padding: 5px;
+    border-radius: 15px;
+    background-color: #1d849e;
+    color: whitesmoke;
+    width: 350px;
+}
 
 .foot-links:hover {
     color: #fb8500;

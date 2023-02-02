@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../style/AllUsers.css";
-import { getAllUsers, getSingleUser } from "../api";
-import { deleteSingleUser } from "../api/admin";
-import SingleUser from "./SingleUser";
 
 const AllUsersList = (props) => {
   const { users, setUsers, selectedUser } = props;
