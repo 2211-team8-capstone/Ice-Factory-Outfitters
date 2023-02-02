@@ -2,23 +2,21 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-
 }
 
 .header {
-    background-color: white;
-    /* background-color: #219ebc; */
-    /* background-color: #023047; */
-    /* border: 10px #023047; */
+    background: url(https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fb40b656c-341d-4a14-8bf7-7cf5e37a914f_1200x630.jpeg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     display: flex;
     justify-content: space-around;
     align-items: flex-end;
-    /* margin-bottom: 10px; */
     padding-top: 10px;
     padding-bottom: 10px;
-    margin-left: 20px;
-    margin-right: 20px;
-
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 .delete-later {
@@ -48,11 +46,19 @@
 }
 
 .search-bar button {
-    margin-left: 8px;
     padding: 5px;
     border: 1px solid;
     border-radius: 5px;
     height: 30px;
     font-size: 18px;
+}
 
+.logged-in{
+    color: whitesmoke;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black ;
+}
+
+.cart{
+    color: whitesmoke;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black ;
 }

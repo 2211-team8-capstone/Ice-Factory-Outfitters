@@ -60,6 +60,7 @@ const Profile = (props) => {
           <div className="user-profile">
             <h3 className="title">
               Ice Factory Member
+              <hr></hr>
             </h3>
                 <div key={user?.id}>
                   <div>First Name: {user?.firstname}</div>
@@ -77,6 +78,7 @@ const Profile = (props) => {
           <div className="update-profile">
             <div className="update">
               <h3 className="title">Update Profile</h3>
+              <hr></hr>
               <form
                 className="update-form"
               ></form>
@@ -209,6 +211,7 @@ const Profile = (props) => {
         <div className="user-profile-container-right">
           <div className="order-history">
             <h3 className="title">Order History</h3>
+            <hr></hr>
           </div>
           <br></br>
         </div>

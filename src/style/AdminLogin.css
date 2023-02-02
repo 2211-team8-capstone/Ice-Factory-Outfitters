@@ -1,18 +1,3 @@
-/* .admin-title {
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-} */
-
-/* .admin-login-form {
-    display: flex;
-    flex-direction: column;
-    text-align: right;
-    align-items: center;
-    justify-content: center;
-    text-align: right;
-
-} */
 
 .admin-login {
     border: solid #023047;
@@ -28,6 +13,7 @@
     margin-bottom: 100px;
     position: relative;
     justify-content: center;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .admin-login label {
