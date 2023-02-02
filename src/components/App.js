@@ -242,7 +242,7 @@ const App = () => {
             path="/profile"
             element={
               <Profile 
-                setToken={setToken} 
+                token={token} 
                 user={user}
                 setUser={setUser}
                 email={email}

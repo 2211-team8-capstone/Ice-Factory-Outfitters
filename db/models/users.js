@@ -140,7 +140,7 @@ try {
   RETURNING *;
   `, Object.values(fields)
   );
-
+console.log("USERS DB users", users)
   return users;
 } catch (error) {
   console.error("Error updating user profile");

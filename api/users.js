@@ -8,6 +8,7 @@ const {
   getUserByEmail,
   createUser,
   getUser,
+  updateUser,
 } = require("../db/models/users");
 
 usersRouter.use((req, res, next) => {
@@ -179,11 +180,12 @@ usersRouter.patch("/:userid", async (req,res, next) => {
   if (userZip) {
     fields.name = userZip;
   }
+  console.log("USERS fields", fields)
 
 try {
   const result = await updateUser({ userid, ...fields });  
 
-  res.send({ result, })
+  res.send(result)
 } catch (error) {
   next(error);
 }

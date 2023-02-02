@@ -7,22 +7,23 @@ const Profile = (props) => {
   const { token, user, setUser, 
           email, setEmail,
         } = props;
-  const [userEmail, setUserEmail] = useState("");
-  const [userPassword, setUserPassword] = useState("");
-  const [userFirstName, setUserFirstName] = useState("");
-  const [userLastName, setUserLastName] = useState("");
-  const [userPhone, setUserPhone] = useState("");
-  const [userAddressNum, setUserAddressNum] = useState("");
-  const [userAddressSt, setUserAddressSt] = useState("");
-  const [userCity, setUserCity] = useState("");
-  const [userState, setUserState] = useState("");
-  const [userZip, setUserZip] = useState("");
-  const [stateError, setStateError] = useState("");
+  const [userEmail, setUserEmail] = useState('');
+  const [userPassword, setUserPassword] = useState('');
+  const [userFirstName, setUserFirstName] = useState('');
+  const [userLastName, setUserLastName] = useState('');
+  const [userPhone, setUserPhone] = useState('');
+  const [userAddressNum, setUserAddressNum] = useState('');
+  const [userAddressSt, setUserAddressSt] = useState('');
+  const [userCity, setUserCity] = useState('');
+  const [userState, setUserState] = useState('');
+  const [userZip, setUserZip] = useState('');
+  const [stateError, setStateError] = useState();
   const navigate = useNavigate();
   const [selectedUser, setSelectedUser] = useState([]);
+  const [userId, setUserId] = useState(localStorage.getItem("userId"));
+  // console.log("PROFILE UserId", userId)
   
   const handleEditUser = async (
-    userId,
     userEmail,
     userPassword,
     userFirstName,
@@ -48,15 +49,9 @@ const Profile = (props) => {
       userState,
       userZip,
     );
-
-  //   if (response && !response.error) {
-  //     const getUser = async () => {
-  //       const data = await fetchMe();
-  //       setUser(data);
-  //     };
-  //     getUser()
-  //   }
-  };
+    console.log("PROFILE response", response)
+    return response;
+  }  
 
   return (
     <>
@@ -78,34 +73,14 @@ const Profile = (props) => {
                   <div>Zip: {user?.zip}</div>
                 </div>
           </div>
-
-          <br></br>
-
+        <br></br>
           <div className="update-profile">
             <div className="update">
               <h3 className="title">Update Profile</h3>
-              {/* <form
+              <form
                 className="update-form"
-                onSubmit={async (e) => {
-                  if (!emailTwo || !passwordTwo) {
-                    e.preventDefault();
-                    const errorMessage = "Please enter a valid Email and Password";
-                    setStateError(errorMessage);
-                  } else {
-                    try {
-                      e.preventDefault();
-
-                      localStorage.setItem("email", emailTwo);
-                      const token = await registerUser(emailTwo, passwordTwo);
-
-                      props.setToken(token);
-                      localStorage.setItem("token", token);
-                    } catch (error) {
-                      console.error(error);
-                    }
-                  }
-                }}
-              > */}
+              ></form>
+              {/* onSubmit={async (e)} */}
               <div>
                   <label htmlFor="userFirstName">First Name: </label>
                   <input
@@ -142,7 +117,7 @@ const Profile = (props) => {
                     value={userPassword}
                     type="text"
                     placeholder="  Password"
-                    minLength={6}
+                    minLength={4}
                     onChange={(e) => setUserPassword(e.target.value)}
                   ></input>
                 </div>
@@ -207,7 +182,7 @@ const Profile = (props) => {
                   ></input>
                 </div>
                 <div>
-                  <button type="submit"
+                  <button type="Submit"
                     className="updateUserButton"
                     onClick={() => {
                       handleEditUser(
@@ -241,5 +216,6 @@ const Profile = (props) => {
     </>
   );
 };
+
 
 export default Profile;

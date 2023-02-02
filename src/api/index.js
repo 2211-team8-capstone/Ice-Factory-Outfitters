@@ -106,9 +106,10 @@ export const editUser = async (
   userState,
   userZip,
 ) => {
+  console.log("INDEX userId", userId)
   try {
     const response = await fetch(
-      `http://localhost:4001/api/users/profile/${userId}`, {
+      `http://localhost:4001/api/users/${userId}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -132,7 +133,7 @@ export const editUser = async (
 
     return data;
   } catch (error) {
-    console,error(error);  
+    console.error(error);  
   }
 };
 
