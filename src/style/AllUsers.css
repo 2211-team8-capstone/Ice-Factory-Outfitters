@@ -1,30 +1,46 @@
-.admin-profile-container {
-    /* max-width: fit-content; */
+/* .admin-profile-container {
+    max-width: fit-content;
     display: flex;
     margin: 30px;
     flex-wrap: wrap;
     margin-bottom: 30px;
     justify-content: center;
 
+} */
+
+.all-users-container {
+    align-items: center;
+    justify-content: center;
 }
 
-.admin-profile-container-left {
+.single-user-container {
+    display: "flex";
+    flex-direction: "row";
+    margin: "0px 10px";
+    justify-content: "space-evenly";
+}
+
+.user-delete button {
+    margin: "0px 10px";
+}
+
+/* .admin-profile-container-left {
     float: left;
     padding: 10px;
-}
+} */
 
-.admin-profile {
+/* .admin-profile {
     border: solid #023047;
     padding: 20px;
     border-radius: 15px;
     background-color: #1d849e;
     color: whitesmoke;
     width: 350px;
-    /* margin-bottom: 20px; */
-}
+    
+} */
 
 
-.update-admin-profile {
+/* .update-admin-profile {
     border: solid #023047;
     padding: 20px;
     border-radius: 15px;
@@ -36,12 +52,12 @@
     align-items: center;
     justify-content: center;
 
-    /* margin-bottom: 20px; */
-}
+    
+} */
 
-.admin-profile-container h3 {
+/* .admin-profile-container h3 {
     text-align: center;
-}
+} */
 
 /* .user-profile label {
     display: inline-block;
@@ -50,26 +66,26 @@
     justify-content: center;
 } */
 
-.admin-update-profile label {
+/* .admin-update-profile label {
     display: inline-block;
     text-align: right;
     display: inline-flex;
     text-align: right;
     align-items: right;
     justify-content: right;
-}
+} */
 
-.admin-update-profile input {
+/* .admin-update-profile input {
     margin: 3px 0px 3px 10px;
 
-}
+} */
 
-.admin-profile-container-right {
+/* .admin-profile-container-right {
     float: left;
     padding: 10px;
-}
+} */
 
-.admin-order-history {
+/* .admin-order-history {
     float: right;
     border: solid #023047;
     padding: 20px;
@@ -81,9 +97,9 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
-}
+} */
 
-.admin-add-products {
+/* .admin-add-products {
     float: right;
     border: solid #023047;
     padding: 20px;
@@ -96,9 +112,9 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
-}
+} */
 
-.admin-users {
+/* .admin-users {
     float: right;
     border: solid #023047;
     padding: 20px;
@@ -110,7 +126,7 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
-}
+} */
 
 /* .update {
     display: flex;

@@ -1,6 +1,6 @@
 const client = require("./client");
 const { getAllUsers, createUser } = require("./models/users");
-const { getAllAdmins, createAdmin } = require("./models/admin");
+const { getAllAdmins, createAdmin } = require("./models/admins");
 const { createProduct, getAllProducts } = require("./models/products");
 const {
   addProductToCartItems,
@@ -37,7 +37,8 @@ async function createTables() {
     CREATE TABLE admins (
       id SERIAL PRIMARY KEY,
       adminEmail VARCHAR(255) UNIQUE NOT NULL,
-      adminPassword VARCHAR(255) NOT NULL
+      adminPassword VARCHAR(255) NOT NULL,
+      "isAdmin" BOOLEAN DEFAULT false
     );
 
     CREATE TABLE users (
@@ -93,6 +94,7 @@ async function createInitialAdmins() {
     const adminDefault = await createAdmin({
       adminEmail: "admin@email.com",
       adminPassword: "passwordadmin",
+      isAdmin: true
     });
 
     console.log("Finished creating admin!");

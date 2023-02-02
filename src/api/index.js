@@ -1,23 +1,5 @@
 import axios from "axios";
 
-// this file holds your frontend network request adapters
-// think about each function as a service that provides data
-// to your React UI through AJAX calls
-
-// for example, if we need to display a list of users
-// we'd probably want to define a getUsers service like this:
-
-/* 
-  export async function getUsers() {
-    try {
-      const { data: users } = await axios.get('/api/users')
-      return users;
-    } catch(err) {
-      console.error(err)
-    }
-  }
-*/
-
 export async function getAPIHealth() {
   try {
     const { data } = await axios.get("/api/health");
@@ -29,7 +11,6 @@ export async function getAPIHealth() {
 }
 
 export const registerUser = async (email, password) => {
-  // console.log("REGGGGGG", email);
   try {
     const response = await fetch("http://localhost:4001/api/users/register", {
       method: "POST",
@@ -49,17 +30,12 @@ export const registerUser = async (email, password) => {
     console.log("this is the registerUser token", token);
 
     return result;
-
-    // const data = await response.json();
-    // console.log("this is the registerUser data.token", data.token);
-    // return data;
   } catch (error) {
     console.error("Error registering user", error);
   }
 };
 
 export const loginUser = async (email, password) => {
-  // console.log("YOOOOOOOOOOOOOO", email);
   try {
     const response = await fetch("http://localhost:4001/api/users/login", {
       method: "POST",
@@ -69,26 +45,6 @@ export const loginUser = async (email, password) => {
       body: JSON.stringify({
         email,
         password,
-      }),
-    });
-    const adminResult = await response.json();
-    console.log("LOGIN", adminResult);
-    return adminResult;
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-export const loginAdmin = async (adminEmail, adminPassword) => {
-  try {
-    const response = await fetch("http://localhost:4001/api/admin/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        adminEmail,
-        adminPassword,
       }),
     });
     const result = await response.json();
@@ -102,20 +58,121 @@ export const loginAdmin = async (adminEmail, adminPassword) => {
 export const fetchMe = async (token, email) => {
   // console.log("EMAIL", email)
   try {
-    const response = await fetch(`http://localhost:4001/api/users/profile/${email}`, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
-      },
-    });
+    const response = await fetch(
+      `http://localhost:4001/api/users/profile/${email}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
     const data = await response.json();
-    console.log("This is the fetchMe data", data)
+    // console.log("This is the fetchMe data", data);
     return data;
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
-}
+};
+
+export const getAllUsers = async () => {
+  try {
+    const response = await fetch("http://localhost:4001/api/users", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+
+    return data.users;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+// ***************************** ALL ADMIN FUNCTIONS **************************
+export const loginAdmin = async (adminEmail, adminPassword, isAdmin) => {
+  try {
+    const response = await fetch("http://localhost:4001/api/admin/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        adminEmail,
+        adminPassword,
+        isAdmin,
+      }),
+    });
+    const adminResult = await response.json();
+    console.log("LOGIN", adminResult);
+    return adminResult;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getUsersList = async () => {
+  try {
+    const response = await fetch(`http://localhost:4001/api/users`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const data = await response.json();
+    console.log("This is the fetchMe data", data);
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const editUser = async (
+  token,
+  userId,
+  userEmail,
+  userPassword,
+  userFirstName,
+  userLastName,
+  userPhone,
+  userAddressNum,
+  userAddressSt,
+  userCity,
+  userState,
+  userZip
+) => {
+  console.log("INDEX userId", userId);
+  const parseZip = parseInt(userZip);
+  const parseAddressNum = parseInt(userAddressNum);
+  try {
+    const response = await fetch(`http://localhost:4001/api/users/${userId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        userEmail,
+        userPassword,
+        userFirstName,
+        userLastName,
+        userPhone,
+        parseAddressNum,
+        userAddressSt,
+        userCity,
+        userState,
+        parseZip,
+      }),
+    });
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 // ***************************** ALL PRODUCTS FUNCTIONS **************************
 
@@ -127,7 +184,6 @@ export const getAllProducts = async () => {
       },
     });
     const data = await response.json();
-    // console.log("UUUUUUUUU", data.products);
 
     return data.products;
   } catch (error) {
@@ -146,15 +202,13 @@ export const getSingleProduct = async (productID, setSelectedProduct) => {
       }
     );
     const data = await response.json();
-
-    // set the state of selected product to the single product received form the call
     setSelectedProduct(data.product);
+
     return data.product;
   } catch (error) {
     console.error(error);
   }
 };
-
 
 // ************************ Cart Functions Below *******************************
 
@@ -187,7 +241,6 @@ export const getCartByCartId = async (cartId) => {
       },
     });
     const data = await response.json();
-    // console.log("getCARTBYID API", data);
 
     return data;
   } catch (error) {
@@ -269,7 +322,7 @@ export const updateProductQty = async (newQuantity, cartItemsId, token) => {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         cartItemsId,
@@ -282,6 +335,6 @@ export const updateProductQty = async (newQuantity, cartItemsId, token) => {
 
     return data;
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
-}
+};

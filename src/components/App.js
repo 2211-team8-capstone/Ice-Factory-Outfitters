@@ -3,7 +3,13 @@ import { Route, Routes } from "react-router-dom";
 // getAPIHealth is defined in our axios-services directory index.js
 // you can think of that directory as a collection of api adapters
 // where each adapter fetches specific info from our express server's /api route
-import { getAllProducts, getAPIHealth, getCartByCartId } from "../api";
+import {
+  getAllProducts,
+  getAPIHealth,
+  getCartByCartId,
+  fetchMe,
+  getAllUsers,
+} from "../api";
 import LoginRegister from "./LoginRegister";
 import Home from "./Home";
 import Header from "./Header";
@@ -24,7 +30,7 @@ import Cart from "./Cart";
 import AddProducts from "./AddProducts";
 import AdminLogin from "./AdminLogin";
 import AdminProfile from "./Admin";
-import { fetchMe } from "../api";
+import AllUsersList from "./AllUsers";
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState("");
@@ -35,8 +41,12 @@ const App = () => {
   const [userCart, setUserCart] = useState([]);
   const [cartPriceTotal, setCartPriceTotal] = useState(0);
   const [editSelected, setEditSelected] = useState(false);
-  const [cartRender, setCartRender] = useState(false);  
+  const [users, setUsers] = useState([]);
+  const [cartRender, setCartRender] = useState(false);
   const [email, setEmail] = useState(localStorage.getItem("email"));
+  const [firstName, setFirstName] = useState([]);
+  const [lastName, setLastName] = useState([]);
+  const [adminAccess, setAdminAccess] = useState(false);
 
   const cartId = localStorage.getItem("cart#");
 
@@ -72,7 +82,18 @@ const App = () => {
     }
   }, []);
 
-  // // update cartTotal everytime cart adds/deleetes/changes item
+
+  useEffect(() => {
+    if (token) {
+      const getUsersList = async () => {
+        const data = await getAllUsers();
+        setUsers(data);
+      };
+      getUsersList();
+    }
+  }, []);
+
+  // update cartTotal everytime cart adds/deleetes item
   useEffect(() => {
     const findSum = (array) => {
       let sum = 0;
@@ -88,9 +109,15 @@ const App = () => {
     setCartPriceTotal(totalCartPrice);
   }, [userCart]);
 
+  // console.log("testusers", users);
   return (
     <>
-      <Header setToken={setToken} token={token} setUserCart={setUserCart} />
+      <Header
+        setToken={setToken}
+        token={token}
+        setUserCart={setUserCart}
+        setAdminAccess={setAdminAccess}
+      />
       <NavBar setEditSelected={setEditSelected} />
       <div>
         <Routes>
@@ -100,14 +127,15 @@ const App = () => {
             element={
               <Sticks
                 products={products}
-                setSelectedProduct={setSelectedProduct}
-                selectedProduct={selectedProduct}
                 setProducts={setProducts}
+                selectedProduct={selectedProduct}
+                setSelectedProduct={setSelectedProduct}
                 token={token}
-                setEditSelected={setEditSelected}
                 editSelected={editSelected}
+                setEditSelected={setEditSelected}
                 cartRender={cartRender}
                 setCartRender={setCartRender}
+                adminAccess={adminAccess}
               />
             }
           ></Route>
@@ -124,6 +152,7 @@ const App = () => {
                 editSelected={editSelected}
                 cartRender={cartRender}
                 setCartRender={setCartRender}
+                adminAccess={adminAccess}
               />
             }
           ></Route>
@@ -140,6 +169,7 @@ const App = () => {
                 editSelected={editSelected}
                 cartRender={cartRender}
                 setCartRender={setCartRender}
+                adminAccess={adminAccess}
               />
             }
           ></Route>
@@ -157,6 +187,7 @@ const App = () => {
                 editSelected={editSelected}
                 cartRender={cartRender}
                 setCartRender={setCartRender}
+                adminAccess={adminAccess}
               />
             }
           ></Route>
@@ -173,6 +204,7 @@ const App = () => {
                 editSelected={editSelected}
                 cartRender={cartRender}
                 setCartRender={setCartRender}
+                adminAccess={adminAccess}
               />
             }
           ></Route>
@@ -189,6 +221,7 @@ const App = () => {
                 editSelected={editSelected}
                 cartRender={cartRender}
                 setCartRender={setCartRender}
+                adminAccess={adminAccess}
               />
             }
           ></Route>
@@ -205,6 +238,7 @@ const App = () => {
                 editSelected={editSelected}
                 cartRender={cartRender}
                 setCartRender={setCartRender}
+                adminAccess={adminAccess}
               />
             }
           ></Route>
@@ -221,6 +255,7 @@ const App = () => {
                 editSelected={editSelected}
                 cartRender={cartRender}
                 setCartRender={setCartRender}
+                adminAccess={adminAccess}
               />
             }
           ></Route>
@@ -237,12 +272,12 @@ const App = () => {
           <Route
             path="/profile"
             element={
-              <Profile 
-                setToken={setToken} 
+              <Profile
+                token={token}
                 user={user}
                 setUser={setUser}
-                setEmail={setEmail}
                 email={email}
+                setEmail={setEmail}
               />
             }
           ></Route>
@@ -262,11 +297,23 @@ const App = () => {
           ></Route>
           <Route path="/ContactUs" element={<ContactUs />}></Route>
           <Route path="/AddProducts" element={<AddProducts />}></Route>
-          <Route path="/AdminLogin" element={<AdminLogin />}></Route>
-          <Route path="/Admin" element={<AdminProfile />}></Route>
+          <Route
+            path="/AdminLogin"
+            element={
+              <AdminLogin setToken={setToken} setAdminAccess={setAdminAccess} />
+            }
+          ></Route>
+          <Route
+            path="/Admin"
+            element={<AdminProfile setToken={setToken} />}
+          ></Route>
+          <Route
+            path="/AllUsers"
+            element={<AllUsersList users={users} setUsers={setUsers} />}
+          ></Route>
         </Routes>
       </div>
-      <Footer />
+      <Footer token={token} setToken={setToken} />
     </>
   );
 };

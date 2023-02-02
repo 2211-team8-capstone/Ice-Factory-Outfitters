@@ -123,6 +123,7 @@ async function updateProduct({ productid, ...fields }) {
     return products;
   } catch (error) {
     console.error("Error updating product");
+    throw error;
   }
 }
 

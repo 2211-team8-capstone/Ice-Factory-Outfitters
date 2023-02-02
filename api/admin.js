@@ -7,10 +7,10 @@ const {
     getAllAdmins,
     getAdminByEmail,
     createAdmin,
-} = require("../db/models/admin");
+} = require("../db/models/admins");
 
 adminRouter.use((req, res, next) => {
-    console.log("A request is being made to /admin");
+    console.log("A request is being made to /admins");
 
     next();
 });
@@ -37,7 +37,7 @@ adminRouter.post("/register", async (req, res, next) => {
             });
         } else {
             // create user in the DB
-            const user = await createAdmin({ adminEmail, adminPassword });
+            const admin = await createAdmin({ adminEmail, adminPassword });
             // if no user is created, send user reg error
             if (!admin) {
                 next({
@@ -45,8 +45,8 @@ adminRouter.post("/register", async (req, res, next) => {
                     message: "There was a problem registering you. Please retry.",
                 });
             } else {
-                // admin was created, create adminToken
-                const adminToken = jwt.sign(
+                // admin was created, create token
+                const token = jwt.sign(
                     {
                         id: admin.id,
                         adminEmail,
@@ -56,10 +56,10 @@ adminRouter.post("/register", async (req, res, next) => {
                         expiresIn: "1w",
                     }
                 );
-                // send success message, adminToken, and user in response
+                // send success message, token, and user in response
                 res.send({
                     message: "Thank you for signing up!",
-                    adminToken,
+                    token,
                     admin,
                 });
             }
@@ -83,16 +83,17 @@ adminRouter.post("/login", async (req, res, next) => {
 
     try {
         const admin = await getAdminByEmail(adminEmail);
-        const hashedAdminPassword = admin.password;
+        console.log('testin', admin);
+        const hashedAdminPassword = admin.adminpassword;
 
         let adminPasswordsMatch = await bcrypt.compare(adminPassword, hashedAdminPassword);
-
+        console.log('test', adminPasswordsMatch)
         if (admin && adminPasswordsMatch) {
-            // create adminToken & return to admin
-            const adminToken = jwt.sign({ id: admin.id, adminEmail }, JWT_SECRET, {
+            // create token & return to admin
+            const token = jwt.sign({ id: admin.id, adminEmail }, JWT_SECRET, {
                 expiresIn: "1w",
             });
-            res.send({ message: "you're logged in!", adminToken, admin });
+            res.send({ message: "you're logged in!", token, admin });
         } else {
             next({
                 name: "IncorrectCredentialsError",
