@@ -72,7 +72,7 @@ const App = () => {
     }
   }, []);
 
-  // // update cartTotal everytime cart adds/deleetes item
+  // // update cartTotal everytime cart adds/deleetes/changes item
   useEffect(() => {
     const findSum = (array) => {
       let sum = 0;
