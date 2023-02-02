@@ -50,8 +50,6 @@ const App = () => {
 
   const cartId = localStorage.getItem("cart#");
 
-  console.log("APIIIII", APIHealth);
-
   useEffect(() => {
     const getAPIStatus = async () => {
       const healthy = await getAPIHealth();
