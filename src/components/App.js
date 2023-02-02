@@ -50,8 +50,15 @@ const App = () => {
 
   const cartId = localStorage.getItem("cart#");
 
+  console.log("APIIIII", APIHealth);
+
   useEffect(() => {
-    // const result = await getAllProducts
+    const getAPIStatus = async () => {
+      const healthy = await getAPIHealth();
+      setAPIHealth(healthy ? "api is up! :D" : "api is down :/");
+    };
+    getAPIStatus();
+
     const getProducts = async () => {
       const data = await getAllProducts();
       setProducts(data);
@@ -65,11 +72,6 @@ const App = () => {
     }
 
     getProducts();
-    // const getAPIStatus = async () => {
-    //   const { healthy } = await getAPIHealth();
-    //   setAPIHealth(healthy ? "api is up! :D" : "api is down :/");
-    // };
-    // getAPIStatus();
   }, [cartRender]);
 
   useEffect(() => {
@@ -81,7 +83,6 @@ const App = () => {
       getMe();
     }
   }, []);
-
 
   useEffect(() => {
     if (token) {

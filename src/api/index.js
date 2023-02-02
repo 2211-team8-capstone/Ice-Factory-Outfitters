@@ -1,14 +1,16 @@
-import axios from "axios";
-
-export async function getAPIHealth() {
+export const getAPIHealth = async () => {
   try {
-    const { data } = await axios.get("/api/health");
+    const data = await fetch("http://localhost:4001/api/health", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     return data;
   } catch (err) {
     console.error(err);
     return { healthy: false };
   }
-}
+};
 
 export const registerUser = async (email, password) => {
   try {
