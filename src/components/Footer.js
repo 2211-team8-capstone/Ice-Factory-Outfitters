@@ -28,7 +28,7 @@ const Footer = (props) => {
           </div>
         ) : (
           <div className="admin-logged-in">
-            <div className="admin-profile">
+            <div className="admin-page">
               <Link to={"/Admin"} className="foot-links">
                 Admin
               </Link>
