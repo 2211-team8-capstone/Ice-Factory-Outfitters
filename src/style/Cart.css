@@ -1,0 +1,140 @@
+.body {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    padding: 15px;
+}
+
+.cart-products-container {
+    display:flex;
+    flex-direction: column;
+    width: 60vw;
+}
+
+.order-summary-body {
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    padding-left: 35px;
+    padding-right: 35px;
+
+}
+
+#ordersumtitle {
+    text-align: center;
+    margin-top: 20px;
+    border-bottom: solid;
+    margin-left: 60px;
+    margin-right: 60px;
+    padding-bottom:5px;
+}
+
+.order-summary-container {
+margin-top: 10px;
+background-color: #1d849e;
+color: whitesmoke;
+border-radius: 15px;
+}
+
+.order-details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 40px;
+    padding-top: 10px;
+}
+
+.order-details-results {
+    display:flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.item {
+    margin-top:8px;
+}
+
+.order-total-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 40px;
+    border-top: solid;
+    margin-left: 60px;
+    margin-right: 60px;
+}
+
+.cart-single-product {
+    display: flex; 
+    flex-direction: row;
+    width: 60vw;
+    padding: 10px;
+    margin-top: 10px;
+    justify-content: space-between;
+    background-color: #1d849e;
+    text-align: center;
+    border-radius: 15px;
+    color: whitesmoke;
+}
+
+.checkout-btn {
+    background-color: #3caa61;
+    color: white;
+    font-size: large;
+    font-weight: bold;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 80%;
+    text-align: center;
+    opacity: 0.9;
+    border-radius: 5px;
+    align-self: center;
+    margin-top: 30px;
+};
+
+.price {
+    margin-top: 10px;
+}
+
+.description {
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+.cart-product-thumbnail {
+    margin-top: 5px;
+    margin-left: 5px;
+    border-radius: 5px;
+    width: 250px;
+    height: 250px;
+    object-fit: contain;
+}
+
+.remove-btn {
+        background-color: #be3c43;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 50%;
+        max-width: 200px;
+        opacity: 0.9;
+        border-radius: 5px;
+}
+
+.quantity-field {
+    width: 50%;
+    text-align: center;
+    padding: 10px;
+    max-width: 125px;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 8px;
+}

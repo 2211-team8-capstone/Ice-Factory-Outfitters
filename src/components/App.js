@@ -82,6 +82,7 @@ const App = () => {
     }
   }, []);
 
+
   useEffect(() => {
     if (token) {
       const getUsersList = async () => {
@@ -92,7 +93,7 @@ const App = () => {
     }
   }, []);
 
-  // // update cartTotal everytime cart adds/deleetes item
+  // update cartTotal everytime cart adds/deleetes item
   useEffect(() => {
     const findSum = (array) => {
       let sum = 0;
