@@ -8,7 +8,8 @@ const AdminLogin = (props) => {
   const { setAdminAccess } = props;
   const [adminEmail, setAdminEmail] = useState("");
   const [adminPassword, setAdminPassword] = useState("");
-  const [stateError, setStateError] = useState("");
+  const [isAdmin, setIsAdmin] = useState("");
+  const [stateAdminError, setStateAdminError] = useState("");
   const navigate = useNavigate();
 
   return (
@@ -23,16 +24,20 @@ const AdminLogin = (props) => {
                 e.preventDefault();
                 const errorMessage =
                   "Please enter a valid Admin Email and Admin Password";
-                setStateError(errorMessage);
+                setStateAdminError(errorMessage);
               } else {
                 try {
                   e.preventDefault();
                   localStorage.setItem("adminEmail", adminEmail);
-                  const result = await loginAdmin(adminEmail, adminPassword);
-                  console.log("BBBBBK", result);
+                  const result = await loginAdmin(
+                    adminEmail,
+                    adminPassword,
+                    isAdmin
+                  );
+                  //   console.log("BBBBBK", result);
 
                   const token = result.token;
-                  console.log("this is token in reg user", token);
+                  //   console.log("this is token in reg user", token);
                   props.setToken(token);
                   localStorage.setItem("token", token);
                   if (token) {
@@ -40,8 +45,11 @@ const AdminLogin = (props) => {
                   }
 
                   const adminId = result.admin.id;
-                  console.log("this is adminId in reg admin", adminId);
+                  //   console.log("this is adminId in reg admin", adminId);
                   localStorage.setItem("adminId", adminId);
+
+                  const isAdminTrue = result.admin.isAdmin;
+                  localStorage.setItem("isAdmin", isAdminTrue);
 
                   // const cart = await getCartIdByUserId(adminUserId, token);
                   // console.log(
@@ -50,7 +58,7 @@ const AdminLogin = (props) => {
                   // );
                   // localStorage.setItem("cart#", cart.id);
 
-                  navigate("/");
+                  navigate("/Admin");
                 } catch (error) {
                   console.error(error);
                 }
@@ -79,7 +87,7 @@ const AdminLogin = (props) => {
             </div>
             <div>
               <button type="Submit">Admin Sign In</button>
-              {stateError ? <h3>{stateError}</h3> : ""}
+              {stateAdminError ? <h3>{stateAdminError}</h3> : ""}
             </div>
           </form>
         </div>

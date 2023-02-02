@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 export async function getAPIHealth() {
   try {
     const { data } = await axios.get("/api/health");
@@ -56,7 +55,44 @@ export const loginUser = async (email, password) => {
   }
 };
 
-export const loginAdmin = async (adminEmail, adminPassword) => {
+export const fetchMe = async (token, email) => {
+  // console.log("EMAIL", email)
+  try {
+    const response = await fetch(
+      `http://localhost:4001/api/users/profile/${email}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    const data = await response.json();
+    console.log("This is the fetchMe data", data);
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getAllUsers = async () => {
+  try {
+    const response = await fetch("http://localhost:4001/api/users", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+
+    return data.users;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+// ***************************** ALL ADMIN FUNCTIONS **************************
+export const loginAdmin = async (adminEmail, adminPassword, isAdmin) => {
   try {
     const response = await fetch("http://localhost:4001/api/admin/login", {
       method: "POST",
@@ -66,31 +102,32 @@ export const loginAdmin = async (adminEmail, adminPassword) => {
       body: JSON.stringify({
         adminEmail,
         adminPassword,
+        isAdmin,
       }),
     });
-    const result = await response.json();
-    console.log("LOGIN", result);
-    return result;
+    const adminResult = await response.json();
+    console.log("LOGIN", adminResult);
+    return adminResult;
   } catch (error) {
     console.error(error);
   }
 };
 
-export const fetchMe = async (token, email) => {
+export const getUsersList = async () => {
   try {
-    const response = await fetch(`http://localhost:4001/api/users/profile/${email}`, {
+    const response = await fetch(`http://localhost:4001/api/users`, {
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
     });
     const data = await response.json();
-    
+    console.log("This is the fetchMe data", data);
     return data;
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
-}
+};
 
 // ***************************** ALL PRODUCTS FUNCTIONS **************************
 
@@ -127,7 +164,6 @@ export const getSingleProduct = async (productID, setSelectedProduct) => {
     console.error(error);
   }
 };
-
 
 // ************************ Cart Functions Below *******************************
 
@@ -188,7 +224,6 @@ export const getCartIdByUserId = async (userId, token) => {
 };
 
 export const addProductToCart = async (productId, cartId, quantity, token) => {
-
   try {
     const response = await fetch(
       `http://localhost:4001/api/carts/addprod/${cartId}`,
@@ -196,7 +231,7 @@ export const addProductToCart = async (productId, cartId, quantity, token) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-         "Authorization": `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
           productId,
@@ -242,7 +277,7 @@ export const updateProductQty = async (newQuantity, cartItemsId, token) => {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         cartItemsId,
@@ -255,6 +290,6 @@ export const updateProductQty = async (newQuantity, cartItemsId, token) => {
 
     return data;
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
-}
+};

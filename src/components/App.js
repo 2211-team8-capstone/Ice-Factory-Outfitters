@@ -26,6 +26,7 @@ import AdminLogin from "./AdminLogin";
 import AdminProfile from "./Admin";
 import AllUsersList from "./AllUsers";
 import { fetchMe } from "../api";
+import { getAllUsers } from "../api";
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState("");
@@ -39,6 +40,8 @@ const App = () => {
   const [users, setUsers] = useState([]);
   const [cartRender, setCartRender] = useState(false);
   const [email, setEmail] = useState(localStorage.getItem("email"));
+  const [firstName, setFirstName] = useState([]);
+  const [lastName, setLastName] = useState([]);
   const [adminAccess, setAdminAccess] = useState(false);
 
   const cartId = localStorage.getItem("cart#");
@@ -75,6 +78,16 @@ const App = () => {
     }
   }, []);
 
+  useEffect(() => {
+    if (token) {
+      const getUsersList = async () => {
+        const data = await getAllUsers();
+        setUsers(data);
+      };
+      getUsersList();
+    }
+  }, []);
+
   // // update cartTotal everytime cart adds/deleetes item
   useEffect(() => {
     const findSum = (array) => {
@@ -91,6 +104,7 @@ const App = () => {
     setCartPriceTotal(totalCartPrice);
   }, [userCart]);
 
+  console.log("testusers", users);
   return (
     <>
       <Header
@@ -294,7 +308,7 @@ const App = () => {
           ></Route>
         </Routes>
       </div>
-      <Footer />
+      <Footer token={token} setToken={setToken} />
     </>
   );
 };
