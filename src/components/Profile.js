@@ -1,25 +1,57 @@
 import React, { useState, useEffect } from "react";
+import { editUser, fetchMe } from "../api/index";
 import { Link, useNavigate } from "react-router-dom";
-import { loginUser, registerUser, fetchMe } from "../api";
 import "../style/Profile.css";
 
 const Profile = (props) => {
-  const { token, user, setUser, email, setEmail } = props;
-  const [emailTwo, setEmailTwo] = useState("");
-  const [passwordTwo, setPasswordTwo] = useState("");
-
-  const [nameFirst, setNameFirst] = useState("");
-  const [nameLast, setNameLast] = useState("");
-  const [addressStreet, setaddressStreet] = useState("");
-  const [addressStreet2, setaddressStreet2] = useState("");
-  const [addressCity, setaddressCity] = useState("");
-  const [addressState, setaddressState] = useState("");
-  const [addressZip, setaddressZip] = useState("");
-
-  const [stateError, setStateError] = useState("");
-  // const [token, setToken] = useState("");
+  const { token, user, setUser, 
+          email, setEmail,
+        } = props;
+  const [userEmail, setUserEmail] = useState('');
+  const [userPassword, setUserPassword] = useState('');
+  const [userFirstName, setUserFirstName] = useState('');
+  const [userLastName, setUserLastName] = useState('');
+  const [userPhone, setUserPhone] = useState('');
+  const [userAddressNum, setUserAddressNum] = useState('');
+  const [userAddressSt, setUserAddressSt] = useState('');
+  const [userCity, setUserCity] = useState('');
+  const [userState, setUserState] = useState('');
+  const [userZip, setUserZip] = useState('');
+  const [stateError, setStateError] = useState();
   const navigate = useNavigate();
   const [selectedUser, setSelectedUser] = useState([]);
+  const [userId, setUserId] = useState(localStorage.getItem("userId"));
+  // console.log("PROFILE UserId", userId)
+  
+  const handleEditUser = async (
+    userEmail,
+    userPassword,
+    userFirstName,
+    userLastName,
+    userPhone,
+    userAddressNum,
+    userAddressSt,
+    userCity,
+    userState,
+    userZip,
+  ) => {
+    const response = await editUser(
+      token,
+      userId,
+      userEmail,
+      userPassword,
+      userFirstName,
+      userLastName,
+      userPhone,
+      userAddressNum,
+      userAddressSt,
+      userCity,
+      userState,
+      userZip,
+    );
+    console.log("PROFILE response", response)
+    return response;
+  }  
 
   return (
     <>
@@ -41,131 +73,136 @@ const Profile = (props) => {
                   <div>Zip: {user?.zip}</div>
                 </div>
           </div>
-
-          <br></br>
-
+        <br></br>
           <div className="update-profile">
             <div className="update">
               <h3 className="title">Update Profile</h3>
               <form
                 className="update-form"
-                onSubmit={async (e) => {
-                  if (!emailTwo || !passwordTwo) {
-                    e.preventDefault();
-                    const errorMessage = "Please enter a valid Email and Password";
-                    setStateError(errorMessage);
-                  } else {
-                    try {
-                      e.preventDefault();
-
-                      localStorage.setItem("email", emailTwo);
-                      const token = await registerUser(emailTwo, passwordTwo);
-
-                      props.setToken(token);
-                      localStorage.setItem("token", token);
-                    } catch (error) {
-                      console.error(error);
-                    }
-                  }
-                }}
-              >
-                <div>
-                  <label htmlFor="emailTwo">User Email: </label>
+              ></form>
+              {/* onSubmit={async (e)} */}
+              <div>
+                  <label htmlFor="userFirstName">First Name: </label>
                   <input
-                    value={emailTwo}
+                    value={userFirstName}
                     type="text"
-                    placeholder="Email Address"
-                    minLength={3}
-                    onChange={(e) => setEmailTwo(e.target.value)}
-                  ></input>
-                </div>
-                <div>
-                  <label htmlFor="passwordTwo">Password: </label>
-                  <input
-                    value={passwordTwo}
-                    type="password"
-                    placeholder="Password"
-                    minLength={3}
-                    onChange={(e) => setPasswordTwo(e.target.value)}
-                  ></input>
-                </div>
-                <div>
-                  <label htmlFor="nameFirst">First Name: </label>
-                  <input
-                    value={nameFirst}
-                    type="first-name"
-                    placeholder="First Name"
-                    minLength={2}
-                    onChange={(e) => setNameFirst(e.target.value)}
-                  ></input>
-                </div>
-                <div>
-                  <label htmlFor="nameLast">Last Name: </label>
-                  <input
-                    value={nameLast}
-                    type="last-name"
-                    placeholder="Last Name"
-                    minLength={2}
-                    onChange={(e) => setNameLast(e.target.value)}
-                  ></input>
-                </div>
-                <div>
-                  <label htmlFor="addressStreet">Address 1: </label>
-                  <input
-                    value={addressStreet}
-                    type="address-street"
-                    placeholder="Address 1"
+                    placeholder="  First Name"
                     minLength={1}
-                    onChange={(e) => setAddressStreet(e.target.value)}
+                    onChange={(e) => setUserFirstName(e.target.value)}
                   ></input>
                 </div>
                 <div>
-                  <label htmlFor="addressStreet2">Addreess 2: </label>
+                  <label htmlFor="userLastName">Last Name: </label>
                   <input
-                    value={addressStreet2}
-                    type="address-street-2"
-                    placeholder="Address 2"
-                    minLength={3}
-                    onChange={(e) => setAddressStreet2(e.target.value)}
+                    value={userLastName}
+                    type="text"
+                    placeholder="  Last Name"
+                    minLength={2}
+                    onChange={(e) => setUserLastName(e.target.value)}
                   ></input>
                 </div>
                 <div>
-                  <label htmlFor="addressCity">City: </label>
+                  <label htmlFor="userEmail">User Email: </label>
                   <input
-                    value={addressCity}
-                    type="address-city"
-                    placeholder="City"
+                    value={userEmail}
+                    type="text"
+                    placeholder="  Email Address"
                     minLength={3}
-                    onChange={(e) => setAddressCity(e.target.value)}
+                    onChange={(e) => setUserEmail(e.target.value)}
                   ></input>
                 </div>
                 <div>
-                  <label htmlFor="addressState">State: </label>
+                  <label htmlFor="userPassword">Password: </label>
                   <input
-                    value={addressState}
-                    type="address-state"
-                    placeholder="State"
-                    minLength={3}
-                    onChange={(e) => setAddressState(e.target.value)}
+                    value={userPassword}
+                    type="text"
+                    placeholder="  Password"
+                    minLength={4}
+                    onChange={(e) => setUserPassword(e.target.value)}
                   ></input>
                 </div>
                 <div>
-                  <label htmlFor="addressZip">Zip: </label>
+                  <label htmlFor="userPhone">Phone Number: </label>
                   <input
-                    value={addressZip}
-                    type="address-zip"
-                    placeholder="Zip"
-                    minLength={3}
-                    onChange={(e) => setAddressZip(e.target.value)}
+                    value={userPhone}
+                    type="text"
+                    placeholder="  Phone Number"
+                    minLength={7}
+                    onChange={(e) => setUserPhone(e.target.value)}
                   ></input>
                 </div>
                 <div>
-                  <button type="Update">Update</button>
+                  <label htmlFor="userAddressNum">Address 1: </label>
+                  <input
+                    value={userAddressNum}
+                    type="integer"
+                    placeholder="  Address 1"
+                    minLength={1}
+                    onChange={(e) => setUserAddressNum(e.target.value)}
+                  ></input>
+                </div>
+                <div>
+                  <label htmlFor="userAddressSt">Addreess 2: </label>
+                  <input
+                    value={userAddressSt}
+                    type="text"
+                    placeholder="  Address 2"
+                    minLength={2}
+                    onChange={(e) => setUserAddressSt(e.target.value)}
+                  ></input>
+                </div>
+                <div>
+                  <label htmlFor="userCity">City: </label>
+                  <input
+                    value={userCity}
+                    type="text"
+                    placeholder="  City"
+                    minLength={3}
+                    onChange={(e) => setUserCity(e.target.value)}
+                  ></input>
+                </div>
+                <div>
+                  <label htmlFor="userState">State: </label>
+                  <input
+                    value={userState}
+                    type="text"
+                    placeholder="  State"
+                    minLength={2}
+                    onChange={(e) => setUserState(e.target.value)}
+                  ></input>
+                </div>
+                <div>
+                  <label htmlFor="userZip">Zip: </label>
+                  <input
+                    value={userZip}
+                    type="integer"
+                    placeholder="  Zip"
+                    minLength={5}
+                    onChange={(e) => setUserZip(e.target.value)}
+                  ></input>
+                </div>
+                <div>
+                  <button type="Submit"
+                    className="updateUserButton"
+                    onClick={() => {
+                      handleEditUser(
+                        userEmail,
+                        userPassword,
+                        userFirstName,
+                        userLastName,
+                        userPhone,
+                        userAddressNum,
+                        userAddressSt,
+                        userCity,
+                        userState,
+                        userZip,
+                      );
+                    }}
+                  >
+                    Update Profile
+                  </button>
                 </div>
                 {stateError ? <h3>{stateError}</h3> : ""}
-
-
-              </form>
             </div>
           </div>
         </div>
@@ -179,5 +216,6 @@ const Profile = (props) => {
     </>
   );
 };
+
 
 export default Profile;

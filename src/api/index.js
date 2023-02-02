@@ -69,7 +69,7 @@ export const fetchMe = async (token, email) => {
     );
 
     const data = await response.json();
-    console.log("This is the fetchMe data", data);
+    // console.log("This is the fetchMe data", data);
     return data;
   } catch (error) {
     console.error(error);
@@ -123,6 +123,51 @@ export const getUsersList = async () => {
     });
     const data = await response.json();
     console.log("This is the fetchMe data", data);
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const editUser = async (
+  token,
+  userId,
+  userEmail,
+  userPassword,
+  userFirstName,
+  userLastName,
+  userPhone,
+  userAddressNum,
+  userAddressSt,
+  userCity,
+  userState,
+  userZip
+) => {
+  console.log("INDEX userId", userId);
+  const parseZip = parseInt(userZip);
+  const parseAddressNum = parseInt(userAddressNum);
+  try {
+    const response = await fetch(`http://localhost:4001/api/users/${userId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        userEmail,
+        userPassword,
+        userFirstName,
+        userLastName,
+        userPhone,
+        parseAddressNum,
+        userAddressSt,
+        userCity,
+        userState,
+        parseZip,
+      }),
+    });
+    const data = await response.json();
+
     return data;
   } catch (error) {
     console.error(error);
