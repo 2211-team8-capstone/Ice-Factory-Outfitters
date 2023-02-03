@@ -53,7 +53,7 @@ const App = () => {
     localStorage.getItem("isAdmin")
   );
 
-  console.log(" SELECTED", selectedProduct);
+  // console.log(" SELECTED", selectedProduct);
 
   const cartId = localStorage.getItem("cart#");
 
