@@ -24,7 +24,7 @@ const SearchBar = ({ searchQuery, setSearchQuery, onSubmit }) => {
                 type="text"
                 name="header-search"
                 id="header-search"
-                placeholder="Search the Factory"
+                placeholder="Search the Ice Factory"
             />
             <button type="submit">Search</button>
         </form>

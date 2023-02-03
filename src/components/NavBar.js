@@ -82,26 +82,16 @@ const NavBar = (props) => {
         >
           Team Apparel
         </Link>
+        <Link
+          to="/Search"
+          className="nav-bar-products"
+          onClick={() => {
+            setEditSelected(false);
+          }}
+        >
+          Search
+        </Link>
       </div>
-      {/* <div className="search-bar">
-        <form>
-          <input
-            type="search"
-            name="search"
-            placeholder="Search"
-            onChange={(e) => setSearch(e.target.value)}
-          />
-          <button
-            type="submit"
-            className="search-button"
-            onClick={(e) => {
-              handleSearch(e);
-            }}
-          >
-            Search for Products
-          </button>
-        </form>
-      </div> */}
     </>
   );
 };

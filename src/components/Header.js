@@ -1,19 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../style/Header.css";
-import SearchBar from "./SearchBar";
-import { getAllProducts } from "../api";
-
-const filterProducts = (products, query) => {
-  if (!query) {
-    return products;
-  }
-
-  return products.filter((products) => {
-    products.name = products.name.toLowerCase();
-    return products.name.includes(query);
-  });
-}
 
 const Header = (props) => {
   const {
@@ -30,11 +17,6 @@ const Header = (props) => {
 
   const navigate = useNavigate();
 
-  const { search } = window.location;
-  const query = new URLSearchParams(search).get('s');
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  const [searchQuery, setSearchQuery] = useState(query || '');
-
   return (
     <>
       <div className="header">
@@ -45,7 +27,7 @@ const Header = (props) => {
         </div>
         {/* <h2 className="delete-later">Ice Factory Outfitters</h2> */}
 
-        <div className="search-bar">
+        {/* <div className="search-bar">
           <form
             action="/"
             method="get"
@@ -73,7 +55,7 @@ const Header = (props) => {
               Search
             </button>
           </form>
-        </div>
+        </div> */}
 
 
 
