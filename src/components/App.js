@@ -324,6 +324,7 @@ const App = () => {
         token={token}
         setToken={setToken}
         setAdminAccess={setAdminAccess}
+        adminAccess={adminAccess}
       />
     </>
   );
