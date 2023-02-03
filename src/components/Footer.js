@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import "../style/Footer.css";
 
 const Footer = (props) => {
+  const { setAdminAccess } = props;
   const handleLogout = () => {
     localStorage.clear();
     props.setToken("");
+    setAdminAccess(false);
   };
 
   //   console.log("footer", props);

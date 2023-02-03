@@ -46,7 +46,12 @@ const App = () => {
   const [email, setEmail] = useState(localStorage.getItem("email"));
   const [firstName, setFirstName] = useState([]);
   const [lastName, setLastName] = useState([]);
-  const [adminAccess, setAdminAccess] = useState(false);
+  const [adminAccess, setAdminAccess] = useState(
+    localStorage.getItem("isAdmin")
+  );
+
+  console.log("Admin access?", adminAccess);
+  // console.log("Admin access 2222?", adminAccess);
 
   const cartId = localStorage.getItem("cart#");
 
@@ -312,7 +317,11 @@ const App = () => {
           ></Route>
         </Routes>
       </div>
-      <Footer token={token} setToken={setToken} />
+      <Footer
+        token={token}
+        setToken={setToken}
+        setAdminAccess={setAdminAccess}
+      />
     </>
   );
 };
