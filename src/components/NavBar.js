@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../style/NavBar.css";
 
 const NavBar = (props) => {
-  const { setEditSelected } = props;
+  const { setEditSelected, setSelectedProduct } = props;
+  const navigate = useNavigate();
 
   return (
     <>
@@ -13,6 +14,7 @@ const NavBar = (props) => {
           className="nav-bar-products"
           onClick={() => {
             setEditSelected(false);
+            setSelectedProduct();
           }}
         >
           Sticks
@@ -23,6 +25,7 @@ const NavBar = (props) => {
           className="nav-bar-products"
           onClick={() => {
             setEditSelected(false);
+            setSelectedProduct();
           }}
         >
           Pucks
@@ -33,6 +36,7 @@ const NavBar = (props) => {
           className="nav-bar-products"
           onClick={() => {
             setEditSelected(false);
+            setSelectedProduct();
           }}
         >
           Skates
@@ -42,6 +46,7 @@ const NavBar = (props) => {
           className="nav-bar-products"
           onClick={() => {
             setEditSelected(false);
+            setSelectedProduct();
           }}
         >
           Helmets
@@ -51,6 +56,7 @@ const NavBar = (props) => {
           className="nav-bar-products"
           onClick={() => {
             setEditSelected(false);
+            setSelectedProduct();
           }}
         >
           Protective Gear
@@ -60,6 +66,7 @@ const NavBar = (props) => {
           className="nav-bar-products"
           onClick={() => {
             setEditSelected(false);
+            setSelectedProduct();
           }}
         >
           Goalie Gear
@@ -69,6 +76,7 @@ const NavBar = (props) => {
           className="nav-bar-products"
           onClick={() => {
             setEditSelected(false);
+            setSelectedProduct();
           }}
         >
           Accessories
@@ -78,30 +86,12 @@ const NavBar = (props) => {
           className="nav-bar-products"
           onClick={() => {
             setEditSelected(false);
+            setSelectedProduct();
           }}
         >
           Team Apparel
         </Link>
       </div>
-      {/* <div className="search-bar">
-        <form>
-          <input
-            type="search"
-            name="search"
-            placeholder="Search"
-            onChange={(e) => setSearch(e.target.value)}
-          />
-          <button
-            type="submit"
-            className="search-button"
-            onClick={(e) => {
-              handleSearch(e);
-            }}
-          >
-            Search for Products
-          </button>
-        </form>
-      </div> */}
     </>
   );
 };
