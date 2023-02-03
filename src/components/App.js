@@ -27,6 +27,7 @@ import GoalieGear from "../products/GoalieGear";
 import Accessories from "../products/Accessories";
 import TeamApparel from "../products/TeamApparel";
 import Cart from "./Cart";
+import Checkout from "./Checkout";
 import AddProducts from "./AddProducts";
 import AdminLogin from "./AdminLogin";
 import AdminProfile from "./Admin";
@@ -310,6 +311,11 @@ const App = () => {
             path="/AllUsers"
             element={<AllUsersList users={users} setUsers={setUsers} />}
           ></Route>
+          <Route 
+            path="/checkout"
+            element={<Checkout token={token}/>}
+          >
+          </Route>
         </Routes>
       </div>
       <Footer token={token} setToken={setToken} />

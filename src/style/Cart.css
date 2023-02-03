@@ -3,6 +3,7 @@
     flex-direction: row;
     flex-grow: 1;
     padding: 15px;
+    
 }
 
 .cart-products-container {
@@ -17,7 +18,7 @@
     flex-direction: column;
     padding-left: 35px;
     padding-right: 35px;
-
+    
 }
 
 #ordersumtitle {
@@ -34,6 +35,7 @@ margin-top: 10px;
 background-color: #1d849e;
 color: whitesmoke;
 border-radius: 15px;
+
 }
 
 .order-details {
@@ -94,6 +96,8 @@ border-radius: 15px;
     margin-top: 30px;
 };
 
+
+
 .price {
     margin-top: 10px;
 }
@@ -137,4 +141,75 @@ border-radius: 15px;
     flex-direction: column;
     align-items: center;
     margin-top: 8px;
+}
+
+.noUser-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-checkout {
+    display: flex;
+    flex-direction: column;
+    background-color: #1d849e;
+    border-radius: 15px;
+    padding: 20px;
+    color: whitesmoke;
+    align-items: center;
+    margin-bottom: 40px;
+    width: 25vw;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.cart-login-btn {
+    background-color: #023047;
+    color: white;
+    font-size: large;
+    font-weight: bold;
+    padding: 10px 15px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 60%;
+    text-align: center;
+    opacity: 0.9;
+    border-radius: 15px;
+    margin-top: 30px;
+}
+
+.cart-login-btn:hover {
+    background-color: #034e74;
+    cursor: pointer;
+}
+
+#login-title {
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+#signUp-link {
+    text-decoration: underline;
+}
+
+.empty-cart {
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    padding: 20px;
+    color: black;
+    align-items: center;
+    margin-bottom: 40px;
+    width: 25vw;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    width: 60vw;
+}
+
+.empty-cart-message1 {
+    flex-wrap: wrap;
+    width: 50%;
+    text-align: center;
+    padding-bottom: 20px;
 }
