@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import { getAllProducts } from "../api";
+import SearchBar from "./SearchBar";
 import "../style/Search.css";
 
 const filterProducts = (products, query) => {

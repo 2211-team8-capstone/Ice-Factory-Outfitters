@@ -32,6 +32,7 @@ import AddProducts from "./AddProducts";
 import AdminLogin from "./AdminLogin";
 import AdminProfile from "./Admin";
 import AllUsersList from "./AllUsers";
+import Search from "./Search";
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState("");
@@ -47,9 +48,7 @@ const App = () => {
   const [email, setEmail] = useState(localStorage.getItem("email"));
   const [firstName, setFirstName] = useState([]);
   const [lastName, setLastName] = useState([]);
-  const [adminAccess, setAdminAccess] = useState(false);
   const [profileRender, setProfileRender] = useState(false);
-  
   const [adminAccess, setAdminAccess] = useState(
     localStorage.getItem("isAdmin")
   );
@@ -323,11 +322,15 @@ const App = () => {
             path="/AllUsers"
             element={<AllUsersList users={users} setUsers={setUsers} />}
           ></Route>
-          <Route 
+          <Route
             path="/checkout"
-            element={<Checkout token={token}/>}
+            element={<Checkout token={token} />}
           >
           </Route>
+          <Route
+            path="/Search"
+            element={<Search />}
+          ></Route>
         </Routes>
       </div>
       <Footer

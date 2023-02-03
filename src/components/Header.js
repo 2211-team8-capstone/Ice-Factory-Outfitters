@@ -1,16 +1,39 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { BrowserRouter as Router, Link, useNavigate } from "react-router-dom";
 import "../style/Header.css";
-import Search from "./Search";
+import SearchBar from "./SearchBar";
+import { getAllProducts } from "../api";
+
+const filterProducts = (products, query) => {
+  if (!query) {
+    return products;
+  }
+
+  return products.filter((products) => {
+    products.name = products.name.toLowerCase();
+    return products.name.includes(query);
+  });
+}
 
 const Header = (props) => {
-  const { setUserCart, setAdminAccess } = props;
+  const {
+    setUserCart,
+    setAdminAccess,
+    onSubmit
+  } = props;
   const handleLogout = () => {
     localStorage.clear();
     props.setToken("");
     setUserCart([]);
     setAdminAccess(false);
   };
+
+  const navigate = useNavigate();
+
+  const { search } = window.location;
+  const query = new URLSearchParams(search).get('s');
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [searchQuery, setSearchQuery] = useState(query || '');
 
   return (
     <>
@@ -23,12 +46,22 @@ const Header = (props) => {
         {/* <h2 className="delete-later">Ice Factory Outfitters</h2> */}
 
         <div className="search-bar">
-          <form>
+          <form
+            action="/"
+            method="get"
+            autoComplete="off"
+            onSubmit={async (e) => {
+              navigate.push(`?s=${searchQuery}`);
+              e.preventDefault();
+              onSubmit(e);
+            }}>
             <input
-              type="search"
-              name="search"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              type="text"
+              name="header-search"
+              id="header-search"
               placeholder="Search the Factory"
-              onChange={(e) => setSearch(e.target.value)}
             />
             <button
               type="submit"
@@ -41,6 +74,8 @@ const Header = (props) => {
             </button>
           </form>
         </div>
+
+
 
         <div className="login-cart"></div>
         {!props.token ? (
