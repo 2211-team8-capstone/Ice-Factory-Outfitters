@@ -48,12 +48,12 @@ const App = () => {
   const [firstName, setFirstName] = useState([]);
   const [lastName, setLastName] = useState([]);
   const [profileRender, setProfileRender] = useState(false);
-  
+
   const [adminAccess, setAdminAccess] = useState(
     localStorage.getItem("isAdmin")
   );
 
-  console.log("Admin access?", adminAccess);
+  console.log(" SELECTED", selectedProduct);
 
   const cartId = localStorage.getItem("cart#");
 
@@ -124,7 +124,10 @@ const App = () => {
         setUserCart={setUserCart}
         setAdminAccess={setAdminAccess}
       />
-      <NavBar setEditSelected={setEditSelected} />
+      <NavBar
+        setEditSelected={setEditSelected}
+        setSelectedProduct={setSelectedProduct}
+      />
       <div>
         <Routes>
           <Route exact path="/" element={<Home />}></Route>
@@ -322,11 +325,7 @@ const App = () => {
             path="/AllUsers"
             element={<AllUsersList users={users} setUsers={setUsers} />}
           ></Route>
-          <Route 
-            path="/checkout"
-            element={<Checkout token={token}/>}
-          >
-          </Route>
+          <Route path="/checkout" element={<Checkout token={token} />}></Route>
         </Routes>
       </div>
       <Footer
