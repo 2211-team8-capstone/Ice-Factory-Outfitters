@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { editUser, fetchMe } from "../api/index";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { editUser } from "../api/index";
+import { useNavigate } from "react-router-dom";
 import "../style/Profile.css";
 
 const Profile = (props) => {
   const { token, user, setUser, 
-          email, setEmail,
+          email, setEmail, 
+          profileRender, setProfileRender,
         } = props;
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
@@ -21,7 +22,6 @@ const Profile = (props) => {
   const navigate = useNavigate();
   const [selectedUser, setSelectedUser] = useState([]);
   const [userId, setUserId] = useState(localStorage.getItem("userId"));
-  // console.log("PROFILE UserId", userId)
   
   const handleEditUser = async (
     userEmail,
@@ -49,7 +49,7 @@ const Profile = (props) => {
       userState,
       userZip,
     );
-    console.log("PROFILE response", response)
+    
     return response;
   }  
 
@@ -82,7 +82,6 @@ const Profile = (props) => {
               <form
                 className="update-form"
               ></form>
-              {/* onSubmit={async (e)} */}
               <div>
                   <label htmlFor="userFirstName">First Name: </label>
                   <input
@@ -199,6 +198,12 @@ const Profile = (props) => {
                         userState,
                         userZip,
                       );
+
+                      if (profileRender) {
+                        setProfileRender(false); 
+                      } else {
+                        setProfileRender(true);
+                      }
                     }}
                   >
                     Update Profile

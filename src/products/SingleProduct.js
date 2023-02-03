@@ -94,7 +94,8 @@ const SingleProduct = (props) => {
             ></input>
           </div>
         )}
-        <h3> About This Item </h3>
+        <hr></hr>
+        <h2> About This Item </h2>
         {editSelected === false ? (
           <div>
             <p>{description}</p>
@@ -114,12 +115,12 @@ const SingleProduct = (props) => {
 
         {editSelected === false ? (
           <div>
-            <p> ${price} </p>
+            <h2> ${price} </h2>
             <br></br>
           </div>
         ) : (
           <div>
-            <p> ${price} </p>
+            <h2> ${price} </h2>
             <label htmlFor="productName">Edit Product Price:</label>
             <input
               value={productPrice}

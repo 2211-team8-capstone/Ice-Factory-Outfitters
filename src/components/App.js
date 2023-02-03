@@ -47,12 +47,14 @@ const App = () => {
   const [email, setEmail] = useState(localStorage.getItem("email"));
   const [firstName, setFirstName] = useState([]);
   const [lastName, setLastName] = useState([]);
+  const [adminAccess, setAdminAccess] = useState(false);
+  const [profileRender, setProfileRender] = useState(false);
+  
   const [adminAccess, setAdminAccess] = useState(
     localStorage.getItem("isAdmin")
   );
 
   console.log("Admin access?", adminAccess);
-  // console.log("Admin access 2222?", adminAccess);
 
   const cartId = localStorage.getItem("cart#");
 
@@ -86,7 +88,7 @@ const App = () => {
       };
       getMe();
     }
-  }, []);
+  }, [profileRender]);
 
   useEffect(() => {
     if (token) {
@@ -283,6 +285,8 @@ const App = () => {
                 setUser={setUser}
                 email={email}
                 setEmail={setEmail}
+                profileRender={profileRender}
+                setProfileRender={setProfileRender}
               />
             }
           ></Route>
