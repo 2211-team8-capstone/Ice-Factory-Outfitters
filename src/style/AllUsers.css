@@ -1,14 +1,5 @@
-/* .admin-profile-container {
-    max-width: fit-content;
-    display: flex;
-    margin: 30px;
-    flex-wrap: wrap;
-    margin-bottom: 30px;
-    justify-content: center;
-
-} */
-
 .all-users-container {
+    display: flex;
     align-items: center;
     justify-content: center;
 }
@@ -16,127 +7,22 @@
 .single-user-container {
     display: "flex";
     flex-direction: "row";
-    margin: "0px 10px";
-    justify-content: "space-evenly";
+    margin-top: 15px;
+    margin-bottom: 15px;
+    color: whitesmoke;
+    border: solid #023047;
+    border-radius: 15px;
+    padding: 15px;
+    background-color: #1d849e;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.user-delete button {
-    margin: "0px 10px";
+.user-delete {
+    display: "flex";
+    margin-top: 15px;
+    align-items: center;
 }
 
-/* .admin-profile-container-left {
-    float: left;
-    padding: 10px;
-} */
-
-/* .admin-profile {
-    border: solid #023047;
-    padding: 20px;
-    border-radius: 15px;
-    background-color: #1d849e;
-    color: whitesmoke;
-    width: 350px;
-    
-} */
-
-
-/* .update-admin-profile {
-    border: solid #023047;
-    padding: 20px;
-    border-radius: 15px;
-    background-color: #1d849e;
-    color: whitesmoke;
-    width: 350px;
-    display: flex;
-    text-align: right;
-    align-items: center;
-    justify-content: center;
-
-    
-} */
-
-/* .admin-profile-container h3 {
-    text-align: center;
-} */
-
-/* .user-profile label {
-    display: inline-block;
-    text-align: right;
-    align-items: center;
-    justify-content: center;
-} */
-
-/* .admin-update-profile label {
-    display: inline-block;
-    text-align: right;
-    display: inline-flex;
-    text-align: right;
-    align-items: right;
-    justify-content: right;
-} */
-
-/* .admin-update-profile input {
-    margin: 3px 0px 3px 10px;
-
-} */
-
-/* .admin-profile-container-right {
-    float: left;
-    padding: 10px;
-} */
-
-/* .admin-order-history {
-    float: right;
-    border: solid #023047;
-    padding: 20px;
-    border-radius: 15px;
-    background-color: #1d849e;
-    color: whitesmoke;
-    width: 500px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-} */
-
-/* .admin-add-products {
-    float: right;
-    border: solid #023047;
-    padding: 20px;
-    border-radius: 15px;
-    background-color: #1d849e;
-    color: whitesmoke;
-    width: 500px;
-    display: flex;
-    text-align: right;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-} */
-
-/* .admin-users {
-    float: right;
-    border: solid #023047;
-    padding: 20px;
-    border-radius: 15px;
-    background-color: #1d849e;
-    color: whitesmoke;
-    width: 500px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-} */
-
-/* .update {
-    display: flex;
-    text-align: right;
-    align-items: center;
-    justify-content: center;
+.back-button {
+    display: "flex"
 }
-
-.title {
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-} */

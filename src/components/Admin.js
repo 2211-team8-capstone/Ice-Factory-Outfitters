@@ -18,17 +18,17 @@ const AdminProfile = (props) => {
     return (
         <>
             <div className="admin-profile-container">
-                <div className="admin-profile-container-left">
-                    <div className="admin-profile">
-                        <h3 className="admin-title">
-                            Welcome Admin
-                        </h3>
-                        <div>Email Address: </div>
-                    </div>
-
+                <div className="admin-profile">
+                    <h2 className="admin-title">
+                        Welcome Admin
+                    </h2>
                     <br></br>
+                    {/* <div>Email Address: </div> */}
+                </div>
 
-                    <div className="update-admin-profile">
+                <br></br>
+
+                {/* <div className="update-admin-profile">
                         <div className="update-admin">
                             <h3 className="admin-title">Update Profile</h3>
                             <form
@@ -102,8 +102,7 @@ const AdminProfile = (props) => {
 
                             </form>
                         </div>
-                    </div>
-                </div>
+                    </div> */}
                 <div className="admin-profile-container-right">
                     <div className="edit-products">
                         <h3 className="admin-add-products">
