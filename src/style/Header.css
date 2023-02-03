@@ -5,7 +5,7 @@
 }
 
 .header {
-    background: url(https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fb40b656c-341d-4a14-8bf7-7cf5e37a914f_1200x630.jpeg) no-repeat center center fixed; 
+    background: url(https://img.freepik.com/premium-photo/empty-hockey-arena_336913-490.jpg?w=2000) no-repeat center; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -59,6 +59,11 @@
 }
 
 .cart{
+    color: whitesmoke;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black ;
+}
+
+.register-login{
     color: whitesmoke;
     text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black ;
 }

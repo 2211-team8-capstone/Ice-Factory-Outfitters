@@ -24,7 +24,19 @@
     justify-content: center;
     width: 20vw;
     border: solid #023047;
-    padding: 5px;
+    padding: 4px;
+    border-radius: 15px;
+    background-color: #1d849e;
+    color: whitesmoke;
+    width: 350px;
+}
+
+.admin-page{
+    display: flex;
+    justify-content: center;
+    width: 20vw;
+    border: solid #023047;
+    padding: 4px;
     border-radius: 15px;
     background-color: #1d849e;
     color: whitesmoke;
@@ -36,7 +48,7 @@
     justify-content: center;
     width: 20vw;
     border: solid #023047;
-    padding: 5px;
+    padding: 4px;
     border-radius: 15px;
     background-color: #1d849e;
     color: whitesmoke;

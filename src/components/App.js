@@ -47,6 +47,7 @@ const App = () => {
   const [firstName, setFirstName] = useState([]);
   const [lastName, setLastName] = useState([]);
   const [adminAccess, setAdminAccess] = useState(false);
+  const [profileRender, setProfileRender] = useState(false);
 
   const cartId = localStorage.getItem("cart#");
 
@@ -80,7 +81,7 @@ const App = () => {
       };
       getMe();
     }
-  }, []);
+  }, [profileRender]);
 
   useEffect(() => {
     if (token) {
@@ -277,6 +278,8 @@ const App = () => {
                 setUser={setUser}
                 email={email}
                 setEmail={setEmail}
+                profileRender={profileRender}
+                setProfileRender={setProfileRender}
               />
             }
           ></Route>
