@@ -17,7 +17,7 @@ const Home = () => {
               ></img>
             </div>
             <div class="text-on-image">
-              <h2>Sticks</h2>
+              <h2 className="image-text">Sticks</h2>
             </div>
           </div>
         </Link>
@@ -31,7 +31,7 @@ const Home = () => {
               ></img>
             </div>
             <div class="text-on-image">
-              <h2>Pucks</h2>
+              <h2 className="image-text">Pucks</h2>
             </div>
           </div>
         </Link>
@@ -45,7 +45,7 @@ const Home = () => {
               ></img>
             </div>
             <div class="text-on-image">
-              <h2>Skates</h2>
+              <h2 className="image-text">Skates</h2>
             </div>
           </div>
         </Link>
@@ -59,7 +59,7 @@ const Home = () => {
               ></img>
             </div>
             <div class="text-on-image">
-              <h2>Helmets</h2>
+              <h2 className="image-text">Helmets</h2>
             </div>
           </div>
         </Link>
@@ -73,7 +73,7 @@ const Home = () => {
               ></img>
             </div>
             <div class="text-on-image">
-              <h2>Protective Gear</h2>
+              <h2 className="image-text">Protective Gear</h2>
             </div>
           </div>
         </Link>
@@ -87,7 +87,7 @@ const Home = () => {
               ></img>
             </div>
             <div class="text-on-image">
-              <h2>Goalie Gear</h2>
+              <h2 className="image-text">Goalie Gear</h2>
             </div>
           </div>
         </Link>
@@ -101,7 +101,7 @@ const Home = () => {
               ></img>
             </div>
             <div class="text-on-image">
-              <h2>Accessories</h2>
+              <h2 className="image-text">Accessories</h2>
             </div>
           </div>
         </Link>
@@ -115,7 +115,7 @@ const Home = () => {
               ></img>
             </div>
             <div class="text-on-image">
-              <h2>Team Apparel</h2>
+              <h2 className="image-text">Team Apparel</h2>
             </div>
           </div>
         </Link>

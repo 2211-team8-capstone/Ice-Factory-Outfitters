@@ -21,6 +21,10 @@
     font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
+.image-text {
+   color: whitesmoke;
+   text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black ;
+}
 .home-products {
    display: flex;
    border: black 1px solid;
