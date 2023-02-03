@@ -3,12 +3,14 @@ import { Link } from "react-router-dom";
 import "../style/Footer.css";
 
 const Footer = (props) => {
+  const { setAdminAccess, adminAccess, token } = props;
   const handleLogout = () => {
     localStorage.clear();
     props.setToken("");
+    setAdminAccess(false);
   };
 
-  //   console.log("footer", props);
+  console.log("footer", adminAccess);
 
   return (
     <>
@@ -19,7 +21,7 @@ const Footer = (props) => {
           </Link>
         </div>
 
-        {!props.token ? (
+        {!adminAccess ? (
           <div className="admin-login-form">
             <i className="fa-solid fa-user"></i>
             <Link to={"/AdminLogin"} className="foot-links">

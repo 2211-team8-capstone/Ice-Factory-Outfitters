@@ -27,6 +27,7 @@ import GoalieGear from "../products/GoalieGear";
 import Accessories from "../products/Accessories";
 import TeamApparel from "../products/TeamApparel";
 import Cart from "./Cart";
+import Checkout from "./Checkout";
 import AddProducts from "./AddProducts";
 import AdminLogin from "./AdminLogin";
 import AdminProfile from "./Admin";
@@ -48,6 +49,12 @@ const App = () => {
   const [lastName, setLastName] = useState([]);
   const [adminAccess, setAdminAccess] = useState(false);
   const [profileRender, setProfileRender] = useState(false);
+  
+  const [adminAccess, setAdminAccess] = useState(
+    localStorage.getItem("isAdmin")
+  );
+
+  console.log("Admin access?", adminAccess);
 
   const cartId = localStorage.getItem("cart#");
 
@@ -298,7 +305,10 @@ const App = () => {
             }
           ></Route>
           <Route path="/ContactUs" element={<ContactUs />}></Route>
-          <Route path="/AddProducts" element={<AddProducts />}></Route>
+          <Route
+            path="/AddProducts"
+            element={<AddProducts setProducts={setProducts} />}
+          ></Route>
           <Route
             path="/AdminLogin"
             element={
@@ -313,9 +323,19 @@ const App = () => {
             path="/AllUsers"
             element={<AllUsersList users={users} setUsers={setUsers} />}
           ></Route>
+          <Route 
+            path="/checkout"
+            element={<Checkout token={token}/>}
+          >
+          </Route>
         </Routes>
       </div>
-      <Footer token={token} setToken={setToken} />
+      <Footer
+        token={token}
+        setToken={setToken}
+        setAdminAccess={setAdminAccess}
+        adminAccess={adminAccess}
+      />
     </>
   );
 };

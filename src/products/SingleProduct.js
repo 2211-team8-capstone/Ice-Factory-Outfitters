@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { addProductToCart } from "../api";
 import { editSingleProduct } from "../api/admin";
-import { getAllProducts } from "../api";
+import { getAllProducts, getSingleProduct } from "../api";
 import "../style/SingleProduct.css";
+import { async } from "q";
 
 const SingleProduct = (props) => {
   // need to pass selectedContact state through props, then pull name, desc, price, image off that selectedContact to render data on the single product view displayed
@@ -14,6 +15,7 @@ const SingleProduct = (props) => {
     setEditSelected,
     cartRender,
     setCartRender,
+    setSelectedProduct,
   } = props;
   const { name, description, price, image, id, color, category } =
     selectedProduct;
@@ -65,6 +67,11 @@ const SingleProduct = (props) => {
       const getProducts = async () => {
         const data = await getAllProducts();
         setProducts(data);
+
+        const getSingleProduct2 = async () => {
+          await getSingleProduct(id, setSelectedProduct);
+        };
+        getSingleProduct2();
       };
       getProducts();
     }

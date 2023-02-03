@@ -50,6 +50,7 @@ const ProtectiveGear = (props) => {
           setEditSelected={setEditSelected}
           cartRender={cartRender}
           setCartRender={setCartRender}
+          setSelectedProduct={setSelectedProduct}
         />
       ) : (
         filteredProducts.map((product) => {

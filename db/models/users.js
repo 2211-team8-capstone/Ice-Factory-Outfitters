@@ -132,6 +132,26 @@ async function getUser({ email, password }) {
   }
 }
 
+async function destroyUser(id) {
+  try {
+    const {
+      rows: [user],
+    } = await client.query(
+      `
+      DELETE 
+      FROM users
+      WHERE id=${id}
+      RETURNING *
+    `
+    );
+
+    return user;
+  } catch (error) {
+    console.error("Error deleting user");
+    throw error;
+  }
+}
+
 async function updateUser({ userid, ...fields }) {
   const setString = Object.keys(fields)
     .map((key, index) => `"${key}"=$${index + 1}`)
@@ -167,4 +187,5 @@ module.exports = {
   getUserByEmail,
   getUser,
   updateUser,
+  destroyUser,
 };
