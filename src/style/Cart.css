@@ -94,6 +94,8 @@ border-radius: 15px;
     margin-top: 30px;
 };
 
+
+
 .price {
     margin-top: 10px;
 }
@@ -137,4 +139,54 @@ border-radius: 15px;
     flex-direction: column;
     align-items: center;
     margin-top: 8px;
+}
+
+.noUser-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-checkout {
+    display: flex;
+    flex-direction: column;
+    background-color: #1d849e;
+    border-radius: 15px;
+    padding: 20px;
+    color: whitesmoke;
+    align-items: center;
+    margin-bottom: 40px;
+    width: 25vw;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.cart-login-btn {
+    background-color: #023047;
+    color: white;
+    font-size: large;
+    font-weight: bold;
+    padding: 10px 15px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 25%;
+    text-align: center;
+    opacity: 0.9;
+    border-radius: 15px;
+    margin-top: 30px;
+}
+
+.cart-login-btn:hover {
+    background-color: #034e74;
+    cursor: pointer;
+}
+
+#login-title {
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+#signUp-link {
+    text-decoration: underline;
 }
