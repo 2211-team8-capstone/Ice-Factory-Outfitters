@@ -1,27 +1,15 @@
 .admin-profile-container {
-    /* max-width: fit-content; */
     display: flex;
     margin: 30px;
     flex-wrap: wrap;
     margin-bottom: 30px;
     justify-content: center;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-}
-
-.admin-profile-container-left {
-    float: left;
-    padding: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .admin-profile {
     display: flex;
     justify-content: center;
-    border: solid #023047;
-    padding: 5px;
-    border-radius: 15px;
-    background-color: #1d849e;
-    color: whitesmoke;
-    width: 350px;
 }
 
 
@@ -38,42 +26,15 @@
     justify-content: center;
 }
 
-.admin-logout {
-    display: flex;
-    justify-content: center;
-    width: 20vw;
-    border: solid #023047;
-    padding: 5px;
-    border-radius: 15px;
-    background-color: #1d849e;
-    color: whitesmoke;
-    width: 350px;
-}
-
-.admin-profile-container h3 {
+.admin-profile-container h2 {
     text-align: center;
-}
-
-.admin-update-profile label {
-    display: inline-block;
-    text-align: right;
-    display: inline-flex;
-    text-align: right;
-    align-items: right;
-    justify-content: right;
 }
 
 .admin-update-profile input {
     margin: 3px 0px 3px 10px;
 }
 
-.admin-profile-container-right {
-    float: left;
-    padding: 10px;
-}
-
 .admin-order-history {
-    float: right;
     border: solid #023047;
     padding: 20px;
     border-radius: 15px;
@@ -87,7 +48,6 @@
 }
 
 .admin-add-products {
-    float: right;
     border: solid #023047;
     padding: 20px;
     border-radius: 15px;
@@ -102,7 +62,6 @@
 }
 
 .admin-users {
-    float: right;
     border: solid #023047;
     padding: 20px;
     border-radius: 15px;

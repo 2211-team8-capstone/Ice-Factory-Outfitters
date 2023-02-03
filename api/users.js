@@ -8,6 +8,7 @@ const {
   getUserByEmail,
   createUser,
   getUser,
+  destroyUser,
   updateUser,
 } = require("../db/models/users");
 
@@ -20,11 +21,9 @@ usersRouter.use((req, res, next) => {
 // register new user
 usersRouter.post("/register", async (req, res, next) => {
   const { email, password } = req.body;
-  //   console.log("AAAAAAAA", email);
 
   try {
     const existingUserCheck = await getUserByEmail(email);
-    // console.log("BBBBBBBB", existingUserCheck);
 
     if (existingUserCheck) {
       res.status(401);
@@ -130,6 +129,21 @@ usersRouter.get("/profile/:email", async (req, res, next) => {
     }
     res.send(user);
     console.log("user data from getProfile", user);
+  } catch (error) {
+    next(error);
+  }
+});
+
+usersRouter.delete("/:userid", async (req, res, next) => {
+  const { userid } = req.params;
+  console.log("this is userID in deleteusersrouter", userid);
+
+  try {
+    const result = await destroyUser(userid);
+    console.log("this is message in usersrouter returned from DB", result);
+    res.send({
+      result,
+    });
   } catch (error) {
     next(error);
   }

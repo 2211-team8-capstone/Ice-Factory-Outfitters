@@ -176,6 +176,27 @@ export const editUser = async (
   }
 };
 
+export const destroyUser = async (userId, token) => {
+  try {
+    const response = await fetch(`http://localhost:4001/api/users`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        userId,
+      }),
+    });
+
+    const data = await response.json();
+    console.log("DELETE FE api", data);
+
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
 // ***************************** ALL PRODUCTS FUNCTIONS **************************
 
 export const createProduct = async (productToAdd) => {

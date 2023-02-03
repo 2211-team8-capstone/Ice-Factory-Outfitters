@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../style/AllUsers.css";
+import { destroyUser } from "../api";
 
 const AllUsersList = (props) => {
   const { users, setUsers, selectedUser } = props;
@@ -15,7 +16,7 @@ const AllUsersList = (props) => {
             <h1>All Users</h1>
             <div className="back-button">
               <Link to="/Admin">
-                <button>Back</button>
+                <button>Back to Admin</button>
               </Link>
             </div>
             <div>
@@ -29,7 +30,7 @@ const AllUsersList = (props) => {
                       className="user-delete"
                       onClick={async () => {
                         if (window.confirm("Delete this user?") === true) {
-                          await deleteUser(user.id);
+                          await destroyUser(user.id);
                           alert("User deleted");
                           setUsers(
                             users.filter(

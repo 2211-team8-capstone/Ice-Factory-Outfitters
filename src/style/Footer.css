@@ -2,12 +2,11 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .footer {
     background-color: lightgray;
-    /* border-top: 1px black solid; */
     display: flex;
     justify-content: space-around;
     align-items: flex-end;
@@ -27,10 +26,10 @@
     border-radius: 15px;
     background-color: #1d849e;
     color: whitesmoke;
-    width: 350px;
+    width: 150px;
 }
 
-.admin-login-form{
+.admin-login-form {
     display: flex;
     justify-content: center;
     width: 20vw;
@@ -38,7 +37,32 @@
     border-radius: 15px;
     background-color: #1d849e;
     color: whitesmoke;
-    width: 350px;
+    width: 150px;
+}
+
+.admin-logout {
+    display: flex;
+    justify-content: center;
+    width: 20vw;
+    border: solid #023047;
+    padding: 5px;
+    border-radius: 15px;
+    background-color: #1d849e;
+    color: whitesmoke;
+    width: 150px;
+    margin-top: 5px;
+}
+
+.admin-page {
+    display: flex;
+    justify-content: center;
+    width: 20vw;
+    border: solid #023047;
+    padding: 5px;
+    border-radius: 15px;
+    background-color: #1d849e;
+    color: whitesmoke;
+    width: 150px;
 }
 
 .foot-links:hover {
