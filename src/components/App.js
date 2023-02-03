@@ -300,7 +300,10 @@ const App = () => {
             }
           ></Route>
           <Route path="/ContactUs" element={<ContactUs />}></Route>
-          <Route path="/AddProducts" element={<AddProducts />}></Route>
+          <Route
+            path="/AddProducts"
+            element={<AddProducts setProducts={setProducts} />}
+          ></Route>
           <Route
             path="/AdminLogin"
             element={
