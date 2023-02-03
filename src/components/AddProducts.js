@@ -59,8 +59,10 @@ const AddProducts = (props) => {
             }}
           >
             <option value="">-- Select Product Category --</option>
-            {categoryList.map((product) => (
-              <option value={product}>{product}</option>
+            {categoryList.map((product, index) => (
+              <option key={index} value={product}>
+                {product}
+              </option>
             ))}
           </select>
         </div>
