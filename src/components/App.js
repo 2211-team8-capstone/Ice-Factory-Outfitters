@@ -47,7 +47,6 @@ const App = () => {
   const [email, setEmail] = useState(localStorage.getItem("email"));
   const [firstName, setFirstName] = useState([]);
   const [lastName, setLastName] = useState([]);
-  const [adminAccess, setAdminAccess] = useState(false);
   const [profileRender, setProfileRender] = useState(false);
   
   const [adminAccess, setAdminAccess] = useState(
@@ -325,7 +324,7 @@ const App = () => {
           ></Route>
           <Route 
             path="/checkout"
-            element={<Checkout token={token}/>}
+            element={<Checkout token={token} userCart={userCart} setUserCart={setUserCart}/>}
           >
           </Route>
         </Routes>
