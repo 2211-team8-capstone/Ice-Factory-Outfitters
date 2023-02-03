@@ -48,49 +48,60 @@ const Cart = (props) => {
     {token ? (
       // user is logged in on cart page, display cart
         <div className="body">
-        <div className="cart-products-container">
-          {userCart.map((product) => {
-              return (
-                  <div className="cart-single-product" key={product.id}>
-                    <div> 
-                      <img className="cart-product-thumbnail" src={product.image} />
-                    </div>
-  
-                    <div className="prod-descrip-cont">
-                      <h2 className="headers">{product.name}</h2>
-                      <h4 className="price">${product.price} ea</h4>
-                      <p className="description">{product.description}</p>
-                      <div className="button-container">Item quantity
-                        <input
-                          className="quantity-field"
-                          min={1}
-                          type="number"
-                          placeholder="quantity"
-                          value={product.quantity}
-                          onChange={async (e) => {
-                            let newQuantity = (e.target.value);
-                            await updateProductQty(newQuantity, product.id, token);
-  
-                            if (cartRender) {
-                              setCartRender(false);
-                            } else {
-                              setCartRender(true);
-                            }
-                          }}
-                        ></input>
-                        <button
-                          className="remove-btn"
-                          onClick={() => handleDelete(product.id)}
-                        >
-                          Remove From Cart
-                        </button>
+          {userCart.length === 0 ? (
+            <div className="empty-cart">
+              <p className="empty-cart-message1">There are no items in your cart.
+              </p> 
+              <p >You can start shopping using the search or navigation bar above!
+              </p>
+            </div>
+          ) : (
+            <div className="cart-products-container">
+              {userCart.map((product) => {
+                  return (
+                      <div className="cart-single-product" key={product.id}>
+                        <div> 
+                          <img className="cart-product-thumbnail" src={product.image} />
+                        </div>
+      
+                        <div className="prod-descrip-cont">
+                          <h2 className="headers">{product.name}</h2>
+                          <h4 className="price">${product.price} ea</h4>
+                          <p className="description">{product.description}</p>
+                          <div className="button-container">Item quantity
+                            <input
+                              className="quantity-field"
+                              min={1}
+                              type="number"
+                              placeholder="quantity"
+                              value={product.quantity}
+                              onChange={async (e) => {
+                                let newQuantity = (e.target.value);
+                                await updateProductQty(newQuantity, product.id, token);
+      
+                                if (cartRender) {
+                                  setCartRender(false);
+                                } else {
+                                  setCartRender(true);
+                                }
+                              }}
+                            ></input>
+                            <button
+                              className="remove-btn"
+                              onClick={() => handleDelete(product.id)}
+                            >
+                              Remove From Cart
+                            </button>
+                          </div>
+                        </div>  
                       </div>
-                    </div>  
-                  </div>
-                
-                );
-              })}
-              </div>
+                  );
+                }
+              )}
+            </div>
+            )
+          }
+
         <div className="order-summary-body">
           <div className="order-summary-container">
             <h3 id="ordersumtitle">Order Summary</h3>

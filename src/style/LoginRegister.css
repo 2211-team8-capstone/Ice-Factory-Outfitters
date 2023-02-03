@@ -7,7 +7,7 @@
 
 .login-register{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     flex-wrap: wrap;
     margin-left: 100px;
     margin-right: 100px;
