@@ -66,8 +66,11 @@ const Header = (props) => {
           </div>
         )}
         <div className="cart">
-          <Link to={"/cart"} className="head-links">
-            Cart
+          <Link to={"/cart"} className="head-links" >
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcfOIzMtjuoYFvoUTDFM6caEqipyhWzUrMO5YWn72mECSyKH1-TwP083me1gmj9Nbk5XU&usqp=CAU" 
+              width="45"
+              height="42"
+            />
           </Link>
         </div>
       </div>
