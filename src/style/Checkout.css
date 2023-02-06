@@ -1,0 +1,12 @@
+.body-checkout {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.payment-review-container {
+    display: flex;
+    flex-direction: column;
+     flex-wrap: wrap;
+     padding: 15px;
+}

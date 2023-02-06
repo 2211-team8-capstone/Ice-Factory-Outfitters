@@ -22,7 +22,9 @@ const Header = (props) => {
       <div className="header">
         <div className="logo">
           <Link to={"/"} className="head-links">
-            <img src="https://res.cloudinary.com/dulsfxtjz/image/upload/v1674588307/Ice%20Factory%20Outfitters/images_wzlgn3.png" />
+            <img src="https://res.cloudinary.com/dulsfxtjz/image/upload/v1674588307/Ice%20Factory%20Outfitters/images_wzlgn3.png" 
+              width="250"
+              height="120"/>
           </Link>
         </div>
         {/* <h2 className="delete-later">Ice Factory Outfitters</h2> */}
@@ -83,8 +85,11 @@ const Header = (props) => {
           </div>
         )}
         <div className="cart">
-          <Link to={"/cart"} className="head-links">
-            Cart
+          <Link to={"/cart"} className="head-links" >
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcfOIzMtjuoYFvoUTDFM6caEqipyhWzUrMO5YWn72mECSyKH1-TwP083me1gmj9Nbk5XU&usqp=CAU" 
+              width="43"
+              height="40"
+            />
           </Link>
         </div>
       </div>
