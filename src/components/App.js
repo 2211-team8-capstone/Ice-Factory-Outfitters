@@ -52,16 +52,13 @@ const App = () => {
   const cartId = localStorage.getItem("cart#");
 
   useEffect(() => {
-    const getAPIStatus = async () => {
-      const healthy = await getAPIHealth();
-      setAPIHealth(healthy ? "api is up! :D" : "api is down :/");
-    };
-    getAPIStatus();
+    // const getAPIStatus = async () => {
+    //   const healthy = await getAPIHealth();
+    //   setAPIHealth(healthy ? "api is up! :D" : "api is down :/");
+    // };
+    // getAPIStatus();
 
-    const getProducts = async () => {
-      const data = await getAllProducts();
-      setProducts(data);
-    };
+
     if (cartId) {
       const getCart = async () => {
         const data = await getCartByCartId(cartId);
@@ -70,7 +67,7 @@ const App = () => {
       getCart();
     }
 
-    getProducts();
+
   }, [cartRender]);
 
   useEffect(() => {
@@ -84,6 +81,11 @@ const App = () => {
   }, [profileRender]);
 
   useEffect(() => {
+    const getProducts = async () => {
+      const data = await getAllProducts();
+      setProducts(data);
+      console.log("GGGGG", data)
+    };
     if (token) {
       const getUsersList = async () => {
         const data = await getAllUsers();
@@ -91,6 +93,7 @@ const App = () => {
       };
       getUsersList();
     }
+    getProducts();
   }, []);
 
   useEffect(() => {
@@ -319,7 +322,7 @@ const App = () => {
           ></Route>
           <Route
             path="/checkout"
-            element={<Checkout token={token} userCart={userCart} setUserCart={setUserCart}/>}
+            element={<Checkout token={token} userCart={userCart} setUserCart={setUserCart} />}
           >
           </Route>
           <Route

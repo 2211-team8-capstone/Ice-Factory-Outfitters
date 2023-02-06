@@ -18,6 +18,8 @@ const Sticks = (props) => {
     adminAccess,
   } = props;
 
+  console.log("AAAAAAAAAAA", products)
+
   const handleDelete = async (productIdToDelete) => {
     const response = await deleteSingleProduct(token, productIdToDelete);
 
@@ -34,9 +36,9 @@ const Sticks = (props) => {
     setSelectedProduct();
   }, []);
 
-  const filteredProducts = props.products.filter((_product) =>
-    _product.category.includes("Sticks")
-  );
+  // const filteredProducts = props?.products.filter((_product) =>
+  //   _product.category.includes("Sticks")
+  // );
 
   return (
     <div className="all-products">
@@ -52,7 +54,7 @@ const Sticks = (props) => {
           setSelectedProduct={setSelectedProduct}
         />
       ) : (
-        filteredProducts.map((product) => {
+        products && products.map((product) => {
           return (
             <div className="product-container" key={product.id}>
               <div className="single-product">
