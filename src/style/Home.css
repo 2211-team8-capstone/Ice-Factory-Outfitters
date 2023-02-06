@@ -15,9 +15,10 @@
 }
 
 .all-products-container {
-   display: flex;
-   flex-wrap: wrap;
-   justify-content: center;
+   display: grid;
+    grid-template-columns: repeat(2, auto);
+    justify-content: center;
+    align-items: center;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
@@ -36,7 +37,6 @@
    text-decoration: none;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
   
- 
 
 }
 .head-text {
