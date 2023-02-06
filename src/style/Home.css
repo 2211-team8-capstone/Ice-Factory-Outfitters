@@ -26,6 +26,7 @@
    color: whitesmoke;
    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black ;
 }
+
 .home-products {
    display: flex;
    border: black 1px solid;
@@ -35,109 +36,92 @@
    width: 295px;
    justify-content: center;
    text-decoration: none;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-
+   font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
+
 .head-text {
    position: relative;
    display: flex;
    justify-content: center;
    align-items: center;
-
-   
 }
 
 .text-on-image{
    position: absolute;
-  color: whitesmoke;
-  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black ;
-  text-decoration: none;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
+   color: whitesmoke;
+   text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black ;
+   text-decoration: none;
+   font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .sticks{
    border: #1d849e 3px solid;
-    margin: 10px;
-    height: 150px;
-    border-radius: 50px;
-    width: 350px;
-  
+   margin: 10px;
+   height: 150px;
+   border-radius: 50px;
+   width: 350px;
 }
 
 .skates{
    border: #1d849e 3px solid;
-    margin: 10px;
-    height: 150px;
-    border-radius: 50px;
-    width: 350px;
-  
-    
-
-
+   margin: 10px;
+   height: 150px;
+   border-radius: 50px;
+   width: 350px;
 }
 
 .pucks{
    border: #1d849e 3px solid;
-    margin: 10px;
-    height: 150px;
-    border-radius: 50px;
-    width: 350px;
-  
+   margin: 10px;
+   height: 150px;
+   border-radius: 50px;
+   width: 350px;
 }
 
 .helmets{
-  
    border: #1d849e 3px solid;
-    margin: 10px;
-    height: 150px;
-    border-radius: 50px;
-    width: 350px;
-  object-fit: cover;
-  object-position: 0px -5px ;
-  
-  
+   margin: 10px;
+   height: 150px;
+   border-radius: 50px;
+   width: 350px;
+   object-fit: cover;
+   object-position: 0px -5px;
 }
 
 .protective-gear{
-   
    border: #1d849e 3px solid;
-    margin: 10px;
-    height: 150px;
-    border-radius: 50px;
-    width: 350px;
-    object-fit: cover;
-    object-position: 0px -30px ;
-
-  
+   margin: 10px;
+   height: 150px;
+   border-radius: 50px;
+   width: 350px;
+   object-fit: cover;
+   object-position: 0px -30px ;
 }
 
 .goalie-gear{
-   
    border: #1d849e 3px solid;
-    margin: 10px;
-    height: 150px;
-    border-radius: 50px;
-    width: 350px;
-    object-fit: cover;
-    object-position: 0px -50px ;
+   margin: 10px;
+   height: 150px;
+   border-radius: 50px;
+   width: 350px;
+   object-fit: cover;
+   object-position: 0px -50px ;
 }
 
 .accessories{
    border: #1d849e 3px solid;
-    margin: 10px;
-    height: 150px;
-    border-radius: 50px;
-    width: 350px;
-  
+   margin: 10px;
+   height: 150px;
+   border-radius: 50px;
+   width: 350px;
 }
 
 .team-apparel{
-  
    border: #1d849e 3px solid;
-    margin: 10px;
-    height: 150px;
-    border-radius: 50px;
-    width: 350px;
+   margin: 10px;
+   height: 150px;
+   border-radius: 50px;
+   width: 350px;
 }
 
 a:link {

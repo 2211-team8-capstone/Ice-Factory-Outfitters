@@ -9,9 +9,7 @@ const Cart = (props) => {
 
   const {
     userCart,
-    setUserCart,
     cartPriceTotal,
-    setCartPriceTotal,
     token,
     setCartRender,
     cartRender,
@@ -21,7 +19,7 @@ const Cart = (props) => {
 
   const handleDelete = async (productIdToDelete) => {
     const response = await deleteProductFromCart(productIdToDelete, token);
-    // console.log("Cart Delete error?", response);
+
     if (response && !response.error) {
       if (cartRender) {
         setCartRender(false);
@@ -39,10 +37,6 @@ const Cart = (props) => {
 
 // calculate order total w/ tax and shipping
   const orderTotal = cartPriceTotal + salesTax + shippingCost;
-   
-
-  console.log(salesTax)
-  console.log("usercart CART", userCart);
   
   return (
     <div>  

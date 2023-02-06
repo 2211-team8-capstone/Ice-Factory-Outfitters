@@ -1,7 +1,5 @@
 const express = require("express");
 const cartsRouter = express.Router();
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = process.env;
 const {
   createCarts,
@@ -9,9 +7,8 @@ const {
   getMyCartId,
   addProductToCartItems,
   destroyCartItem,
-  updateCartItemsQty
+  updateCartItemsQty,
 } = require("../db/models/carts");
-const { DatabaseError } = require("pg");
 
 cartsRouter.use((req, res, next) => {
   console.log("A request is being made to /carts");
@@ -21,12 +18,9 @@ cartsRouter.use((req, res, next) => {
 
 cartsRouter.get("/:cartId", async (req, res, next) => {
   const { cartId } = req.params;
-  console.log("this is re.body", req.params);
 
-  console.log("this is userId after destructure", cartId);
   try {
     const myCart = await getMyCart(cartId);
-    console.log("this is newCart created and sent from DB", myCart);
     if (!myCart) {
       next({
         name: "FetchCartError",
@@ -41,13 +35,10 @@ cartsRouter.get("/:cartId", async (req, res, next) => {
 });
 
 cartsRouter.post("/", async (req, res, next) => {
-  // console.log('this is re.body', req.body)
   const { userId } = req.body;
 
-  console.log("this is userId after destructure", userId);
   try {
     const newCart = await createCarts(userId);
-    console.log("this is newCart created and sent from DB", newCart);
     if (!newCart) {
       next({
         name: "ExistingCartError",
@@ -63,12 +54,9 @@ cartsRouter.post("/", async (req, res, next) => {
 
 cartsRouter.get("/cartNum/:userId", async (req, res, next) => {
   const { userId } = req.params;
-  console.log("this is re.body", req.params);
 
-  console.log("this is userId after destructure", userId);
   try {
     const myCart = await getMyCartId(userId);
-    console.log("this is newCart created and sent from DB", myCart);
     if (!myCart) {
       next({
         name: "FetchCartError",
@@ -84,7 +72,6 @@ cartsRouter.get("/cartNum/:userId", async (req, res, next) => {
 
 cartsRouter.post("/addprod/:cartId", async (req, res, next) => {
   const { cartId } = req.params;
-
   const { productId, quantity } = req.body;
 
   try {
@@ -92,10 +79,6 @@ cartsRouter.post("/addprod/:cartId", async (req, res, next) => {
       cartId,
       productId,
       quantity
-    );
-    console.log(
-      "this is prodcut created in cartItems and sent from DB",
-      productAddedToCart
     );
     if (!productAddedToCart) {
       next({
@@ -112,14 +95,9 @@ cartsRouter.post("/addprod/:cartId", async (req, res, next) => {
 
 cartsRouter.delete("/", async (req, res, next) => {
   const { cartItemId } = req.body;
-  console.log("this is cartItemId in deletecartssrouter", cartItemId);
 
   try {
     const result = await destroyCartItem(cartItemId);
-    console.log(
-      "this is message in CARTrouter delete returned from DB",
-      result
-    );
     res.send({
       result,
     });
@@ -129,13 +107,10 @@ cartsRouter.delete("/", async (req, res, next) => {
 });
 
 cartsRouter.patch("/updateqty", async (req, res, next) => {
-  const {cartItemsId, newQuantity} = req.body;
-  console.log('this is cartItemsId and newQTY in BE api', cartItemsId, newQuantity);
+  const { cartItemsId, newQuantity } = req.body;
 
   try {
     const result = await updateCartItemsQty(cartItemsId, newQuantity);
-    console.log("this is result of update QTY from DB", result)
-
     if (!result) {
       next({
         name: "UpdateQtyError",
@@ -145,9 +120,8 @@ cartsRouter.patch("/updateqty", async (req, res, next) => {
       res.send(result);
     }
   } catch ({ name, message }) {
-    next({ name, message })
+    next({ name, message });
   }
-
-})
+});
 
 module.exports = cartsRouter;

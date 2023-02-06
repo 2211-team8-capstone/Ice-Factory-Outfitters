@@ -1,9 +1,6 @@
 const client = require("../client");
 
 async function addProductToCartItems({ cartId, productId, quantity }) {
-  // console.log(
-  //   ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>",
-  //   productId);
   try {
     const {
       rows: [cartItems],
@@ -88,7 +85,6 @@ async function getMyCart(cartId) {
     FROM products
     JOIN cartitems ON products.id = cartitems."productId"
     WHERE "cartId" = $1
-    
     ;
     `,
       [cartId]
@@ -136,7 +132,6 @@ async function addProductToCartItems(cartId, productId, quantity) {
       [cartId, productId, quantity]
     );
 
-    console.log("this is product inserted in DB", product);
     return product;
   } catch (error) {
     console.error("Error with creating cart", error);
@@ -166,22 +161,25 @@ async function destroyCartItem(cartItemId) {
 }
 
 async function updateCartItemsQty(cartItemsId, newQuantity) {
-  console.log('this is cartItemsID and newQTY inside DB', cartItemsId, newQuantity)
   try {
-    const {rows: [product]} = await client.query(`
+    const {
+      rows: [product],
+    } = await client.query(
+      `
       UPDATE cartitems
       SET quantity = $2
       WHERE id = $1
       RETURNING *
-    `, [cartItemsId, newQuantity])
+    `,
+      [cartItemsId, newQuantity]
+    );
 
-    return product
+    return product;
   } catch (error) {
     console.error("Error updating quantity in cartItems table");
     throw error;
   }
 }
-
 
 module.exports = {
   addProductToCartItems,

@@ -1,7 +1,4 @@
-import { async } from "q";
-
 export const deleteSingleProduct = async (token, productID) => {
-  //   console.log("api token", token);
   try {
     const response = await fetch(
       `http://localhost:4001/api/products/${productID}`,
@@ -13,9 +10,8 @@ export const deleteSingleProduct = async (token, productID) => {
         },
       }
     );
-    const data = await response.json();
 
-    // console.log("Delete product from API admin.js", data.result.id);
+    const data = await response.json();
     return data;
   } catch (error) {
     console.error(error);

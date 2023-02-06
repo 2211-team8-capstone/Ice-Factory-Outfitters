@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "../style/AllUsers.css";
 import { destroyUser } from "../api";
@@ -6,7 +6,6 @@ import { destroyUser } from "../api";
 const AllUsersList = (props) => {
   const { users, setUsers, selectedUser } = props;
   const isAdmin = localStorage.getItem("isAdmin");
-  console.log("testaaaaaaaaaaaaaaaaaaaaaaaaaaa", users);
 
   return (
     <>
@@ -53,62 +52,6 @@ const AllUsersList = (props) => {
       </div>
     </>
   );
-
-  // const handleDelete = async (userIdToDelete) => {
-  //     const response = await deleteSingleUser(token, userIdToDelete);
-  //     console.log("error?", response);
-
-  //     if (response && !response.error) {
-  //         const getUsers = async () => {
-  //             const data = await getAllUsers();
-  //             setUsers(data);
-  //         };
-  //         getUsers();
-  //     }
-  // };
-
-  // useEffect(() => {
-  //     setSelectedUser();
-  // }, []);
-
-  // return (
-  //     <div className="all-users">
-  //         {selectedUser ? (
-  //             <SingleUser
-  //                 selectedUser={selectedUser}
-  //                 editSelected={editSelected}
-  //                 token={token}
-  //                 setUsers={setUsers}
-  //                 setEditSelected={setEditSelected}
-
-  //             />
-  //         ) : (
-  //             users.map((user) => {
-  //                 return (
-  //                     <div className="user-container" key={user.id}>
-  //                         <div className="single-user">
-
-  //                             <p className="headers">{user.nameFirst}</p>
-  //                             <p className="headers">{user.nameLast}</p>
-  //                             <p className="headers">{user.email}</p>
-  //                             <div className="sub-container">
-  //                                 <div className="btn-container">
-
-  //                                     <button
-  //                                         className="user-btn"
-  //                                         onClick={() => handleDelete(user.id)}
-  //                                     >
-  //                                         Delete
-  //                                     </button>
-  //                                 </div>
-  //                             </div>
-  //                         </div>
-  //                     </div>
-  //                 );
-  //             })
-  //         )}
-  //     </div>
-  // );
 };
 
 export default AllUsersList;

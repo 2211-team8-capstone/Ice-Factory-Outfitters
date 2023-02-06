@@ -3,7 +3,6 @@
     flex-direction: row;
     flex-grow: 1;
     padding: 15px;
-    
 }
 
 .cart-products-container {
@@ -18,7 +17,6 @@
     flex-direction: column;
     padding-left: 35px;
     padding-right: 35px;
-    
 }
 
 #ordersumtitle {
@@ -31,11 +29,10 @@
 }
 
 .order-summary-container {
-margin-top: 10px;
-background-color: #1d849e;
-color: whitesmoke;
-border-radius: 15px;
-
+    margin-top: 10px;
+    background-color: #1d849e;
+    color: whitesmoke;
+    border-radius: 15px;
 }
 
 .order-details {
@@ -130,8 +127,6 @@ border-radius: 15px;
 .remove-btn:hover {
     background-color: #df4a51;
 }
-
-
 
 .quantity-field {
     width: 50%;

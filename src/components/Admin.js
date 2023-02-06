@@ -1,8 +1,15 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "../style/Admin.css";
 
-const AdminProfile = () => {
+const AdminProfile = (props) => {
+    const [adminEmail, setAdminEmail] = useState("");
+    const [adminPassword, setAdminPassword] = useState("");
+    const [nameFirst, setNameFirst] = useState("");
+    const [nameLast, setNameLast] = useState("");
+    const [stateError, setStateError] = useState("");
+    const navigate = useNavigate();
+
 
     return (
         <>
@@ -14,9 +21,11 @@ const AdminProfile = () => {
                     <br></br>
                 </div>
 
+
                 <div className="admin-links-container">
                     <div className="admin-edit-products">
                         <h3>
+
                             <Link to="/AddProducts">Add Products</Link>
                         </h3>
                     </div>

@@ -12,10 +12,12 @@
     margin-left: 100px;
     margin-right: 100px;
 }
-h3{
+
+h3 {
     margin-bottom: 10px;
 }
-.login{
+
+.login {
     float: left;
     border: solid #023047 ;
     padding: 20px;
@@ -23,15 +25,9 @@ h3{
     background-color: #1d849e;
     color: whitesmoke;
     width: 285px;
-    /* margin-bottom: 100px; */
 }
 
-.login-form{
-    /* display: block; */
-    
-}
-
-.register{
+.register {
     border: solid #023047 ;
     float:right;
     padding: 20px;

@@ -38,7 +38,6 @@ const Sticks = (props) => {
   const filteredProducts = props.products.filter((_product) =>
     _product.category.includes("Sticks")
   );
-  // console.log("ssssssssssss", filteredProducts);
 
   return (
     <div className="all-products">

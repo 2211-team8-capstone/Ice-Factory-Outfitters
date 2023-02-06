@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import {Link, useNavigate} from "react-router-dom";
+import React from "react";
+import { useNavigate} from "react-router-dom";
 import "../style/Checkout.css";
 
 const Checkout = ({token, userCart, setUserCart}) => {
