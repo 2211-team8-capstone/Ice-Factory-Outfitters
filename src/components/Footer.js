@@ -10,8 +10,6 @@ const Footer = (props) => {
     setAdminAccess(false);
   };
 
-  console.log("footer", adminAccess);
-
   return (
     <>
       <div className="footer">
