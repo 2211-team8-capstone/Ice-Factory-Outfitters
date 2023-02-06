@@ -1,6 +1,5 @@
 const express = require("express");
 const apiRouter = express.Router();
-
 const jwt = require("jsonwebtoken");
 const { getUserById } = require("../db/models/users");
 const usersRouter = require("./users");
@@ -39,7 +38,6 @@ apiRouter.use(async (req, res, next) => {
 
       if (id) {
         req.user = await getUserById(id);
-        // console.log("Authorization successful. Moving to next.");
         next();
       } else {
         // maybe come back and fix this error message
@@ -83,8 +81,7 @@ apiRouter.use("/carts", cartsRouter);
 //router to /api/admin
 apiRouter.use("/admin", adminRouter);
 
-//*******************  GENERIC ERROR HANDLER ***********************
-// whenever next function gets called in apiRouter and its children with an object in it (not empty like next()), it comes here and sends that error response
+//******************* ERROR HANDLER ***********************
 apiRouter.use((error, req, res, next) => {
   res.send({
     error: "ERROR",
@@ -94,17 +91,3 @@ apiRouter.use((error, req, res, next) => {
 });
 
 module.exports = apiRouter;
-
-// ****************************** boilerplate below ******************
-
-// const apiRouter = require('express').Router();
-
-// apiRouter.get('/', (req, res, next) => {
-//   res.send({
-//     message: 'API is under construction!',
-//   });
-// });
-
-// // place your routers here
-
-// module.exports = apiRouter;
