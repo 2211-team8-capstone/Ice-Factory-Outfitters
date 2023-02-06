@@ -59,6 +59,27 @@ h2 {
     color: orange;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
-    
 
+}
+
+.submit-edit-button{
+    border-radius: 15px;
+    border: none;
+    margin: 0%;
+    padding-left: 17px;
+    padding-right: 17px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    background-color: #023047;
+    color: whitesmoke;
+    cursor: pointer;
+    height: 50px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    
+    
+}
+
+.submit-edit-button:hover {
+    background-color: #034e74;
+    cursor: pointer;
 }

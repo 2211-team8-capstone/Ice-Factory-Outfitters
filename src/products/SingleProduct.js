@@ -144,7 +144,7 @@ const SingleProduct = (props) => {
         ) : (
           <button
             type="submit"
-            className="add-to-cart-button"
+            className="submit-edit-button"
             onClick={() => {
               handleEditProduct(id, productName, productDesc, productPrice);
               setEditSelected(false);
