@@ -91,3 +91,13 @@
         opacity: 0.9;
         border-radius: 15px;
 }
+.delete-btn:hover {
+    background-color: #df4a51;
+    cursor: pointer;
+}
+
+.edit-btn:hover {
+    background-color: #034e74;
+    cursor: pointer;
+}
+
