@@ -26,11 +26,6 @@ export const registerUser = async (email, password) => {
     });
 
     const result = await response.json();
-    const token = result.token;
-    const userID = result.user.id;
-    console.log(result);
-    console.log("this is the registerUser token", token);
-
     return result;
   } catch (error) {
     console.error("Error registering user", error);
@@ -49,8 +44,8 @@ export const loginUser = async (email, password) => {
         password,
       }),
     });
+
     const result = await response.json();
-    console.log("LOGIN", result);
     return result;
   } catch (error) {
     console.error(error);
@@ -58,7 +53,6 @@ export const loginUser = async (email, password) => {
 };
 
 export const fetchMe = async (token, email) => {
-  // console.log("EMAIL", email)
   try {
     const response = await fetch(
       `http://localhost:4001/api/users/profile/${email}`,
@@ -71,7 +65,6 @@ export const fetchMe = async (token, email) => {
     );
 
     const data = await response.json();
-    // console.log("This is the fetchMe data", data);
     return data;
   } catch (error) {
     console.error(error);
@@ -85,8 +78,8 @@ export const getAllUsers = async () => {
         "Content-Type": "application/json",
       },
     });
+    
     const data = await response.json();
-
     return data.users;
   } catch (error) {
     console.error(error);
@@ -107,8 +100,8 @@ export const loginAdmin = async (adminEmail, adminPassword, isAdmin) => {
         isAdmin,
       }),
     });
+    
     const adminResult = await response.json();
-    console.log("LOGIN", adminResult);
     return adminResult;
   } catch (error) {
     console.error(error);
@@ -123,8 +116,8 @@ export const getUsersList = async () => {
         Authorization: `Bearer ${token}`,
       },
     });
+    
     const data = await response.json();
-    console.log("This is the fetchMe data", data);
     return data;
   } catch (error) {
     console.error(error);
@@ -145,7 +138,6 @@ export const editUser = async (
   userState,
   userZip
 ) => {
-  console.log("INDEX userId", userId);
   const parseZip = parseInt(userZip);
   const parseAddressNum = parseInt(userAddressNum);
   try {
@@ -168,8 +160,8 @@ export const editUser = async (
         parseZip,
       }),
     });
+    
     const data = await response.json();
-
     return data;
   } catch (error) {
     console.error(error);
@@ -190,8 +182,6 @@ export const destroyUser = async (userId, token) => {
     });
 
     const data = await response.json();
-    console.log("DELETE FE api", data);
-
     return data;
   } catch (error) {
     console.error(error);
@@ -200,15 +190,13 @@ export const destroyUser = async (userId, token) => {
 // ***************************** ALL PRODUCTS FUNCTIONS **************************
 
 export const createProduct = async (productToAdd) => {
-
   const { category,
     name,
     description,
     price,
     size,
     color,
-    image } = productToAdd
-  console.log("prodtest", name)
+    image } = productToAdd;
   try {
     const response = await fetch("http://localhost:4001/api/products/add", {
       method: "POST",
@@ -227,10 +215,6 @@ export const createProduct = async (productToAdd) => {
     });
 
     const result = await response.json();
-    const productID = result.product.id;
-    console.log(result);
-    console.log("this is the product ID", productID);
-
     return result;
   } catch (error) {
     console.error("Error adding product", error);
@@ -244,8 +228,8 @@ export const getAllProducts = async () => {
         "Content-Type": "application/json",
       },
     });
-    const data = await response.json();
 
+    const data = await response.json();
     return data.products;
   } catch (error) {
     console.error(error);
@@ -262,9 +246,9 @@ export const getSingleProduct = async (productID, setSelectedProduct) => {
         },
       }
     );
+    
     const data = await response.json();
     setSelectedProduct(data.product);
-
     return data.product;
   } catch (error) {
     console.error(error);
@@ -281,9 +265,9 @@ export const getProductByName = async (productId, setSelectedProduct) => {
         },
       }
     );
+
     const data = await response.json();
     setSelectedProduct(data.product);
-
     return data.product;
   } catch (error) {
     console.error(error);
@@ -306,7 +290,6 @@ export const createCart = async (userId, token) => {
     });
 
     const data = await response.json();
-    console.log("this is data in createCart ", data);
     return data;
   } catch (error) {
     console.error(error);
@@ -320,8 +303,8 @@ export const getCartByCartId = async (cartId) => {
         "Content-Type": "application/json",
       },
     });
+   
     const data = await response.json();
-
     return data;
   } catch (error) {
     console.error(error);
@@ -339,9 +322,8 @@ export const getCartIdByUserId = async (userId, token) => {
         },
       }
     );
+    
     const data = await response.json();
-    console.log("getCARTBYIDBYUSERIDDDD API", data);
-
     return data;
   } catch (error) {
     console.error(error);
@@ -366,8 +348,6 @@ export const addProductToCart = async (productId, cartId, quantity, token) => {
     );
 
     const data = await response.json();
-    console.log("product in addproducttocart FE api", data);
-
     return data;
   } catch (error) {
     console.error(error);
@@ -388,8 +368,6 @@ export const deleteProductFromCart = async (cartItemId, token) => {
     });
 
     const data = await response.json();
-    console.log("DELETE FE api", data);
-
     return data;
   } catch (error) {
     console.error(error);
@@ -411,8 +389,6 @@ export const updateProductQty = async (newQuantity, cartItemsId, token) => {
     });
 
     const data = await response.json();
-    console.log("this is data in updatecartQTY FE API", data);
-
     return data;
   } catch (error) {
     console.error(error);

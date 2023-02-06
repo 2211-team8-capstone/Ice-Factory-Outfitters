@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-// getAPIHealth is defined in our axios-services directory index.js
-// you can think of that directory as a collection of api adapters
-// where each adapter fetches specific info from our express server's /api route
 import {
   getAllProducts,
   getAPIHealth,
@@ -46,15 +43,11 @@ const App = () => {
   const [users, setUsers] = useState([]);
   const [cartRender, setCartRender] = useState(false);
   const [email, setEmail] = useState(localStorage.getItem("email"));
-  const [firstName, setFirstName] = useState([]);
-  const [lastName, setLastName] = useState([]);
   const [profileRender, setProfileRender] = useState(false);
 
   const [adminAccess, setAdminAccess] = useState(
     localStorage.getItem("isAdmin")
   );
-
-  // console.log(" SELECTED", selectedProduct);
 
   const cartId = localStorage.getItem("cart#");
 
@@ -100,7 +93,6 @@ const App = () => {
     }
   }, []);
 
-  // update cartTotal everytime cart adds/deleetes item
   useEffect(() => {
     const findSum = (array) => {
       let sum = 0;
@@ -116,7 +108,6 @@ const App = () => {
     setCartPriceTotal(totalCartPrice);
   }, [userCart]);
 
-  // console.log("testusers", users);
   return (
     <>
       <Header

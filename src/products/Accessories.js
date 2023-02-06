@@ -31,18 +31,6 @@ const Accessories = (props) => {
     }
   };
 
-  const handleEdit = async (productIdToEdit) => {
-    // const response = await deleteSingleProduct(token, productIdToEdit);
-    // // console.log("error?", response);
-    // if (response && !response.error) {
-    //   const getProducts = async () => {
-    //     const data = await getAllProducts();
-    //     setProducts(data);
-    //   };
-    //   getProducts();
-    // }
-  };
-
   useEffect(() => {
     setSelectedProduct();
   }, []);

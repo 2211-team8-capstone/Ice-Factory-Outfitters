@@ -35,10 +35,8 @@ const AdminLogin = (props) => {
                     adminPassword,
                     isAdmin
                   );
-                  //   console.log("BBBBBK", result);
 
                   const token = result.token;
-                  //   console.log("this is token in reg user", token);
                   props.setToken(token);
                   localStorage.setItem("token", token);
                   if (token) {
@@ -46,19 +44,10 @@ const AdminLogin = (props) => {
                   }
 
                   const adminId = result.admin.id;
-                  //   console.log("this is adminId in reg admin", adminId);
                   localStorage.setItem("adminId", adminId);
 
                   const isAdminTrue = result.admin.isAdmin;
                   localStorage.setItem("isAdmin", isAdminTrue);
-
-                  // const cart = await getCartIdByUserId(adminUserId, token);
-                  // console.log(
-                  //     "this is the newly created cart in loginUser",
-                  //     cart
-                  // );
-                  // localStorage.setItem("cart#", cart.id);
-
                   navigate("/Admin");
                 } catch (error) {
                   console.error(error);

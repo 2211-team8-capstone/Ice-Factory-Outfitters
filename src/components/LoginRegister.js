@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { loginUser, registerUser, createCart, getCartIdByUserId } from "../api";
 import "../style/LoginRegister.css";
 
-// import "../style/Header.css";
 const LoginRegister = (props) => {
   const { cartRender, setCartRender } = props;
   const [email, setEmail] = useState("");
@@ -94,14 +93,11 @@ const LoginRegister = (props) => {
               } else {
                 try {
                   e.preventDefault();
-                  //console.log(password, email);
                   localStorage.setItem("email", emailTwo);
 
                   const result = await registerUser(emailTwo, passwordTwo);
-                  // console.log("YYYYYYYYYYYY", result);
 
                   const token = result.token;
-                  // console.log("this is token in reg user", token);
                   props.setToken(token);
                   localStorage.setItem("token", token);
 

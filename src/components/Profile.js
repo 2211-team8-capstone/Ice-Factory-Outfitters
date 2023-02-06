@@ -4,10 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "../style/Profile.css";
 
 const Profile = (props) => {
-  const { token, user, setUser, 
-          email, setEmail, 
-          profileRender, setProfileRender,
-        } = props;
+  const { token, user, profileRender, setProfileRender } = props;
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
   const [userFirstName, setUserFirstName] = useState('');
@@ -19,8 +16,6 @@ const Profile = (props) => {
   const [userState, setUserState] = useState('');
   const [userZip, setUserZip] = useState('');
   const [stateError, setStateError] = useState();
-  const navigate = useNavigate();
-  const [selectedUser, setSelectedUser] = useState([]);
   const [userId, setUserId] = useState(localStorage.getItem("userId"));
   
   const handleEditUser = async (
