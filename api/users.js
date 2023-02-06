@@ -7,7 +7,6 @@ const {
   getAllUsers,
   getUserByEmail,
   createUser,
-  getUser,
   destroyUser,
   updateUser,
 } = require("../db/models/users");
@@ -24,7 +23,6 @@ usersRouter.post("/register", async (req, res, next) => {
 
   try {
     const existingUserCheck = await getUserByEmail(email);
-
     if (existingUserCheck) {
       res.status(401);
       next({
@@ -128,7 +126,6 @@ usersRouter.get("/profile/:email", async (req, res, next) => {
       );
     }
     res.send(user);
-    console.log("user data from getProfile", user);
   } catch (error) {
     next(error);
   }
@@ -136,11 +133,9 @@ usersRouter.get("/profile/:email", async (req, res, next) => {
 
 usersRouter.delete("/:userid", async (req, res, next) => {
   const { userid } = req.params;
-  console.log("this is userID in deleteusersrouter", userid);
 
   try {
     const result = await destroyUser(userid);
-    console.log("this is message in usersrouter returned from DB", result);
     res.send({
       result,
     });
@@ -163,8 +158,6 @@ usersRouter.patch("/:userid", async (req, res, next) => {
     userState,
     parseZip,
   } = req.body;
-
-  // console.log("userPhone", userPhone);
 
   const fields = {};
   if (userEmail) {
@@ -197,11 +190,9 @@ usersRouter.patch("/:userid", async (req, res, next) => {
   if (parseZip) {
     fields.zip = parseZip;
   }
-  console.log("USERS fields", fields);
 
   try {
     const result = await updateUser({ userid, ...fields });
-
     res.send({ result });
   } catch (error) {
     next(error);

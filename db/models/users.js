@@ -156,8 +156,6 @@ async function updateUser({ userid, ...fields }) {
   const setString = Object.keys(fields)
     .map((key, index) => `"${key}"=$${index + 1}`)
     .join(", ");
-  console.log("userrrrrr", setString);
-  // console.log("userrrrrr", fields);
   if (setString.length === 0) {
     return;
   }
@@ -173,7 +171,6 @@ async function updateUser({ userid, ...fields }) {
   `,
       Object.values(fields)
     );
-    console.log("USERS DB users", users);
     return users;
   } catch (error) {
     console.error("Error updating user profile");
