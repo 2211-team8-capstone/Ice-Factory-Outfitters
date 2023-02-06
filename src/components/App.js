@@ -325,7 +325,12 @@ const App = () => {
             path="/AllUsers"
             element={<AllUsersList users={users} setUsers={setUsers} />}
           ></Route>
-          <Route path="/checkout" element={<Checkout token={token} />}></Route>
+          <Route 
+            path="/checkout"
+            element={<Checkout token={token} userCart={userCart} setUserCart={setUserCart}/>}
+          >
+          </Route>
+
         </Routes>
       </div>
       <Footer
