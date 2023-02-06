@@ -96,8 +96,6 @@ border-radius: 15px;
     margin-top: 30px;
 };
 
-
-
 .price {
     margin-top: 10px;
 }
@@ -129,6 +127,12 @@ border-radius: 15px;
         border-radius: 5px;
 }
 
+.remove-btn:hover {
+    background-color: #df4a51;
+}
+
+
+
 .quantity-field {
     width: 50%;
     text-align: center;
@@ -141,6 +145,10 @@ border-radius: 15px;
     flex-direction: column;
     align-items: center;
     margin-top: 8px;
+}
+
+.checkout-btn:hover {
+    background-color: #46bb6d;
 }
 
 .noUser-container {
@@ -212,4 +220,10 @@ border-radius: 15px;
     width: 50%;
     text-align: center;
     padding-bottom: 20px;
+}
+
+.empty-cart-error {
+    color: red;
+    font-weight: bold;
+    align-self: center;
 }

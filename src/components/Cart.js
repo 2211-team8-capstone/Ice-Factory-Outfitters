@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import { deleteProductFromCart, updateProductQty } from "../api";
 import {Link, useNavigate} from "react-router-dom";
 import "../style/Cart.css";
 
 const Cart = (props) => {
   const navigate = useNavigate();
+  const [emptyCartCheckoutError, setEmptyCartCheckoutError] = useState("");
 
   const {
     userCart,
@@ -124,7 +125,15 @@ const Cart = (props) => {
               <h3 className="order-total-result">${orderTotal.toFixed(2)}</h3>
             </div>
           </div>
-          <button className="checkout-btn"> CHECKOUT </button>
+          <button className="checkout-btn" onClick={()=>{
+            if (userCart.length > 0) {
+              setEmptyCartCheckoutError('');
+              navigate('/checkout');
+            } else {
+              setEmptyCartCheckoutError('*Please add items to your cart to checkout');
+            }
+          }}> CHECKOUT </button>
+          <p className="empty-cart-error">{emptyCartCheckoutError}</p>
         </div>
       </div>
       
