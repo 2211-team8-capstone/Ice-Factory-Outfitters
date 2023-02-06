@@ -64,7 +64,9 @@ const SingleProduct = (props) => {
         ) : (
           <div>
             <h1> {name} </h1>
-            <label htmlFor="productName">Edit Product Name:</label>
+            <label htmlFor="productName" className="edit-labels">
+              Edit Product Name:
+            </label>
             <input
               value={productName}
               type="text"
@@ -82,7 +84,9 @@ const SingleProduct = (props) => {
         ) : (
           <div>
             <p> {description} </p>
-            <label htmlFor="productName">Edit Product Description:</label>
+            <label htmlFor="productName" className="edit-labels">
+              Edit Product Description:
+            </label>
             <input
               value={productDesc}
               type="text"
@@ -99,7 +103,9 @@ const SingleProduct = (props) => {
         ) : (
           <div>
             <h2> ${price} </h2>
-            <label htmlFor="productName">Edit Product Price:</label>
+            <label htmlFor="productName" className="edit-labels">
+              Edit Product Price:
+            </label>
             <input
               value={productPrice}
               type="text"
