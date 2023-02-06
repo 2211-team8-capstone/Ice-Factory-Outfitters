@@ -32,6 +32,7 @@ import AddProducts from "./AddProducts";
 import AdminLogin from "./AdminLogin";
 import AdminProfile from "./Admin";
 import AllUsersList from "./AllUsers";
+import Search from "./Search";
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState("");
@@ -325,12 +326,15 @@ const App = () => {
             path="/AllUsers"
             element={<AllUsersList users={users} setUsers={setUsers} />}
           ></Route>
-          <Route 
+          <Route
             path="/checkout"
             element={<Checkout token={token} userCart={userCart} setUserCart={setUserCart}/>}
           >
           </Route>
-
+          <Route
+            path="/Search"
+            element={<Search />}
+          ></Route>
         </Routes>
       </div>
       <Footer

@@ -1,9 +1,9 @@
 import React from "react";
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import "../style/Search.css";
 
 const SearchBar = ({ searchQuery, setSearchQuery, onSubmit }) => {
-    const history = useHistory();
+    const navigate = useNavigate();
 
     return (
         <form
@@ -11,7 +11,7 @@ const SearchBar = ({ searchQuery, setSearchQuery, onSubmit }) => {
             method="get"
             autoComplete="off"
             onSubmit={async (e) => {
-                history.push(`?s=${searchQuery}`);
+                navigate.push(`?s=${searchQuery}`);
                 e.preventDefault();
                 onSubmit(e);
             }}>
@@ -22,9 +22,9 @@ const SearchBar = ({ searchQuery, setSearchQuery, onSubmit }) => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 type="text"
+                name="header-search"
                 id="header-search"
-                placeholder="Search Products"
-                name="s"
+                placeholder="Search the Ice Factory"
             />
             <button type="submit">Search</button>
         </form>

@@ -271,6 +271,25 @@ export const getSingleProduct = async (productID, setSelectedProduct) => {
   }
 };
 
+export const getProductByName = async (productId, setSelectedProduct) => {
+  try {
+    const response = await fetch(
+      `http://localhost:4001/api/products/${productId}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const data = await response.json();
+    setSelectedProduct(data.product);
+
+    return data.product;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 // ************************ Cart Functions Below *******************************
 
 export const createCart = async (userId, token) => {

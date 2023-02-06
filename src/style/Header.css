@@ -5,7 +5,7 @@
 }
 
 .header {
-    background: url(https://img.freepik.com/premium-photo/empty-hockey-arena_336913-490.jpg?w=2000) no-repeat center; 
+    background: url(https://img.freepik.com/premium-photo/empty-hockey-arena_336913-490.jpg?w=2000) no-repeat center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -36,13 +36,11 @@
 .search-bar input {
     width: 300px;
     height: 30px;
-    font-size: 18px;
+    font-size: 12px;
     border: 1px solid;
     border-radius: 5px;
     border-color: grey;
     padding: 5px;
-    vertical-align: bottom;
-
 }
 
 .search-bar button {
@@ -53,17 +51,17 @@
     font-size: 18px;
 }
 
-.logged-in{
+.logged-in {
     color: whitesmoke;
-    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black ;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 }
 
-.cart{
+.cart {
     color: whitesmoke;
-    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black ;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 }
 
-.register-login{
+.register-login {
     color: whitesmoke;
     text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black ;
 }

@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../style/Header.css";
-import Search from "./Search";
 
 const Header = (props) => {
-  const { setUserCart, setAdminAccess } = props;
+  const {
+    setUserCart,
+    setAdminAccess,
+    onSubmit
+  } = props;
   const handleLogout = () => {
     localStorage.clear();
     props.setToken("");
     setUserCart([]);
     setAdminAccess(false);
   };
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -24,13 +29,23 @@ const Header = (props) => {
         </div>
         {/* <h2 className="delete-later">Ice Factory Outfitters</h2> */}
 
-        <div className="search-bar">
-          <form>
+        {/* <div className="search-bar">
+          <form
+            action="/"
+            method="get"
+            autoComplete="off"
+            onSubmit={async (e) => {
+              navigate.push(`?s=${searchQuery}`);
+              e.preventDefault();
+              onSubmit(e);
+            }}>
             <input
-              type="search"
-              name="search"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              type="text"
+              name="header-search"
+              id="header-search"
               placeholder="Search the Factory"
-              onChange={(e) => setSearch(e.target.value)}
             />
             <button
               type="submit"
@@ -42,7 +57,9 @@ const Header = (props) => {
               Search
             </button>
           </form>
-        </div>
+        </div> */}
+
+
 
         <div className="login-cart"></div>
         {!props.token ? (

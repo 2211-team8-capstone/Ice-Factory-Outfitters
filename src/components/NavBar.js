@@ -91,6 +91,15 @@ const NavBar = (props) => {
         >
           Team Apparel
         </Link>
+        <Link
+          to="/Search"
+          className="nav-bar-products"
+          onClick={() => {
+            setEditSelected(false);
+          }}
+        >
+          Search
+        </Link>
       </div>
     </>
   );
