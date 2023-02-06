@@ -36,16 +36,15 @@
 .logged-in {
     color: whitesmoke;
     text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
-}
-
-.cart {
-    color: whitesmoke;
-    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    font-size: 18px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .register-login {
     color: whitesmoke;
-    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black ;
+    font-size: 18px;
 }
 
 .logo {
