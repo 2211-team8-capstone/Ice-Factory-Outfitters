@@ -21,7 +21,6 @@
 .contact-us {
     display: flex;
     justify-content: center;
-    width: 20vw;
     padding: 5px;
     border-radius: 15px;
     background-color: #1d849e;
@@ -32,7 +31,6 @@
 .admin-login-form {
     display: flex;
     justify-content: center;
-    width: 20vw;
     padding: 5px;
     border-radius: 15px;
     background-color: #1d849e;
@@ -43,20 +41,17 @@
 .admin-logout {
     display: flex;
     justify-content: center;
-    width: 20vw;
-    border: solid #023047;
     padding: 4px;
     border-radius: 15px;
     background-color: #1d849e;
     color: whitesmoke;
-    width: 350px;
+    width: 150px;
+    margin-top: 5px;
 }
 
-.admin-page{
+.admin-page {
     display: flex;
     justify-content: center;
-    width: 20vw;
-    border: solid #023047;
     padding: 4px;
     border-radius: 15px;
     background-color: #1d849e;
@@ -69,7 +64,7 @@
     display: flex;
     justify-content: center;
     width: 20vw;
-    border: solid #023047;
+
     padding: 4px;
     border-radius: 15px;
     background-color: #1d849e;

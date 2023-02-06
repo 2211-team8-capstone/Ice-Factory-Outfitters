@@ -1,75 +1,68 @@
 .admin-profile-container {
     display: flex;
-    margin: 30px;
-    flex-wrap: wrap;
-    margin-bottom: 30px;
+
+    text-align: center;
+    align-items: center;
     justify-content: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.admin-profile {
-    display: flex;
+.admin-profile-title {
+    display: block;
+    text-align: center;
+    align-items: center;
     justify-content: center;
+    margin-bottom: 20px;
 }
 
+.admin-links-container {
+    display: block;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    position: relative;
 
-.update-admin-profile {
-    border: solid #023047;
+}
+
+.admin-edit-products {
+    padding: 20px;
+    border-radius: 15px;
+    background-color: #1d849e;
     padding: 20px;
     border-radius: 15px;
     background-color: #1d849e;
     color: whitesmoke;
-    width: 350px;
-    display: flex;
-    text-align: right;
+    width: 500px;
+    display: block;
+    text-align: center;
     align-items: center;
     justify-content: center;
-}
-
-.admin-profile-container h2 {
-    text-align: center;
-}
-
-.admin-update-profile input {
-    margin: 3px 0px 3px 10px;
+    margin-bottom: 20px;
+    margin: 0 auto;
 }
 
 .admin-order-history {
-    border: solid #023047;
     padding: 20px;
     border-radius: 15px;
     background-color: #1d849e;
     color: whitesmoke;
     width: 500px;
-    display: flex;
+    display: block;
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
-}
-
-.admin-add-products {
-    border: solid #023047;
-    padding: 20px;
-    border-radius: 15px;
-    background-color: #1d849e;
-    color: whitesmoke;
-    width: 500px;
-    display: flex;
-    text-align: right;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
+    margin: 0 auto;
 }
 
 .admin-users {
-    border: solid #023047;
     padding: 20px;
     border-radius: 15px;
     background-color: #1d849e;
     color: whitesmoke;
     width: 500px;
-    display: flex;
+    display: block;
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
+    margin: 0 auto;
 }

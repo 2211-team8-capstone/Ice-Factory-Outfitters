@@ -15,15 +15,15 @@ const SearchBar = ({ searchQuery, setSearchQuery, onSubmit }) => {
                 e.preventDefault();
                 onSubmit(e);
             }}>
-            <h1 className="title">
+            <h3 className="title">
                 Search
-            </h1>
+            </h3>
             <input
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 type="text"
-                name="header-search"
-                id="header-search"
+                name="search-bar"
+                id="search-bar"
                 placeholder="Search the Ice Factory"
             />
             <button type="submit">Search</button>
