@@ -46,6 +46,11 @@
     cursor: pointer;
 }
 
+.add-to-cart-button:hover {
+    background-color: #034e74;
+    cursor: pointer;
+}
+
 h2 {
     color: #023047;
 }
