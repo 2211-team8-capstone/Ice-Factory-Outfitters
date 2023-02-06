@@ -16,15 +16,11 @@
 }
 
 .nav-bar-products {
-    /* border: black solid 1px; */
     color: white;
     padding: 10px;
     margin: 5px;
     font-weight: bold;
     border-radius: 5px;
-
-
-    /* text-decoration: none; */
 }
 
 .search-bar {
@@ -32,7 +28,6 @@
     justify-content: center;
     margin: 4px;
     border-radius: 4px;
-
 }
 
 .nav-bar-products-container {

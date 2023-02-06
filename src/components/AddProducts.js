@@ -15,6 +15,7 @@ const AddProducts = (props) => {
     "Accessories",
     "Team Apparel",
   ]);
+
   const [newProductCategory, setNewProductCategory] = useState("");
   const [newProductName, setNewProductName] = useState("");
   const [newProductDescription, setNewProductDescription] = useState("");
@@ -32,15 +33,6 @@ const AddProducts = (props) => {
     color: newProductColor,
     image: newProductImage,
   };
-
-  //   useEffect(() => {
-  //     const getCategoryList = async () => {
-  //       const categoryList = await getAllCategories();
-  //       setCategoryList(categoryList);
-  //     };
-
-  //     getCategoryList;
-  //   }, []);
 
   return (
     <div className="add-products-form">

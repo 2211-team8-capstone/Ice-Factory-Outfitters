@@ -6,7 +6,6 @@ import "../style/SingleProduct.css";
 import { async } from "q";
 
 const SingleProduct = (props) => {
-  // need to pass selectedContact state through props, then pull name, desc, price, image off that selectedContact to render data on the single product view displayed
   const {
     selectedProduct,
     editSelected,
@@ -17,8 +16,8 @@ const SingleProduct = (props) => {
     setCartRender,
     setSelectedProduct,
   } = props;
-  const { name, description, price, image, id, color, category } =
-    selectedProduct;
+
+  const { name, description, price, image, id, color, category } = selectedProduct;
 
   const [quantity, setQuantity] = useState(1);
   const [productName, setProductName] = useState(`${name}`);
@@ -30,23 +29,6 @@ const SingleProduct = (props) => {
   const cartId = localStorage.getItem("cart#");
   console.log("this is cartId from localStorage in singleProdcut comp", cartId);
   console.log(id);
-
-  const handleAddToCart = (
-    name,
-    description,
-    price,
-    image,
-    id,
-    color,
-    category
-  ) => {
-    console.log("hello");
-
-    // localStorage.setItem(
-    //   `Product#${id}`,
-    //   JSON.stringify(selectedProduct, `"QUAntity": ${quantity}`)
-    // );
-  };
 
   const handleEditProduct = async (
     productID,
@@ -61,7 +43,6 @@ const SingleProduct = (props) => {
       productDesc,
       productPrice
     );
-    console.log("singleproduct handleEdit error?", response);
 
     if (response && !response.error) {
       const getProducts = async () => {

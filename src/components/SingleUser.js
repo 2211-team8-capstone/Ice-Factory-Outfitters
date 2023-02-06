@@ -1,18 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { addProductToCart } from "../api";
+import React from "react";
 import { getAllUsers } from "../api";
 import "../style/SingleProduct.css";
 
 const SingleUser = (props) => {
-    // need to pass selectedContact state through props, then pull name, desc, price, image off that selectedContact to render data on the single product view displayed
-    const {
-        setSelectedUser,
-        selectedUser,
-        token,
-        setUsers,
-    } = props;
-    const { nameFirst, nameLast, email } =
-        selectedUser;
+    const { selectedUser, setUsers } = props;
+
+    const { nameFirst, nameLast, email } = selectedUser;
 
 
     if (response && !response.error) {
