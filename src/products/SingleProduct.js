@@ -17,18 +17,15 @@ const SingleProduct = (props) => {
     setSelectedProduct,
   } = props;
 
-  const { name, description, price, image, id, color, category } = selectedProduct;
+  const { name, description, price, image, id, color, category } =
+    selectedProduct;
 
   const [quantity, setQuantity] = useState(1);
   const [productName, setProductName] = useState(`${name}`);
   const [productDesc, setProductDesc] = useState(`${description}`);
   const [productPrice, setProductPrice] = useState(`${price}`);
 
-  console.log("single product edit", editSelected, productName);
-
   const cartId = localStorage.getItem("cart#");
-  console.log("this is cartId from localStorage in singleProdcut comp", cartId);
-  console.log(id);
 
   const handleEditProduct = async (
     productID,

@@ -20,7 +20,6 @@ const GoalieGear = (props) => {
 
   const handleDelete = async (productIdToDelete) => {
     const response = await deleteSingleProduct(token, productIdToDelete);
-    console.log("error?", response);
 
     if (response && !response.error) {
       const getProducts = async () => {

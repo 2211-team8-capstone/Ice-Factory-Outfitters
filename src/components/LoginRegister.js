@@ -30,22 +30,16 @@ const LoginRegister = (props) => {
                   e.preventDefault();
                   localStorage.setItem("email", email);
                   const result = await loginUser(email, password);
-                  console.log("YYYYYYYYYYYY", result);
 
                   const token = result.token;
-                  console.log("this is token in reg user", token);
                   props.setToken(token);
                   localStorage.setItem("token", token);
 
                   const userId = result.user.id;
-                  console.log("this is userId in reg user", userId);
                   localStorage.setItem("userId", userId);
 
                   const cart = await getCartIdByUserId(userId, token);
-                  console.log(
-                    "this is the newly created cart in loginUser",
-                    cart
-                  );
+
                   localStorage.setItem("cart#", cart.id);
                   if (cartRender) {
                     setCartRender(false);
@@ -102,14 +96,10 @@ const LoginRegister = (props) => {
                   localStorage.setItem("token", token);
 
                   const userId = result.user.id;
-                  console.log("this is userId in reg user", userId);
                   localStorage.setItem("userId", userId);
 
                   const cart = await createCart(userId, token);
-                  console.log(
-                    "this is the newly created cart in loginUser",
-                    cart
-                  );
+
                   localStorage.setItem("cart#", cart.id);
                   if (cartRender) {
                     setCartRender(false);
