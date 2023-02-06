@@ -65,7 +65,7 @@ const TeamApparel = (props) => {
                     {adminAccess ? (
                       <div className="btn-container">
                         <button
-                          className="prod-btn"
+                          className="edit-btn"
                           onClick={() => {
                             getSingleProduct(product.id, setSelectedProduct);
                             setEditSelected(true);
@@ -74,7 +74,7 @@ const TeamApparel = (props) => {
                           Edit
                         </button>
                         <button
-                          className="prod-btn"
+                          className="delete-btn"
                           onClick={() => handleDelete(product.id)}
                         >
                           Delete

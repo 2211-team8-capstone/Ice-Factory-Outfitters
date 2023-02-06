@@ -33,6 +33,18 @@
     align-content: flex-end;
 }
 
+.add-to-cart-button{
+    border-radius: 15px;
+    border: none;
+    margin: 0%;
+    padding-left: 17px;
+    padding-right: 17px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    background-color: #023047;
+    color: whitesmoke;
+    cursor: pointer;
+}
 
 h2 {
     color: #023047;

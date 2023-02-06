@@ -31,3 +31,16 @@
 .Search ul {
     text-align: left;
 }
+
+button {
+    border-radius: 15px;
+    border: none;
+    margin: 0%;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    background-color: #1d849e;
+    color: whitesmoke;
+    cursor: pointer;
+}
