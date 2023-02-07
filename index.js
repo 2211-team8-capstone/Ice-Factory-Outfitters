@@ -13,6 +13,8 @@ server.use(cors());
 server.use(morgan("dev"));
 
 server.use(express.json());
+const path = require("path");
+server.use(express.static(path.join(__dirname, "build")));
 
 server.use((req, res, next) => {
   console.log("<____Body Logger START____>");
@@ -50,7 +52,3 @@ server.listen(PORT, () => {
 
 // // export server and handle for routes/*.test.js
 // module.exports = { server, handle };
-
-// here's our static files
-const path = require("path");
-server.use(express.static(path.join(__dirname, "build")));
