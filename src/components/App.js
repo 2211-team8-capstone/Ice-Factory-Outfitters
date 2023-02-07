@@ -84,7 +84,6 @@ const App = () => {
     const getProducts = async () => {
       const data = await getAllProducts();
       setProducts(data);
-      console.log("GGGGG", data)
     };
     if (token) {
       const getUsersList = async () => {

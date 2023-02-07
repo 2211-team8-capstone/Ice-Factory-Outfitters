@@ -18,8 +18,6 @@ const Sticks = (props) => {
     adminAccess,
   } = props;
 
-  console.log("AAAAAAAAAAA", products)
-
   const handleDelete = async (productIdToDelete) => {
     const response = await deleteSingleProduct(token, productIdToDelete);
 

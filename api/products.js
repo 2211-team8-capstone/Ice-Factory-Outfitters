@@ -9,17 +9,17 @@ const {
   getProductByName,
 } = require("../db/models/products");
 
-productsRouter.use((req, res, next) => {
-  console.log("A request is being made to /products");
-  next();
-});
 
 productsRouter.get("/", async (req, res, next) => {
-  const products = await getAllProducts();
+  try {
+    const products = await getAllProducts();
 
-  res.send({
-    products,
-  });
+    res.send({
+      products,
+    });
+  } catch (error) {
+    next(error);
+  }
 });
 
 productsRouter.get("/:productid", async (req, res, next) => {

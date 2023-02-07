@@ -22,14 +22,14 @@ server.use((req, res, next) => {
   next();
 });
 
+// create route and router for our main API
+const apiRouter = require("./api");
+server.use("/api", apiRouter);
+
 // by default serve up the react app if we don't recognize the route
 server.use("/", (req, res, next) => {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
-
-// create route and router for our main API
-const apiRouter = require("./api");
-server.use("/api", apiRouter);
 
 // start up the server
 server.listen(PORT, () => {
