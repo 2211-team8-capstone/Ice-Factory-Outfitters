@@ -1,5 +1,4 @@
-// This is the Web Server
-const PORT = 4001;
+const PORT = process.env.PORT || 8080;
 const express = require("express");
 const server = express();
 const cors = require("cors");
@@ -7,12 +6,15 @@ const { client } = require("./db");
 const morgan = require("morgan");
 require("dotenv").config();
 
+// connect to the db
 client.connect();
 
 server.use(cors());
 server.use(morgan("dev"));
 
 server.use(express.json());
+const path = require("path");
+server.use(express.static(path.join(__dirname, "build")));
 
 server.use((req, res, next) => {
   console.log("<____Body Logger START____>");
@@ -21,28 +23,22 @@ server.use((req, res, next) => {
 
   next();
 });
+
 // create route and router for our main API
 const apiRouter = require("./api");
 server.use("/api", apiRouter);
 
-// connect to the db
+// by default serve up the react app if we don't recognize the route
+server.use("/", (req, res, next) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
 
 // start up the server
 server.listen(PORT, () => {
   console.log("The server is up on port: ", PORT);
 });
 
-// enable cross-origin resource sharing to proxy api requests
-// from localhost:3000 to localhost:4000 in local dev env
-
-// by default serve up the react app if we don't recognize the route
-// server.use((req, res, next) => {
-//   res.sendFile(path.join(__dirname, "build", "index.html"));
-// });
-
-//
-
-// define a server handle to close open tcp connection after unit tests have run
+// // define a server handle to close open tcp connection after unit tests have run
 // const handle = server.listen(PORT, async () => {
 //   console.log(`Server is running on ${PORT}!`);
 
@@ -54,14 +50,5 @@ server.listen(PORT, () => {
 //   }
 // });
 
-// export server and handle for routes/*.test.js
+// // export server and handle for routes/*.test.js
 // module.exports = { server, handle };
-
-// removing this from above for now, not sure what it is for
-
-// here's our static files
-// const path = require("path");
-// server.use(express.static(path.join(__dirname, "build")));
-
-// connect to the server
-// const PORT = process.env.PORT || 8080;

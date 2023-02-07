@@ -1,7 +1,7 @@
 export const deleteSingleProduct = async (token, productID) => {
   try {
     const response = await fetch(
-      `http://localhost:4001/api/products/${productID}`,
+      `/api/products/${productID}`,
       {
         method: "DELETE",
         headers: {
@@ -27,7 +27,7 @@ export const editSingleProduct = async (
 ) => {
   try {
     const response = await fetch(
-      `http://localhost:4001/api/products/${productID}`,
+      `/api/products/${productID}`,
       {
         method: "PATCH",
         headers: {
@@ -51,7 +51,7 @@ export const editSingleProduct = async (
 
 export const deleteSingleUser = async (token, userID) => {
   try {
-    const response = await fetch(`http://localhost:4001/api/users/${userID}`, {
+    const response = await fetch(`/api/users/${userID}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
