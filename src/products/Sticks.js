@@ -34,9 +34,9 @@ const Sticks = (props) => {
     setSelectedProduct();
   }, []);
 
-  // const filteredProducts = props?.products.filter((_product) =>
-  //   _product.category.includes("Sticks")
-  // );
+  const filteredProducts = props.products.filter((_product) =>
+    _product.category.includes("Sticks")
+  );
 
   return (
     <div className="all-products">
@@ -52,7 +52,7 @@ const Sticks = (props) => {
           setSelectedProduct={setSelectedProduct}
         />
       ) : (
-        products && products.map((product) => {
+        filteredProducts.map((product) => {
           return (
             <div className="product-container" key={product.id}>
               <div className="single-product">
