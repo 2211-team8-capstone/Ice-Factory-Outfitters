@@ -1,6 +1,6 @@
 # Welcome to Ice Factory Outfitters
-  A one stop shop for all things ice hockey. 
-  Developed by: Dylan Szalankiewicz, Jae You, Thomas Thayer, and Kevin Weber during the Fullstack Academy 2022-2023 cohort. 
+ -  A one stop shop for all things ice hockey. 
+ - Developed by: Dylan Szalankiewicz, Jae You, Thomas Thayer, and Kevin Weber during the Fullstack Academy 2022-2023 cohort. 
 
 ## Tools used during development 
 1. React 
